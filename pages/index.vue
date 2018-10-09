@@ -11,12 +11,10 @@
       <div class="links">
         <a
           href="/bootstrap-form-demo"
-          target="_blank"
           class="button--green">Bootstrap Form Demo</a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+          href="/welcome"
+          class="button--grey">Start</a>
       </div>
     </div>
   </section>
