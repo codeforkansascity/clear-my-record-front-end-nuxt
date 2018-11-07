@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <div>
+        <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>
       <logo/>
       <h1 class="title">
         expungement
