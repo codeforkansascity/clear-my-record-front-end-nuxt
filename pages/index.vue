@@ -1,67 +1,24 @@
 <template>
-  <section class="container">
-    <div>
-        <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>
-      <logo/>
-      <h1 class="title">
-        expungement
-      </h1>
-      <h2 class="subtitle">
-        UMKC LTPP Expungement
-      </h2>
-      <div class="links">
-        <a
-          href="/bootstrap-form-demo"
-          target="_blank"
-          class="button--green">Bootstrap Form Demo</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+
+  <sec next="page2">
+    <template slot="title">
+      <h4>Introduction</h4>
+    </template>
+    <p>Help remove criminal convictions from your record.
+      May remove barriers to jobs, housing, and benefits.</p>
+
+    <p>If you have more than one conviction, we can refer you to ...</p>
+
+    <prev-next next="page2"></prev-next>
+  </sec>
+
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+    import Sec from "../components/sec";
+    import PrevNext from "../components/prev-next";
 
-export default {
-  components: {
-    Logo
-  }
-}
+    export default {
+        components: {Sec, PrevNext},
+    }
 </script>
-
-<style>
-
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

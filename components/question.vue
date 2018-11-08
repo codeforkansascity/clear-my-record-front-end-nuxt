@@ -25,13 +25,13 @@
         </div>
         <div class="row mb-4">
             <div class="col-6">
-                <a v-if="this.previous" class="btn btn-secondary btn-sm"
-                        :href="this.previous">Privious page</a>
+                <nuxt-link v-if="this.previous" class="btn btn-secondary btn-sm"
+                        :to="this.previous">Privious page</nuxt-link>
             </div>
             <div class="col-6 ">
-                <a v-if="this.next" :class="{disabled: !question_answered}"
+                <nuxt-link v-if="this.next" :class="{disabled: !question_answered}"
                    class="btn btn-primary btn-sm float-right "
-                :href="this.next">Next Page</a>
+                :to="this.next">Next Page</nuxt-link>
             </div>
 
         </div>
