@@ -3,6 +3,7 @@
         <template slot="intro">
             I will be assisting you to gather information and sharing the provisions of law with you. I will not be giving you legal advice.
             <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>
+            <nuxt-link to="/">Home</nuxt-link>
         </template>
         <template slot="question">
             Do you understand that I will not be giving you legal advice?
@@ -17,12 +18,13 @@
 
 <script>
     import Question from "../components/question";
+  //  import { mapState } from 'vuex'
     export default {
         name: "q6",
         components: {Question},
         mounted() {
-            this.$store.commit('cars/set', [{id: 2, model: "Tacoma", brand: "Toyota"}]);
-            console.log('Component mounted.');
+            // this.$store.commit('cars/set', [{id: 2, model: "Tacoma", brand: "Toyota"}]);
+            // console.log('Component mounted.');
 
         }
     }

@@ -2,6 +2,7 @@
     <question previous="q6" next="q8">
         <template slot="intro">
             (If applicable) I am also not an attorney.
+            <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>
         </template>
         <template slot="question">
             Do you understand that I am not an attorney?
