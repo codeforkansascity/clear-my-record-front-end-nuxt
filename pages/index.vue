@@ -1,24 +1,35 @@
 <template>
+    <div>
+        <sec>
+            <template slot="title">
+                <h4>Introduction</h4>
+            </template>
+            <p>We may beable to help you remove criminal convictions from your record by
+                removeing barriers to jobs, housing, and benefits.
+                If not we will refere you to someone that can help you.</p>
 
-  <sec next="page2">
-    <template slot="title">
-      <h4>Introduction</h4>
-    </template>
-    <p>Help remove criminal convictions from your record.
-      May remove barriers to jobs, housing, and benefits.</p>
+            <p>In Missouri you may have one old felony and two old misdemeanors removed from your record.
+                Not all crimes can be expunged in Missouri.
+                You can do this with a court proceeding called expungement.</p>
 
-    <p>If you have more than one conviction, we can refer you to ...</p>
 
-    <prev-next next="page2"></prev-next>
-  </sec>
 
+                <p class="text-center">
+                    <nuxt-link
+                            class="btn btn-primary btn-sm"
+                            to="/page2">Next Page
+                    </nuxt-link>
+                </p>
+
+        </sec>
+
+    </div>
 </template>
 
 <script>
     import Sec from "../components/sec";
-    import PrevNext from "../components/prev-next";
 
     export default {
-        components: {Sec, PrevNext},
+        components: {Sec},
     }
 </script>
