@@ -4,6 +4,12 @@
     <template slot="title">
       <h4>Disqualifying Questions</h4>
     </template>
+    <disqualifying-question>
+      Do you have any prending cases?
+      <template slot="help">
+        This is the help text
+      </template>
+    </disqualifying-question>
     <yes-no-question>Do you have any prending cases?</yes-no-question>
     <yes-no-question>Do you have any previous expungements?</yes-no-question>
     <yes-no-question>Completion of most recent felony sentence less than 7 years?</yes-no-question>
@@ -18,8 +24,9 @@
 <script>
     import Sec from "../components/sec";
     import YesNoQuestion from "../components/yes-no-question";
+    import DisqualifyingQuestion from "../components/disqualifying-question";
 
     export default {
-        components: {Sec, YesNoQuestion},
+        components: {Sec, YesNoQuestion, DisqualifyingQuestion},
     }
 </script>
