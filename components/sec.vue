@@ -11,11 +11,12 @@
         <div class="row mb-4">
             <div class="col-6">
                 <nuxt-link v-if="this.previous" class="btn btn-secondary btn-sm"
-                   :to="this.previous">Privious page</nuxt-link>
+                   :to="this.previous">Previous page</nuxt-link>
             </div>
             <div class="col-6 ">
                 <nuxt-link v-if="this.next"
                    class="btn btn-primary btn-sm float-right "
+                           @click.native="logit('x')"
                    :to="this.next">Next Page</nuxt-link>
             </div>
 
@@ -37,6 +38,11 @@
             },
 
         },
+        methods: {
+            logit: function(val) {
+                console.log('logit' + val)
+            }
+        }
 
     }
 </script>

@@ -26,7 +26,7 @@
         <div class="row mb-4">
             <div class="col-6">
                 <nuxt-link v-if="this.previous" class="btn btn-secondary btn-sm"
-                        :to="this.previous">Privious page</nuxt-link>
+                        :to="this.previous">Previous page</nuxt-link>
             </div>
             <div class="col-6 ">
                 <nuxt-link v-if="this.next" :class="{disabled: !question_answered}"
