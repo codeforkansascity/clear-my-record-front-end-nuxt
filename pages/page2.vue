@@ -1,6 +1,6 @@
 <template>
 
-  <sec previous="/" next="page3">
+  <sec previous="/" next="onecase">
     <template slot="title">
       <h4>Missouri</h4>
     </template>
