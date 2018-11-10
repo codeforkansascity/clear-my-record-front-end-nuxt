@@ -9,7 +9,6 @@ const store = () => {
             increment (state) {
                 state.counter++
             },
-
         }
     })
 }
