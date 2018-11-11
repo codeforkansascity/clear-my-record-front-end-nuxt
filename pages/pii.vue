@@ -1,21 +1,21 @@
 <template>
 
-  <sec previous="in-categories" next="additional-pii">
+  <sec previous="your-conviction" next="charges">
     <template slot="title">
-      <h4>Collection of Personal Information</h4>
+      <h4>Your Personal Information</h4>
     </template>
 
 
     <form>
-      <pii-input>Name</pii-input>
-      <pii-input>Other Names/Aliases</pii-input>
-      <pii-input>Birthdate</pii-input>
-      <pii-input>Gender</pii-input>
-      <pii-input>DL #</pii-input>
-      <pii-input>Race</pii-input>
-      <pii-input>Address</pii-input>
-      <pii-input>Phone</pii-input>
-      <pii-input>Email</pii-input>
+      <pii-input>What is your full name?</pii-input>
+      <pii-input>What is your Sex?</pii-input>
+      <pii-input>What is your Race? </pii-input>
+      <pii-input>What is you Date of Birth?</pii-input>
+      <pii-input>What is your current address</pii-input>
+      <p>What is your Driver’s License information?</p>
+      <pii-input>License Number?</pii-input>
+      <pii-input>Issuing State?</pii-input>
+      <pii-input>Expiration Date?</pii-input>
     </form>
 
   </sec>

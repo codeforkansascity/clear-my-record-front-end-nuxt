@@ -10,43 +10,26 @@
 
       <disqualifying-question questionname="classA">
           Class A or dangerous felony
-          <template slot="help">
-          </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="death">
           Where a death occurred.
-          <template slot="help">
-              This is the help text
-          </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="felonyAssault">
           Felony Assault or kidnapping
-          <template slot="help">
-              This is the help text
-          </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="domesticAssault">
           Domestic Assault
-          <template slot="help">
-              This is the help text
-          </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="intoxicated">
           Operating transport while intoxicated
-          <template slot="help">
-              This is the help text
-          </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="cdl">
           Violation of motor vehicle ordinance/law while CDL
-          <template slot="help">
-              This is the help text
-          </template>
       </disqualifying-question>
 
       <p><i>

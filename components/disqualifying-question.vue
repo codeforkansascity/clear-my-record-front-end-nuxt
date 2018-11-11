@@ -19,7 +19,7 @@
                 <label class="form-check-label" for="inlineRadio3">I do not know</label>
             </div>
 
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline" v-if="this.$slots.help !== undefined">
                 <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio4" value="Help"
                        v-model="selected">
                 <label class="form-check-label" for="inlineRadio4">(?)</label>
@@ -28,10 +28,14 @@
 
         <div class="col-sm-8 ques">
             <slot></slot>
+            <transition name="slide-fade">
             <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
-                 v-if="selected == 'Help'">
-                <slot name="help"></slot>
+                 v-if="selected == 'Help' && this.$slots.help !== undefined">
+
+                    <slot name="help"></slot>
+
             </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -70,5 +74,19 @@
         .ques {
             order: 1;
         }
+    }
+
+    /* Enter and leave animations can use different */
+    /* durations and timing functions.              */
+    .slide-fade-enter-active {
+        transition: all .8s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active below version 2.1.8 */ {
+        transform: translateX(20px);
+        opacity: 0;
     }
 </style>

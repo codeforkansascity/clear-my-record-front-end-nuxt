@@ -18,41 +18,40 @@
       <disqualifying-question questionname="previously">
           I have not had any charges previously expunged?
           <template slot="help">
-              This is the help text
+              <b>Why does this matter?</b> Missouri limits the number of convictions that may be expunged.
+              Currently, no more than 1 felony conviction and 3 misdemeanor convictions may be expunged.
+              Previous expungements may limit the number of expungements you may now request.
           </template>
       </disqualifying-question>
 
       <disqualifying-question questionname="obligations">
           I have completed my obligations under the sentence.
-          <template slot="help">
-              This is the help text
-          </template>
+
       </disqualifying-question>
 
       <disqualifying-question questionname="felonytime">
           I completed my sentence seven years ago (if a felony).
-          <template slot="help">
-              This is the help text
-          </template>
+
       </disqualifying-question>
 
       <disqualifying-question questionname="misdereanortime">
           I completed my sentence three years ago (if a misdemeanor).
-          <template slot="help">
-              This is the help text
-          </template>
+
       </disqualifying-question>
 
-      <disqualifying-question questionname="moreThanOne">
-          What if I have more than one conviction?
-          <template slot="help">
-              Missouri limits the number of convictions that may be expunged.
+
+      <div class="row">
+          <div class="col-sm-4 ansr" style="margin-bottom: 2em;">
+              What if I have more than one conviction?
+          </div>
+          <div class="col-sm-8 ques">
+              <p>Missouri limits the number of convictions that may be expunged.
               Currently, no more than 1 felony conviction and 3 misdemeanor convictions may be expunged.
               A single conviction may include multiple counts.
-              For example, a marijuana conviction including a possession count and a paraphernalia count would be treated as a single conviction to be expunged.
-              —NEED TO ADD LANGUAGE THAT SAYS THAT IF YOU HAVE MULTIPLE CONVICTIONS, YOU NEED TO SEEK ADVICE FROM AN ATTORNEY IF YOU WOULD LIKE TO SEEK AN EXPUNGEMENT.
-          </template>
-      </disqualifying-question>
+                  For example, a marijuana conviction including a possession count and a paraphernalia count would be treated as a single conviction to be expunged.</p>
+              <p>NEED TO ADD LANGUAGE THAT SAYS THAT IF YOU HAVE MULTIPLE CONVICTIONS, YOU NEED TO SEEK ADVICE FROM AN ATTORNEY IF YOU WOULD LIKE TO SEEK AN EXPUNGEMENT.</p>
+          </div>
+      </div>
 
 
       <p><i>[If they hit “Next” and there is a “No” in any answer:] H1 You May Not Be Eligible to Apply [Based upon the information you provided, you do not appear to meet the requirements to obtain an expungement. You may want to consult with an attorney to see what options might be available to you.
