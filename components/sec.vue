@@ -21,6 +21,9 @@
             </div>
 
         </div>
+        <div class="row">
+        <slot name="note"></slot>
+        </div>
     </div>
 </template>
 

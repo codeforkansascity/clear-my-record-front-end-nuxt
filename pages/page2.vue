@@ -53,11 +53,12 @@
           </div>
       </div>
 
-
+      <template slot="note">
       <p><i>[If they hit “Next” and there is a “No” in any answer:] H1 You May Not Be Eligible to Apply [Based upon the information you provided, you do not appear to meet the requirements to obtain an expungement. You may want to consult with an attorney to see what options might be available to you.
       </i></p>
       <p><i>[If they hit “Next” and there is not a “ No” in answer answer but there is an “I’m Not Sure” in any answer:] H1 You may be eligible to apply, but because you are not sure, you may not be successful. You should detYou may want to consult with an attorney to see what options might be available to you.
         </i></p>
+      </template>
 
   </sec>
 
