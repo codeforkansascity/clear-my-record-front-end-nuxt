@@ -2,7 +2,7 @@
 
   <sec previous="pii" next="print">
     <template slot="title">
-      <h4>List of Charges</h4>
+      <h4>Criminal Charge</h4>
     </template>
 
     <form>

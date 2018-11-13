@@ -4,12 +4,9 @@
     <template slot="title">
       <h4>Your Conviction</h4>
     </template>
-    <p>This service has been created by the University of Missouri School of Law and Code for KC (Authors) to promote expungement of criminal convictions in Missouri.
-        Use of this service is limited to those persons who agree with the terms of use.
-        The terms of use that you must agree to if you would like to use this app are as follows: </p>
 
       <form>
-          <pii-input>Was the court a county circuit court or a municipal court?</pii-input>
+          <pii-input>Was the court a Missouri circuit (county) court or a municipal (city) court?</pii-input>
           <pii-input>What was the name of the County or City?</pii-input>
           <pii-input>What was the case number?</pii-input>
           <pii-input>What was the name of the Judge</pii-input>

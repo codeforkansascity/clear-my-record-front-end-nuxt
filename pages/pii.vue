@@ -12,7 +12,7 @@
       <pii-input>What is your Race? </pii-input>
       <pii-input>What is you Date of Birth?</pii-input>
       <pii-input>What is your current address</pii-input>
-      <p>What is your Driver’s License information?</p>
+      <p>Your Driver’s License information?</p>
       <pii-input>License Number?</pii-input>
       <pii-input>Issuing State?</pii-input>
       <pii-input>Expiration Date?</pii-input>
