@@ -43,10 +43,8 @@
 
 
         <div class="row">
-            <div class="col-sm-4 ansr" style="margin-bottom: 2em;">
-                What if I have more than one conviction?
-            </div>
-            <div class="col-sm-8 ques">
+            <div class="col-sm-12 ques">
+                <p><b>What if I have more than one conviction?</b></p>
                 <p>Missouri limits the number of convictions that can be expunged. Currently, no more than 1 felony
                     conviction and 3 misdemeanor convictions can be expunged. A single conviction can include multiple
                     counts. For example, a marijuana conviction including a possession count and a paraphernalia count

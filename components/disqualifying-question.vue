@@ -1,5 +1,16 @@
 <template>
     <div class="row">
+        <div class="col-sm-8 ques">
+            <slot></slot>
+            <transition name="slide-fade">
+                <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
+                     v-if="selected == 'Help' && this.$slots.help !== undefined">
+
+                    <slot name="help"></slot>
+
+                </div>
+            </transition>
+        </div>
         <div class="col-sm-4 ansr" style="margin-bottom: 2em">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio1" value="Yes"
@@ -24,18 +35,6 @@
                        v-model="selected">
                 <label class="form-check-label" for="inlineRadio4">(?)</label>
             </div>
-        </div>
-
-        <div class="col-sm-8 ques">
-            <slot></slot>
-            <transition name="slide-fade">
-            <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
-                 v-if="selected == 'Help' && this.$slots.help !== undefined">
-
-                    <slot name="help"></slot>
-
-            </div>
-            </transition>
         </div>
     </div>
 </template>
@@ -63,6 +62,7 @@
 </script>
 
 <style scoped>
+/*
     @media screen and (max-width: 600px) {
 
         .ansr {
@@ -75,6 +75,7 @@
             order: 1;
         }
     }
+    */
 
     /* Enter and leave animations can use different */
     /* durations and timing functions.              */
