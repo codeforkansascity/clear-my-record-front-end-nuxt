@@ -53,9 +53,31 @@
                 selected: null
             }
         },
+        mounted: function () {
+
+            var all = this.$store.getters.allQuestions;
+
+
+            var index = all.findIndex(p => p.question == this.questionname);
+
+            if (index === -1 ) {
+                this.selected = null;
+            } else {
+                this.selected = all[index].answer;
+            }
+        },
         watch: {
             selected: function (val) {
                 console.log(this.questionname + ': ' + val);
+
+                console.log('-----------------------------');
+                this.$store.dispatch('storeQuestion', { question: this.questionname, answer: val })
+
+                var x = JSON.stringify(this.$store.getters.allQuestions);
+                console.dir(x);
+                console.log('-----------------------------');
+
+
             }
         }
     }

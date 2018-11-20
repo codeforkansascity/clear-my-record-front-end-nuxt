@@ -3,7 +3,8 @@
         <template slot="intro">
             I will be assisting you to gather information and sharing the provisions of law with you. I will not be giving you legal advice.
             <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>
-            <nuxt-link to="/">Home</nuxt-link>
+            <nuxt-link to="/q7">q7</nuxt-link>
+
         </template>
         <template slot="question">
             Do you understand that I will not be giving you legal advice?
