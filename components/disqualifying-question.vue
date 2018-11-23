@@ -43,41 +43,47 @@
     export default {
         name: "disqualifying-question",
         props: {
+            group: {
+                type: String,
+                default: 'group',
+            },
             questionname: {
                 type: String,
                 default: 'q1',
             }
+
         },
         data: function () {
             return {
-                selected: null
+                selected: []
             }
         },
         mounted: function () {
 
             var all = this.$store.getters.allQuestions;
 
-
-            var index = all.findIndex(p => p.question == this.questionname);
+            var index = this.selected.findIndex(p =>
+                (p.group == this.group)
+               && (p.question == this.questionname)
+            );
 
             if (index === -1 ) {
                 this.selected = null;
             } else {
                 this.selected = all[index].answer;
             }
+
         },
         watch: {
             selected: function (val) {
+                console.log('group=' + this.group);
                 console.log(this.questionname + ': ' + val);
 
-                console.log('-----------------------------');
-                this.$store.dispatch('storeQuestion', { question: this.questionname, answer: val })
-
-                var x = JSON.stringify(this.$store.getters.allQuestions);
+                console.log('==============================');
+                this.$store.dispatch('storeQuestion', { group: this.group, question: this.questionname, answer: val });
+                let x = JSON.stringify(this.$store.getters.allQuestions);
                 console.dir(x);
-                console.log('-----------------------------');
-
-
+                console.log('==============================');
             }
         }
     }

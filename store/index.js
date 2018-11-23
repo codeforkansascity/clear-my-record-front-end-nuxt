@@ -12,6 +12,12 @@ const store = () => new Vuex.Store({
         allQuestions (state) {
             return state.questions
         },
+        anyGroupQuestionsYes (state, group) {
+            return state.questions.reduce(
+                (accumulator, item) => accumulator += (item.answer === 'Yes' && item.group === group ? 1 : 0)
+            , 0);
+
+        },
         getAnswer (state, question) {
             var index = state.questions.findIndex(p => p.question == question);
             if (index === -1 ) {
@@ -31,22 +37,20 @@ const store = () => new Vuex.Store({
         }
     },
     mutations: {
+        CLEAR_ALL( state ){
+            state.questions = [];
+        },
+        STORE_QUESTION( state, data ){
 
-        STORE_QUESTION( state, question ){
+          //   var group_index = state.questions.findIndex(p => p.group == data.group);
 
-            // var index = state.questions.findIndex(p => p.question == question.question);
-
-            var index = state.questions.findIndex(p => p.question == question.question);
-
-
-
+            var index = state.questions.findIndex(p => (p.group == data.group) && (p.question == data.question) );
 
             if (index === -1 ) {
-                state.questions.push(question)
+                state.questions.push( data )
             } else {
-                state.questions[index].answer = question.answer;
+                state.questions[index].answer = data.answer;
             }
-
         },
         SET_TODOS (state, todos) {
             state.todos = todos
@@ -65,12 +69,13 @@ const store = () => new Vuex.Store({
         }
     },
     actions: {
+
+        clearAll( { commit} ) {
+            commit('CLEAR_ALL');
+        },
         storeQuestion ({ commit }, quest) {
             commit('STORE_QUESTION', quest)
         },
-
-
-
         addTodo ({ commit }, todo) {
             commit('ADD_TODO', todo)
         },

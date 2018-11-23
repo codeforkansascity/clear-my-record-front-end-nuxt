@@ -8,7 +8,11 @@
 
         <p>You may not be eligible to apply if any of the following are true:</p>
 
-        <disqualifying-question questionname="criminalCharge">
+        <h1>Yes={{ numberOfYes  }}</h1>
+        <h1>No={{ numberOfNotNo  }}</h1>
+        <h1>Unknown{{ numberOfUnknown  }}</h1>
+
+        <disqualifying-question group="do-you-qualify" questionname="criminalCharge">
             I have a criminal charge pending against me now.
             <template slot="help">
                 A pending criminal charge is a criminal charge against you that is currently in court and has not been
@@ -16,7 +20,7 @@
             </template>
         </disqualifying-question>
 
-        <disqualifying-question questionname="previously">
+        <disqualifying-question group="do-you-qualify" questionname="previously">
             I have had one or more convictions expunged.
             <template slot="help">
                 <b>Why does this matter?</b> Missouri limits the number of convictions that can be expunged. Currently,
@@ -26,17 +30,17 @@
             </template>
         </disqualifying-question>
 
-        <disqualifying-question questionname="obligations">
+        <disqualifying-question group="do-you-qualify" questionname="obligations">
             I have not completed all requirements of my sentence.
 
         </disqualifying-question>
 
-        <disqualifying-question questionname="felonytime">
+        <disqualifying-question group="do-you-qualify" questionname="felonytime">
             I completed my sentence less than seven years ago (if a felony).
 
         </disqualifying-question>
 
-        <disqualifying-question questionname="misdereanortime">
+        <disqualifying-question group="do-you-qualify" questionname="misdereanortime">
             I completed my sentence less than three years ago (if a misdemeanor).
 
         </disqualifying-question>
@@ -55,11 +59,11 @@
         </div>
 
         <template slot="note">
-            <p><i>[If they hit “Next” and there is a “Yes” in any answer:] H1 You May Not Be Eligible to Apply [Based
+            <p v-if="numberOfYes"><i>[If they hit “Next” and there is a “Yes” in any answer:] H1 You May Not Be Eligible to Apply [Based
                 upon the information you provided, you do not appear to meet the requirements to obtain an expungement
                 at this time. You may want to consult with an attorney to see what options might be available to you.
             </i></p>
-            <p><i>[If they hit “Next” and there is not a “ No” in answer but there is an “I’m Not Sure” in any answer:]
+            <p v-if="numberOfUnknown"><i>[If they hit “Next” and there is not a “ No” in answer but there is an “I’m Not Sure” in any answer:]
                 H1 You may be eligible to apply, but because you are not sure, you may not be successful. You may want
                 to consult with an attorney to see what options might be available to you.
             </i></p>
@@ -75,5 +79,27 @@
 
     export default {
         components: {Sec, DisqualifyingQuestion},
+        mounted: function () {
+        },
+        computed: {
+            numberOfNotNo: function() {
+                var all = this.$store.getters.allQuestions;
+                return all.reduce(
+                    (accumulator, item) => accumulator += (item.answer === 'No' && item.group === 'do-you-qualify' ? 1 : 0)
+                    , 0);
+            },
+            numberOfYes: function() {
+                var all = this.$store.getters.allQuestions;
+                return all.reduce(
+                    (accumulator, item) => accumulator += (item.answer === 'Yes' && item.group === 'do-you-qualify' ? 1 : 0)
+                    , 0);
+            },
+            numberOfUnknown: function() {
+                var all = this.$store.getters.allQuestions;
+                return all.reduce(
+                    (accumulator, item) => accumulator += (item.answer === 'Unknown' && item.group === 'do-you-qualify' ? 1 : 0)
+                    , 0);
+            }
+        }
     }
 </script>
