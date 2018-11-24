@@ -15,6 +15,10 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+        { src: '/pdfmake.js'},
+        { src: '/vfs_fonts.js'}
     ]
   },
 
