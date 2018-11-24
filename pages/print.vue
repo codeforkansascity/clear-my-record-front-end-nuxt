@@ -16,6 +16,17 @@
 
             <p>Thank you for using...</p>
 
+            <button @click="printForm">Show PDF</button>
+
+            <nuxt-link
+                    class="btn btn-primary btn-sm btn-outline-success"
+                    to="/charges">Previous Page
+            </nuxt-link>
+            <nuxt-link
+                    class="btn btn-primary btn-sm btn-outline-success"
+                    to="/">First Page
+            </nuxt-link>
+
         </sec>
 
     </div>
@@ -26,5 +37,51 @@
 
     export default {
         components: {Sec},
+        mounted: function () {
+
+
+        },
+        methods: {
+            printForm: function() {
+                var docDefinition = { content:[
+                        {
+                            table: {
+                                // headers are automatically repeated if the table spans over multiple pages
+                                // you can declare how many rows should be treated as headers
+                                headerRows: 1,
+                                widths: [ 'auto', 'auto'],
+
+                                body: [
+                                    [ 'Question', 'Answer' ],
+                                    [ 'Has a criminal charge pending', this.getAns('do-you-qualify', 'criminalCharge') ],
+                                    [ 'Has had one or more convictions expunged', this.getAns('do-you-qualify', 'previously') ],
+                                    [ 'completed all requirements of sentence', this.getAns('do-you-qualify', 'obligations') ],
+                                    [ 'Felony requirements completed less than seven years ago', this.getAns('do-you-qualify', 'felonytime') ],
+                                    [ 'Misdemeanor requirements completed less than seven years ago', this.getAns('do-you-qualify', 'misdereanortime') ],
+                                ]
+                            },
+                            layout: 'lightHorizontalLines'
+                        }
+                    ]
+
+
+                };
+                pdfMake.createPdf(docDefinition).open();
+            },
+            getAns: function(group, questionname) {
+
+                var all = this.$store.getters.allQuestions;
+                var index = all.findIndex(p =>
+                    (p.group == group)
+                    && (p.question == questionname)
+                );
+
+                if (index === -1 ) {
+                    return '---';
+                } else {
+                    return all[index].answer;
+                }
+            }
+        }
     }
 </script>

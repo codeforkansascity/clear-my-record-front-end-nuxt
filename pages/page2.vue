@@ -32,12 +32,10 @@
 
         <disqualifying-question group="do-you-qualify" questionname="obligations">
             I have not completed all requirements of my sentence.
-
         </disqualifying-question>
 
         <disqualifying-question group="do-you-qualify" questionname="felonytime">
             I completed my sentence less than seven years ago (if a felony).
-
         </disqualifying-question>
 
         <disqualifying-question group="do-you-qualify" questionname="misdereanortime">
@@ -80,8 +78,6 @@
 
     export default {
         components: {Sec, DisqualifyingQuestion},
-        mounted: function () {
-        },
         computed: {
             numberOfNotNo: function() {
                 var all = this.$store.getters.allQuestions;
