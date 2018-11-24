@@ -42,7 +42,6 @@
 
         <disqualifying-question group="do-you-qualify" questionname="misdereanortime">
             I completed my sentence less than three years ago (if a misdemeanor).
-
         </disqualifying-question>
 
 
@@ -56,19 +55,21 @@
                 <p>IF YOU HAVE MORE THAN ONE CONVICTION, SEEKING AN EXPUNGEMENT IS DIFFICULT AND YOU SHOULD GET ADVICE
                     FROM AN ATTORNEY. </p>
             </div>
+
+            <div class="col-sm-12 ques">
+                <p v-if="numberOfYes" class="alert-warning">You May Not Be Eligible to Apply Based
+                    upon the information you provided, you do not appear to meet the requirements to obtain an expungement
+                    at this time. You may want to consult with an attorney to see what options might be available to you.
+                </p>
+            </div>
+
+            <div class="col-sm-12 ques">
+                <p v-if="numberOfUnknown" class="alert-warning">
+                    You may be eligible to apply, but because you are not sure, you may not be successful. You may want
+                    to consult with an attorney to see what options might be available to you.
+                </p>
+            </div>
         </div>
-
-        <template slot="note">
-            <p v-if="numberOfYes"><i>[If they hit “Next” and there is a “Yes” in any answer:] H1 You May Not Be Eligible to Apply [Based
-                upon the information you provided, you do not appear to meet the requirements to obtain an expungement
-                at this time. You may want to consult with an attorney to see what options might be available to you.
-            </i></p>
-            <p v-if="numberOfUnknown"><i>[If they hit “Next” and there is not a “ No” in answer but there is an “I’m Not Sure” in any answer:]
-                H1 You may be eligible to apply, but because you are not sure, you may not be successful. You may want
-                to consult with an attorney to see what options might be available to you.
-            </i></p>
-        </template>
-
     </sec>
 
 </template>
