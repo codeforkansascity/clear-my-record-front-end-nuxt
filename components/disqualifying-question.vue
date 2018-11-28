@@ -4,7 +4,7 @@
             <slot></slot>
             <transition name="slide-fade">
                 <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
-                     v-if="selected == 'Help' && this.$slots.help !== undefined">
+                     v-if="showHelp && this.$slots.help !== undefined">
 
                     <slot name="help"></slot>
 
@@ -31,9 +31,7 @@
             </div>
 
             <div class="form-check form-check-inline" v-if="this.$slots.help !== undefined">
-                <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio4" value="Help"
-                       v-model="selected">
-                <label class="form-check-label" for="inlineRadio4">(?)</label>
+                <span v-on:click="showHelp = !showHelp" class="form-check-label" for="inlineRadio4">(?)</span>
             </div>
         </div>
     </div>
@@ -55,7 +53,8 @@
         },
         data: function () {
             return {
-                selected: []
+                selected: [],
+                showHelp: false,
             }
         },
         mounted: function () {
