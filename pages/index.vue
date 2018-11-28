@@ -44,7 +44,7 @@
     export default {
         components: {Sec},
         mounted: function () {
-            this.$store.dispatch('clearAll');
+            // this.$store.dispatch('clearAll');
         }
     }
 </script>

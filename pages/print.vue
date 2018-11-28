@@ -58,6 +58,14 @@
                                     [ 'completed all requirements of sentence', this.getAns('do-you-qualify', 'obligations') ],
                                     [ 'Felony requirements completed less than seven years ago', this.getAns('do-you-qualify', 'felonytime') ],
                                     [ 'Misdemeanor requirements completed less than seven years ago', this.getAns('do-you-qualify', 'misdereanortime') ],
+                                    [ ' ', ' '],
+                                    [ 'A Class A or dangerous felony?', this.getAns('are-you-excluded', 'classA') ],
+                                    [ 'A crime where a death occurred?', this.getAns('are-you-excluded', 'death') ],
+                                    [ 'Felony Assault or kidnapping?', this.getAns('are-you-excluded', 'felonyAssault') ],
+                                    [ 'Domestic Assault?', this.getAns('are-you-excluded', 'domesticAssault') ],
+                                    [ 'Operating a car, boat, or plane while intoxicated?', this.getAns('are-you-excluded', 'intoxicated') ],
+                                    [ 'A violation of a motor vehicle ordinance/law while CDL?', this.getAns('are-you-excluded', 'cdl') ],
+
                                 ]
                             },
                             layout: 'lightHorizontalLines'

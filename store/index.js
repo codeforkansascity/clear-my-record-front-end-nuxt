@@ -38,7 +38,7 @@ const store = () => new Vuex.Store({
     },
     mutations: {
         CLEAR_ALL( state ){
-            state.questions = [];
+ //           state.questions = [];
         },
         STORE_QUESTION( state, data ){
 
