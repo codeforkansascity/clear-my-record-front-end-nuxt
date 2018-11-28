@@ -8,10 +8,6 @@
 
         <p>You may not be eligible to apply if any of the following are true:</p>
 
-        <h1>Yes={{ numberOfYes  }}</h1>
-        <h1>No={{ numberOfNotNo  }}</h1>
-        <h1>Unknown{{ numberOfUnknown  }}</h1>
-
         <disqualifying-question group="do-you-qualify" questionname="criminalCharge">
             I have a criminal charge pending against me now.
             <template slot="help">
