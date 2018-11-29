@@ -17,7 +17,8 @@
     "bootstrap-vue": "^2.0.0-beta",
     "cross-env": "^5.2.0",
     "nuxt": "^2.0.0",
-    "pdfmake": "^0.1.39"
+    "pdfmake": "^0.1.39",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
