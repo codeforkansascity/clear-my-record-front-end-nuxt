@@ -61,10 +61,7 @@
 
             var all = this.$store.getters.allQuestions;
 
-            var index = this.selected.findIndex(p =>
-                (p.group == this.group)
-               && (p.question == this.questionname)
-            );
+            var index = all.findIndex(p => p.group == this.group && p.question == this.questionname);
 
             if (index === -1 ) {
                 this.selected = null;
