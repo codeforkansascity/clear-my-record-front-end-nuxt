@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate';     // From https://github.com/robinvdvleuten/vuex-persistedstate
+import Cookies from "js-cookie";
 
 
 Vue.use(Vuex)
@@ -10,10 +11,15 @@ const store = () => new Vuex.Store({
     plugins: [ createPersistedState({
         namespace: 'cmr-app',
         initialState: {},
-        expires: 7 * 24 * 60 * 60 * 1000
+ //       expires: 7 * 24 * 60 * 60 * 1000,
+        storage: {
+            getItem: key => Cookies.get(key),
+            setItem: (key, value) => Cookies.set(key, value, { expires: 365 } ),
+            removeItem: key => Cookies.remove(key)
+        }
     }) ],
     state: {
-        todos: [],
+        // todos: [],
         questions: []
     },
     getters: {
@@ -34,15 +40,15 @@ const store = () => new Vuex.Store({
                 return state.questions[index].answer;
             }
         },
-        allTodos (state) {
-            return state.todos
-        },
-        activeTodos (state) {
-            return state.todos.filter(todo => !todo.completed)
-        },
-        completedTodos (state) {
-            return state.todos.filter(todo => todo.completed)
-        }
+        // allTodos (state) {
+        //     return state.todos
+        // },
+        // activeTodos (state) {
+        //     return state.todos.filter(todo => !todo.completed)
+        // },
+        // completedTodos (state) {
+        //     return state.todos.filter(todo => todo.completed)
+        // }
     },
     mutations: {
         CLEAR_ALL( state ){
@@ -60,21 +66,21 @@ const store = () => new Vuex.Store({
                 state.questions[index].answer = data.answer;
             }
         },
-        SET_TODOS (state, todos) {
-            state.todos = todos
-        },
-        ADD_TODO (state, todo) {
-            state.todos.push(todo)
-        },
-        REMOVE_TODO (state, todo) {
-            var i = state.todos.indexOf(todo)
-            state.todos.splice(i, 1)
-        },
-        FILTER_TODOS (state, value) {
-            state.todos.forEach((todo) => {
-                todo.completed = !value
-            })
-        }
+        // SET_TODOS (state, todos) {
+        //     state.todos = todos
+        // },
+        // ADD_TODO (state, todo) {
+        //     state.todos.push(todo)
+        // },
+        // REMOVE_TODO (state, todo) {
+        //     var i = state.todos.indexOf(todo)
+        //     state.todos.splice(i, 1)
+        // },
+        // FILTER_TODOS (state, value) {
+        //     state.todos.forEach((todo) => {
+        //         todo.completed = !value
+        //     })
+        // }
     },
     actions: {
 
@@ -84,26 +90,26 @@ const store = () => new Vuex.Store({
         storeQuestion ({ commit }, quest) {
             commit('STORE_QUESTION', quest)
         },
-        addTodo ({ commit }, todo) {
-            commit('ADD_TODO', todo)
-        },
-        setTodos ({ commit }, todos) {
-            commit('SET_TODOS', todos)
-        },
-        removeTodo ({ commit }, todo) {
-            commit('REMOVE_TODO', todo)
-        },
-        allDone ({ state, commit }) {
-            var value = state.todos.filter(todo => todo.completed).length === state.todos.length
-            commit('FILTER_TODOS', value)
-        },
-        saveTodos ({ state }) {
-  //          axios.put('/api/todos', { todos: state.todos })
-            console.log('Save to database');
-        },
-        nuxtServerInit ({ commit }, { req }) {
-            commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
-        }
+  //       addTodo ({ commit }, todo) {
+  //           commit('ADD_TODO', todo)
+  //       },
+  //       setTodos ({ commit }, todos) {
+  //           commit('SET_TODOS', todos)
+  //       },
+  //       removeTodo ({ commit }, todo) {
+  //           commit('REMOVE_TODO', todo)
+  //       },
+  //       allDone ({ state, commit }) {
+  //           var value = state.todos.filter(todo => todo.completed).length === state.todos.length
+  //           commit('FILTER_TODOS', value)
+  //       },
+  //       saveTodos ({ state }) {
+  // //          axios.put('/api/todos', { todos: state.todos })
+  //           console.log('Save to database');
+  //       },
+  //       nuxtServerInit ({ commit }, { req }) {
+  //           commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
+  //       }
     }
 })
 
