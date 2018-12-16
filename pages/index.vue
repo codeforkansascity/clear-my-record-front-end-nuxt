@@ -1,11 +1,5 @@
 <template>
     <div>
-
-        <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
-
-        </cases>
-
-
         <sec>
             <template slot="title">
                 <h4>Missouri
@@ -38,21 +32,17 @@
                 issue an expungement order without one.</p>
             <p>The law presumes that you are entitled to expungement if you meet the qualifications.</p>
 
-
         </sec>
-|
-
-|
     </div>
 </template>
 
 <script>
     import Sec from "../components/sec";
 
-    import Cases from "../components/cases";
+
 
     export default {
-        components: {Sec, Cases},
+        components: {Sec},
         mounted: function () {
             // this.$store.dispatch('clearAll');
 
