@@ -19,17 +19,18 @@
 
 <script>
     import Question from "../components/question";
+
     export default {
         name: "q7",
         components: {Question},
         mounted() {
-          //  this.$store.commit('cars/set', [{id: 3, model: "Tacoma", brand: "Toyota"}]);
+            //  this.$store.commit('cars/set', [{id: 3, model: "Tacoma", brand: "Toyota"}]);
 
-            var x='';
+            var x = '';
             console.log('-----------------------------');
-            this.$store.dispatch('storeQuestion', { questions: 'name', anaser: 'paul' })
+            this.$store.dispatch('storeQuestion', {questions: 'name', anaser: 'paul'})
 
-     x = JSON.stringify(this.$store.getters.allQuestions);
+            x = JSON.stringify(this.$store.getters.allQuestions);
             console.dir(x);
             console.log('-----------------------------');
 

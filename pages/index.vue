@@ -1,5 +1,11 @@
 <template>
     <div>
+
+        <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
+
+        </cases>
+
+
         <sec>
             <template slot="title">
                 <h4>Missouri
@@ -34,17 +40,25 @@
 
 
         </sec>
+|
 
+|
     </div>
 </template>
 
 <script>
     import Sec from "../components/sec";
 
+    import Cases from "../components/cases";
+
     export default {
-        components: {Sec},
+        components: {Sec, Cases},
         mounted: function () {
             // this.$store.dispatch('clearAll');
+
+            var x = this.$store.getters.allCases;
+            console.dir(x);
+            console.log('-----------------------------');
         }
     }
 </script>
