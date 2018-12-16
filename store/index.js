@@ -22,16 +22,16 @@ const store = () => new Vuex.Store({
         // todos: [],
         questions: [],
         cases: [
-            {"id": 1, "date": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "case_number": "123987", "counts": [
-                    {"type": "Felony", "class": "C", "citation": "569.080", "charge": "Tamp 1st W Serv of Utily"},
-                    {"type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing"},
-                    {"type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing"},
+            {"id": 1, "date": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "case_number": "123987", "charges": [
+                    {"id": 1, "type": "Felony", "class": "C", "citation": "569.080", "charge": "Tamp 1st W Serv of Utily"},
+                    {"id": 2, "type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing"},
+                    {"id": 3, "type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing"},
                 ]},
-            {"id": 2, "date": "7/13/1998", "agency": "MDC-Recept/Diag Ctr-Fulton", "case_number": "167890", "counts": [
-                    {"type": "Felony", "class": "B", "citation": "195.211", "charge": "Tamp 1st W Serv of UtilyDist Del Manuf Contr Sub"}
+            {"id": 2, "date": "7/13/1998", "agency": "MDC-Recept/Diag Ctr-Fulton", "case_number": "167890", "charges": [
+                    {"id": 1, "type": "Felony", "class": "B", "citation": "195.211", "charge": "Tamp 1st W Serv of UtilyDist Del Manuf Contr Sub"}
                 ]},
-            {"id": 3, "date": "4/15/2003", "agency": "Kansas City PD", "case_number": "675849", "counts": [
-                    {"type": "Felony", "class": "C", "citation": "195.202", "charge": "Poss Controlled Substance-Felony"}
+            {"id": 3, "date": "4/15/2003", "agency": "Kansas City PD", "case_number": "675849", "charges": [
+                    {"id": 1, "type": "Felony", "class": "C", "citation": "195.202", "charge": "Poss Controlled Substance-Felony"}
                 ]}
         ]
     },

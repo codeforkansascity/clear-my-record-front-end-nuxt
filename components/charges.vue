@@ -1,17 +1,17 @@
 <template>
     <li>
-        {{ count.type }}
-        {{ count.class }},
-        {{ count.citation }},
-        {{ count.charge }}
+        {{ charge.type }}
+        {{ charge.class }},
+        {{ charge.citation }},
+        {{ charge.charge }}
     </li>
 </template>
 
 <script>
     export default {
-        name: "counts",
+        name: "charges",
         props: {
-            count: {
+            charge: {
                 type: Object,
                 default: {},
             }

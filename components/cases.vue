@@ -4,17 +4,17 @@
             Case: {{ this.ccase.case_number }}, Agency:  {{ this.ccase.agency }}, Date:  {{ this.ccase.date }}
         </H5>
         <ol>
-            <counts v-for="count in this.ccase.counts" :key="count.id" :count="count">
+            <charges v-for="charge in this.ccase.charges" :key="charge.id" :charge="charge">
 
-            </counts>
+            </charges>
         </ol>
     </div>
 </template>
 
 <script>
-    import Counts from "../components/counts";
+    import Charges from "./charges";
     export default {
-        components: {Counts},
+        components: {Charges},
         name: "cases",
         props: {
             ccase: {
