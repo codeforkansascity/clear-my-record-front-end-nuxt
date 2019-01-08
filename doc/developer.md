@@ -1,6 +1,10 @@
 
 # Developer Notes
 
+## nuxtjs, vue-bootstrap with custom bootstrap build
+
+Used instructions at https://gist.github.com/benmccallum/33ff008660218a578fc27fd33f51d1c1
+
 ## Issue with using browser arrow keys.
 
 VueX will not remember the data store if you use the browser arrow keys.
