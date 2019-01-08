@@ -31,7 +31,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-      '@/assets/scss/app.scss' // use our build, as entered via app.scss
+      '@/assets/scss/app.scss', // use our build, as entered via app.scss
+      '@/css/main.css'
   ],
 
   /*

@@ -11,21 +11,22 @@
                 </div>
             </transition>
         </div>
-        <div class="col-sm-4 ansr" style="margin-bottom: 2em">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio1" value="Yes"
+        <div class="col-sm-4 " style="margin-bottom: 2em">
+
+            <div class="radio-toolbar">
+                <input  type="radio" :name="questionname" id="inlineRadio1" value="Yes"
                        v-model="selected">
                 <label class="form-check-label" for="inlineRadio1">Yes</label>
-            </div>
 
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio2" value="No"
+
+
+                <input  type="radio" :name="questionname" id="inlineRadio2" value="No"
                        v-model="selected">
                 <label class="form-check-label" for="inlineRadio2">No</label>
-            </div>
 
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" :name="questionname" id="inlineRadio3"
+
+
+                <input  type="radio" :name="questionname" id="inlineRadio3"
                        value="Unknown" v-model="selected">
                 <label class="form-check-label" for="inlineRadio3">I do not know</label>
             </div>
@@ -114,4 +115,33 @@
         transform: translateX(20px);
         opacity: 0;
     }
+
+/* https://markheath.net/post/customize-radio-button-css */
+
+.radio-toolbar {
+    margin: 10px;
+}
+
+.radio-toolbar input[type="radio"] {
+    display:none;
+}
+
+.radio-toolbar label {
+    display:inline-block;
+    background-color:#ddd;
+    padding: 10px 20px;
+    font-family:Arial;
+    font-size:16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+.radio-toolbar label:hover {
+    background-color: #dfd;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color:#bfb;
+    border-color: #4c4;
+}
 </style>
