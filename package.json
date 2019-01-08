@@ -12,14 +12,18 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/bootstrap-vue": "^2.0.4",
     "@vue/cli": "^3.2.1",
-    "bootstrap": "^4.1.3",
-    "bootstrap-vue": "^2.0.0-beta",
     "cross-env": "^5.2.0",
+    "graphql": "^0.13.2",
     "js-cookie": "^2.2.0",
     "nuxt": "^2.0.0",
     "pdfmake": "^0.1.39",
-    "vuex-persistedstate": "^2.5.4"
+    "vuex-persistedstate": "^2.5.4",
+    "bootstrap": "^4.0.0-beta.2",
+    "node-sass": "^4.7.2",
+    "precss": "^2.0.0",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

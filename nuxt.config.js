@@ -31,6 +31,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+      '@/assets/scss/app.scss' // use our build, as entered via app.scss
   ],
 
   /*
@@ -46,7 +47,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt'
+      ['@nuxtjs/bootstrap-vue', { css: false }] // don't include a default build, use ours
   ],
   /*
   ** Axios module configuration
