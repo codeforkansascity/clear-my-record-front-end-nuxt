@@ -1,8 +1,39 @@
+/*
+    @media screen and (max-width: 600px) {
+
+        .ansr {
+            order: 2;
+            margin-left: 1.5em;
+            margin-top: .5em;
+        }
+
+        .ques {
+            order: 1;
+        }
+    }
+    */
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+    transition: all .8s ease;
+}
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
 
 /* https://markheath.net/post/customize-radio-button-css */
 
 .radio-toolbar {
-    margin: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+
 }
 
 .radio-toolbar input[type="radio"] {
@@ -11,19 +42,28 @@
 
 .radio-toolbar label {
     display:inline-block;
-    background-color:#ddd;
-    padding: 10px 20px;
-    font-family:Arial;
-    font-size:16px;
-    border: 2px solid #444;
-    border-radius: 4px;
+    width: 100px;
+    height: 34px;
+    padding: 3px 10px;
+    margin-right: 5px;
+    background-color: #1b2661;
+    background-size: cover;
+    font-family: Barlow Semi Condensed;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-align: center;
+    border-radius: 0px;
 }
 
 .radio-toolbar label:hover {
-    background-color: #dfd;
+    background-color: #c8c8c8;
+    border-color: #c8c8c8;
+    color: #050505;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {
-    background-color:#bfb;
-    border-color: #4c4;
+    background-color:#c8c8c8;
+    border-color: #c8c8c8;
+    color: #050505;
 }

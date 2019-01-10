@@ -92,12 +92,12 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 48em) {
-  .container {
-    max-width: 46rem;
-  }
-}
-.container-narrow > hr {
+/*@media (min-width: 48em) {*/
+  /*.container {*/
+    /*max-width: 46rem;*/
+  /*}*/
+/*}*/
+.XXcontainer-narrow > hr {
   margin: 2rem 0;
 }
 
