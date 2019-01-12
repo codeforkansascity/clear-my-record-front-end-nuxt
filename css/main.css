@@ -67,3 +67,23 @@
     border-color: #c8c8c8;
     color: #050505;
 }
+
+/* other */
+
+.background-image {
+    width: 1457px;
+    height: 726px;
+}
+
+.background-image:after {
+    content: "";
+    background-image: url("/images/image-1df301.png");
+    background-color: #fff;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
