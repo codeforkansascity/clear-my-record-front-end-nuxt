@@ -1,6 +1,6 @@
 <template>
 
-  <sec previous="your-conviction" next="charges">
+  <sec previous="charges" next="print">
     <template slot="title">
       <h4>Your Personal Information</h4>
     </template>

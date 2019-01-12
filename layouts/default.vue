@@ -7,15 +7,17 @@
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  /*font-family: 'Raleway';*/
+  /* , -apple-system, BlinkMacSystemFont, 'Segoe UI',*/
+    /*Roboto, 'Helvetica Neue', Arial, sans-serif;*/
+  /*font-family: 'Barlow Semi Condensed';*/
+  /*font-size: 16px;*/
+  /*word-spacing: 1px;*/
+  /*-ms-text-size-adjust: 100%;*/
+  /*-webkit-text-size-adjust: 100%;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*box-sizing: border-box;*/
 }
 
 *,
@@ -90,12 +92,12 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 48em) {
-  .container {
-    max-width: 46rem;
-  }
-}
-.container-narrow > hr {
+/*@media (min-width: 48em) {*/
+  /*.container {*/
+    /*max-width: 46rem;*/
+  /*}*/
+/*}*/
+.XXcontainer-narrow > hr {
   margin: 2rem 0;
 }
 

@@ -1,0 +1,41 @@
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:400,400i');
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+$font-family-sans-serif: "Barlow Semi Condensed";
+$font-family: "Barlow Semi Condensed";
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+
+
+
+// Option A: Include all of Bootstrap
+
+// Customizations
+
+//$body-color: #111;
+
+// All of bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// or just part of bootstrap
+//
+//// Required
+//@import "node_modules/bootstrap/scss/functions";
+//@import "node_modules/bootstrap/scss/variables";
+//@import "node_modules/bootstrap/scss/mixins";
+//
+//// Optional
+//@import "node_modules/bootstrap/scss/reboot";
+//@import "node_modules/bootstrap/scss/type";
+//@import "node_modules/bootstrap/scss/images";
+//@import "node_modules/bootstrap/scss/code";
+//@import "node_modules/bootstrap/scss/grid";

@@ -1,6 +1,6 @@
 <template>
 
-  <sec previous="terms-of-use" next="pii">
+  <sec previous="terms-of-use" next="charges">
     <template slot="title">
       <h4>Your Conviction</h4>
     </template>

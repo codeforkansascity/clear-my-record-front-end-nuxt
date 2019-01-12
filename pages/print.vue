@@ -14,13 +14,17 @@
 
             <p>Only submit this form if all of the information you have provided is true and complete.</p>
 
+            <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
+
+            </cases>
+
             <p>Thank you for using...</p>
 
             <button @click="printForm">Show PDF</button>
 
             <nuxt-link
                     class="btn btn-primary btn-sm btn-outline-success"
-                    to="/charges">Previous Page
+                    to="/pii">Previous Page
             </nuxt-link>
             <nuxt-link
                     class="btn btn-primary btn-sm btn-outline-success"
@@ -34,9 +38,10 @@
 
 <script>
     import Sec from "../components/sec";
+    import Cases from "../components/cases";
 
     export default {
-        components: {Sec},
+        components: {Sec, Cases},
         mounted: function () {
 
 

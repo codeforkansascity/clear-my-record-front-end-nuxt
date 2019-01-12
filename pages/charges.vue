@@ -1,6 +1,6 @@
 <template>
 
-  <sec previous="pii" next="print">
+  <sec previous="your-conviction" next="pii">
     <template slot="title">
       <h4>Criminal Charge</h4>
     </template>
