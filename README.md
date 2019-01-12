@@ -24,3 +24,5 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+Added https://www.npmjs.com/package/@nuxtjs/markdownit for markdown support.
