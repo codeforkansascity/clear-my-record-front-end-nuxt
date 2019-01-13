@@ -14,11 +14,13 @@
 
             <p>Only submit this form if all of the information you have provided is true and complete.</p>
 
+            <h2>Cases</h2>
+
             <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
 
             </cases>
 
-            <p>Thank you for using...</p>
+            <h2>Thank you for using...</h2>
 
             <button @click="printForm">Show PDF</button>
 
