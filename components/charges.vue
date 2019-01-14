@@ -1,9 +1,10 @@
 <template>
-    <li>
+    <li v-bind:class="{ not_eligible: charge.not_eligible }">
         {{ charge.type }}
         {{ charge.class }},
         {{ charge.citation }},
-        {{ charge.charge }}
+        {{ charge.charge }},
+        {{ charge.sentence }}
     </li>
 </template>
 

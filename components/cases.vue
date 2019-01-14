@@ -1,7 +1,8 @@
 <template>
     <div>
         <H5>
-            Arrest: {{ this.ccase.date }}, Case# {{ this.ccase.case_number }}<br /> Agency:  {{ this.ccase.agency }}
+            Court: {{ this.ccase.date }},  {{ this.ccase.case_number }},   {{ this.ccase.court_name }}
+            <span v-if="this.ccase.release_status"> -- {{ this.ccase.release_status }}  {{ this.ccase.release_date  }}</span>
         </H5>
         <ol>
             <charges v-for="charge in this.ccase.charges" :key="charge.id" :charge="charge">

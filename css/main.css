@@ -87,3 +87,11 @@
     position: absolute;
     z-index: -1;
 }
+
+/*
+     For report
+ */
+
+.not_eligible {
+    color: red;
+}
