@@ -22,7 +22,7 @@ const store = () => new Vuex.Store({
         // todos: [],
         questions: [],
         cases: [
-            {"id": 1, "date": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749999B",
+            {"id": 1, "arrested_on": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749999B",
 
                 "release_status": "complete release", "release_date": "6/30/1989",
                 "charges": [
@@ -33,13 +33,13 @@ const store = () => new Vuex.Store({
                     {"id": 3, "type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing",
                         "sentence": "Confinement 2 years", "not_eligible": true},
                 ]},
-            {"id": 2, "date": "7/13/1998", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749888C",
+            {"id": 2, "arrested_on": "7/13/1998", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749888C",
                 "release_status": "complete release", "release_date": "6/9/2004",
                 "charges": [
                     {"id": 1, "type": "Felony", "class": "B", "citation": "195.211", "charge": "Dist Del Manuf Contr Sub",
                         "sentence": "Confinement 5 years", "not_eligible": false},
                 ]},
-            {"id": 3, "date": "4/15/2003", "agency": "Kansas City PD", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR874111e",
+            {"id": 3, "arrested_on": "4/15/2003", "agency": "Kansas City PD", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR874111e",
                 "release_status": "", "release_date": "",
                 "charges": [
                     {"id": 1, "type": "Felony", "class": "C", "citation": "195.202", "charge": "Poss Controlled Substance-Felony",
