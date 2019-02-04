@@ -1,32 +1,40 @@
 <template>
+
     <div class="mb-3">
-        <label><slot></slot></label>
+        <label>
+            <slot></slot>
+        </label>
         <div class="input-group">
             <input type="text"
                    class="form-control"
                    required="*"
-                    v-model="question">
+                   v-model="question">
         </div>
     </div>
+
 </template>
 
 <script>
     export default {
-        name: "pii-input",
+        name: "input-case-field",
         props: {
-            questionname: {
+            i: {
                 type: String,
-                default: 'q1',
+                value: '0',
+            },
+            f: {
+                type: String,
+                default: 'name',
             }
         },
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    const q = this.$store.state.cases[this.i];
+                    return q ? q[this.f] : '';
                 },
                 set(value) {
-                     this.$store.commit('storePii', { question: this.questionname, value: value});
+                    this.$store.commit('storeCaseField', {index: this.i, field: this.f, value: value});
                 },
             },
         },

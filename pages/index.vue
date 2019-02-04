@@ -3,11 +3,8 @@
             <template slot="left">
                 <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a job, housing, or other things you need?</h3>
                 <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means that the record is closed and you are able to honestly say “no” to whether you have the conviction almost all the time. The state even provides a self-help form for you to fill out and file.</p>
-                <button>Find out if you qualify</button>
-
-
                 <a class="btn btn-secondary btn-sm"
-                           href="/newsteps">Find out if you qualify
+                   href="/do-you-qualify">Find out if you qualify
                 </a>
             </template>
             <template slot="right">
@@ -28,13 +25,6 @@
 
 
     export default {
-        components: {TwoPanels},
-        mounted: function () {
-            // this.$store.dispatch('clearAll');
-
-            var x = this.$store.getters.allCases;
-            console.dir(x);
-            console.log('-----------------------------');
-        }
+        components: {TwoPanels}
     }
 </script>
