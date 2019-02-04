@@ -19,11 +19,6 @@
                 default: 'q1',
             }
         },
-        data: function () {
-            return {
-                value: null,
-            }
-        },
         computed: {
             question: {
                 get() {
