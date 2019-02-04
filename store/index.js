@@ -94,6 +94,18 @@ const store = () => new Vuex.Store({
             }
 
         },
+        storeCaseField(state, data) {
+
+            const q = state.cases[data.index];
+
+            if (!q) {
+                state.cases.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
+
         // SET_TODOS (state, todos) {
         //     state.todos = todos
         // },

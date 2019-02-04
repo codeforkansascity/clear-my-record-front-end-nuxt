@@ -2,6 +2,9 @@
 <template>
     <div class="container">
         <div class="row">
+            <input-case-field i="1" f="case_number">Case Number</input-case-field>
+        </div>
+        <div class="row">
             <div class="col-sm">
                 <h4>Do you Qualify?</h4>
 
@@ -199,9 +202,10 @@
     import Sec from "../components/sec";
     import DisqualifyingQuestion from "../components/disqualifying-question";
     import PiiInput from "../components/pii-input";
+    import InputCaseField from "../components/input-case-field";
 
     export default {
-        components: {Sec, DisqualifyingQuestion, PiiInput},
+        components: {Sec, DisqualifyingQuestion, PiiInput, InputCaseField},
         computed: {
             numberOfNotNo: function () {
                 var all = this.$store.getters.allQuestions;
