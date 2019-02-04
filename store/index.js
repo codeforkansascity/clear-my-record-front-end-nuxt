@@ -21,6 +21,7 @@ const store = () => new Vuex.Store({
     state: {
         // todos: [],
         questions: [],
+        pii: [],
         cases: [
             {"id": 1, "date": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "case_number": "123987", "charges": [
                     {"id": 1, "type": "Felony", "class": "C", "citation": "569.080", "charge": "Tamp 1st W Serv of Utily"},
@@ -82,6 +83,17 @@ const store = () => new Vuex.Store({
                 state.questions[index].answer = data.answer;
             }
         },
+        storePii(state, data) {
+
+            var index = state.pii.findIndex(p => (p.question == data.question));
+
+            if (index === -1) {
+                state.pii.push(data)
+            } else {
+                state.pii[index].value = data.value;
+            }
+
+        },
         // SET_TODOS (state, todos) {
         //     state.todos = todos
         // },
@@ -106,6 +118,7 @@ const store = () => new Vuex.Store({
         storeQuestion({commit}, quest) {
             commit('STORE_QUESTION', quest)
         },
+
         //       addTodo ({ commit }, todo) {
         //           commit('ADD_TODO', todo)
         //       },
@@ -126,7 +139,8 @@ const store = () => new Vuex.Store({
         //       nuxtServerInit ({ commit }, { req }) {
         //           commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
         //       }
-    }
+    },
+
 })
 
 export default store

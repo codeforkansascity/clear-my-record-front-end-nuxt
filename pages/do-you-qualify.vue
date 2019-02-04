@@ -140,8 +140,6 @@
                 </div>
                 <div class="row">
                     <div class="col-sm ques">
-
-
                         <div v-if="numberOfYes || numberOfUnknown" class="col-sm ques">
                             <p class="alert-warning">You May Have an Offense that May Not
                                 Be Expunged [Based upon the information you provided, you do not appear to meet the
@@ -157,6 +155,41 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" style="padding-top: 3em">
+            <div class="col-sm">
+                <h3>Enter your information</h3>
+
+                <p>This will be used top fill out the form:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="row">
+                    <form>
+                    <div class="col-sm" style="padding-left: 3em;">
+
+
+                        <pii-input questionname="fullName">What is your full name?</pii-input>
+                    <!--    <pii-input>What is your Sex?</pii-input>
+                        <pii-input>What is your Race? </pii-input>
+                        <pii-input>What is you Date of Birth?</pii-input>
+                        <pii-input>What is your current address</pii-input>
+
+                    </div>
+                    <div class="col-sm" style="padding-right: 3em;">
+
+                        <p>Your Driver’s License information?</p>
+                        <pii-input>License Number?</pii-input>
+                        <pii-input>Issuing State?</pii-input>
+                        <pii-input>Expiration Date?</pii-input>
+                        -->
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -165,9 +198,10 @@
 <script>
     import Sec from "../components/sec";
     import DisqualifyingQuestion from "../components/disqualifying-question";
+    import PiiInput from "../components/pii-input";
 
     export default {
-        components: {Sec, DisqualifyingQuestion},
+        components: {Sec, DisqualifyingQuestion, PiiInput},
         computed: {
             numberOfNotNo: function () {
                 var all = this.$store.getters.allQuestions;

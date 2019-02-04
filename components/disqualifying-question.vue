@@ -70,14 +70,11 @@
         },
         watch: {
             selected: function (val) {
-                console.log('group=' + this.group);
-                console.log(this.questionname + ': ' + val);
 
-                console.log('==============================');
                 this.$store.dispatch('storeQuestion', { group: this.group, question: this.questionname, answer: val });
-                let x = JSON.stringify(this.$store.getters.allQuestions);
-                console.dir(x);
-                console.log('==============================');
+                // let x = JSON.stringify(this.$store.getters.allQuestions);
+                // console.dir(x);
+                // console.log('==============================');
             }
         }
     }
