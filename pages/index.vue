@@ -25,13 +25,6 @@
 
 
     export default {
-        components: {TwoPanels},
-        mounted: function () {
-            // this.$store.dispatch('clearAll');
-
-            var x = this.$store.getters.allCases;
-            console.dir(x);
-            console.log('-----------------------------');
-        }
+        components: {TwoPanels}
     }
 </script>
