@@ -1,5 +1,16 @@
 # Developer Notes
 
+## Architechture
+   
+### Front End
+   This is a [Nuxt/VueJS](https://nuxtjs.org/) Framework.
+   To store data [VueX](https://vuex.vuejs.org/) is being used for local storage.
+   
+### Back End
+   No backend has been developed.  
+   There was discussion that it would be a singel page app without a backend to
+   storing all criminal records in a backend. 
+
 ## Developer Setup
 
 To setup Bootstrap to compile I used https://gist.github.com/benmccallum/33ff008660218a578fc27fd33f51d1c1
