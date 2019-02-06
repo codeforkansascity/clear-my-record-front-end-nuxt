@@ -1,11 +1,7 @@
-
 <template>
-    <div class="container">
-
-
-
+    <div>
         <div class="row">
-            <div class="col-sm">
+            <div class="col-xs-12">
                 <h4>Do you Qualify?</h4>
 
                 <p>To qualify, you must be eligible to apply and the offense must be one that can be expunged. <br/>
@@ -15,7 +11,7 @@
         <div class="row">
             <div class="col-sm">
                 <div class="row">
-                    <div class="col-sm" style="padding-left: 3em;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="padding-left: 3em;">
 
                         <disqualifying-question group="do-you-qualify" questionname="criminalCharge">
                             I have a criminal charge pending against me now.
@@ -47,7 +43,7 @@
                         </disqualifying-question>
 
                     </div>
-                    <div class="col-sm" style="padding-right: 3em;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="padding-right: 3em;">
 
                         <disqualifying-question group="do-you-qualify" questionname="felonytime">
                             I completed my sentence less than seven years ago (if a felony).
@@ -97,80 +93,15 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="row" style="padding-top: 3em">
-            <div class="col-sm">
-                <h3>Is the offense expungeable?</h3>
-
-                <p>Some offenses cannot be expunged. <br/>
-                    Your offense may not be expungeable if any of the following are true:</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <div class="row">
-                    <div class="col-sm" style="padding-left: 3em;">
-
-                        <disqualifying-question group="are-you-excluded" questionname="classA">
-                            A Class A or dangerous felony?
-                        </disqualifying-question>
-
-                        <disqualifying-question group="are-you-excluded" questionname="death">
-                            A crime where a death occurred?
-                        </disqualifying-question>
-
-                        <disqualifying-question group="are-you-excluded" questionname="felonyAssault">
-                            Felony Assault or kidnapping?
-                        </disqualifying-question>
-
-                    </div>
-                    <div class="col-sm" style="padding-right: 3em;">
-
-                        <disqualifying-question group="are-you-excluded" questionname="domesticAssault">
-                            Domestic Assault?
-                        </disqualifying-question>
-
-                        <disqualifying-question group="are-you-excluded" questionname="intoxicated">
-                            Operating a car, boat, or plane while intoxicated?
-                        </disqualifying-question>
-
-                        <disqualifying-question group="are-you-excluded" questionname="cdl">
-                            A violation of a motor vehicle ordinance/law while CDL?
-                        </disqualifying-question>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm ques">
-
-
-                        <div v-if="numberOfYes || numberOfUnknown" class="col-sm ques">
-                            <p class="alert-warning">You May Have an Offense that May Not
-                                Be Expunged [Based upon the information you provided, you do not appear to meet the
-                                requirements
-                                to obtain an expungement. You may want to consult with an attorney to see what options
-                                might be
-                                available to you.
-                            </p>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
     </div>
-
-
 </template>
 
 <script>
-    import Sec from "../components/sec";
     import DisqualifyingQuestion from "../components/disqualifying-question";
 
     export default {
-        components: {Sec, DisqualifyingQuestion},
+        name: "section-do-you-qualify",
+        components: {DisqualifyingQuestion},
         computed: {
             numberOfNotNo: function () {
                 var all = this.$store.getters.allQuestions;
@@ -193,3 +124,4 @@
         }
     }
 </script>
+

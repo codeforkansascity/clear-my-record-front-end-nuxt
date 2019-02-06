@@ -1,9 +1,8 @@
 <template>
+    <div>
 
-    <sec previous="start-application" next="your-conviction">
-        <template slot="title">
-            <h4>Terms of Use</h4>
-        </template>
+        <h4>Terms of Use</h4>
+
         <p>This service has been created by the University of Missouri-Kansas City School of Law and Code for KC
             (Authors) to promote expungement of criminal convictions in Missouri. Use of this service is limited to
             those persons who agree with the terms of use. The terms of use that you must agree to if you would like to
@@ -48,15 +47,12 @@
             </i></p>
         </template>
 
-    </sec>
-
+    </div>
 </template>
 
 <script>
-    import Sec from "../components/sec";
-    import DisqualifyingQuestion from "../components/disqualifying-question";
-
     export default {
-        components: {Sec, DisqualifyingQuestion},
+        name: "section-terms-of-use"
     }
 </script>
+
