@@ -78,6 +78,7 @@
 .background-image:after {
     content: "";
     background-image: url("/images/image-1df301.png");
+    background-repeat: no-repeat;
     background-color: #fff;
     opacity: 0.2;
     top: 0;

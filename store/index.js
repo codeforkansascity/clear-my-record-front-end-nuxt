@@ -21,6 +21,7 @@ const store = () => new Vuex.Store({
     state: {
         // todos: [],
         questions: [],
+        pii: [],
         cases: [
             {"id": 1, "arrested_on": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749999B",
 
@@ -94,6 +95,29 @@ const store = () => new Vuex.Store({
                 state.questions[index].answer = data.answer;
             }
         },
+        storePii(state, data) {
+
+            var index = state.pii.findIndex(p => (p.question == data.question));
+
+            if (index === -1) {
+                state.pii.push(data)
+            } else {
+                state.pii[index].value = data.value;
+            }
+
+        },
+        storeCaseField(state, data) {
+
+            const q = state.cases[data.index];
+
+            if (!q) {
+                state.cases.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
+
         // SET_TODOS (state, todos) {
         //     state.todos = todos
         // },
@@ -118,6 +142,7 @@ const store = () => new Vuex.Store({
         storeQuestion({commit}, quest) {
             commit('STORE_QUESTION', quest)
         },
+
         //       addTodo ({ commit }, todo) {
         //           commit('ADD_TODO', todo)
         //       },
@@ -138,7 +163,8 @@ const store = () => new Vuex.Store({
         //       nuxtServerInit ({ commit }, { req }) {
         //           commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
         //       }
-    }
+    },
+
 })
 
 export default store

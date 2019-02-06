@@ -51,40 +51,22 @@
         },
         data: function () {
             return {
-                selected: [],
                 showHelp: false,
             }
         },
-        mounted: function () {
-
-            var all = this.$store.getters.allQuestions;
-
-            var index = all.findIndex(p => p.group == this.group && p.question == this.questionname);
-
-            if (index === -1 ) {
-                this.selected = null;
-            } else {
-                this.selected = all[index].answer;
-            }
-
+        computed: {
+            selected: {
+                get() {
+                    const q = this.$store.state.questions.find(item =>  (item.group == this.group && item.question === this.questionname));
+                    return q ? q.answer : '';
+                },
+                set(value) {
+                    this.$store.dispatch('storeQuestion', { group: this.group, question: this.questionname, answer: value });
+                },
+            },
         },
-        watch: {
-            selected: function (val) {
-                console.log('group=' + this.group);
-                console.log(this.questionname + ': ' + val);
 
-                console.log('==============================');
-                this.$store.dispatch('storeQuestion', { group: this.group, question: this.questionname, answer: val });
-                let x = JSON.stringify(this.$store.getters.allQuestions);
-                console.dir(x);
-                console.log('==============================');
-            }
-        }
     }
 </script>
 
-<style scoped>
 
-
-
-</style>
