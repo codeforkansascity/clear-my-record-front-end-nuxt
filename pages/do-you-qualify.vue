@@ -5,7 +5,7 @@
             <input-case-field i="1" f="case_number">Case Number</input-case-field>
         </div>
         <div class="row">
-            <div class="col-sm">
+            <div class="col-xs-12">
                 <h4>Do you Qualify?</h4>
 
                 <p>To qualify, you must be eligible to apply and the offense must be one that can be expunged. <br/>
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm">
                 <div class="row">
-                    <div class="col-sm" style="padding-left: 3em;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="padding-left: 3em;">
 
                         <disqualifying-question group="do-you-qualify" questionname="criminalCharge">
                             I have a criminal charge pending against me now.
@@ -47,7 +47,7 @@
                         </disqualifying-question>
 
                     </div>
-                    <div class="col-sm" style="padding-right: 3em;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="padding-right: 3em;">
 
                         <disqualifying-question group="do-you-qualify" questionname="felonytime">
                             I completed my sentence less than seven years ago (if a felony).

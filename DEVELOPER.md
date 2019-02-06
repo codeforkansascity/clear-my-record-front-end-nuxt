@@ -1,14 +1,4 @@
-# Clear My Record
-
-Clear My Record is focused on providing assistance to persons seeking expungement under the laws of the state of Missouri. Effective January 1, 2018, the State of Missouri greatly expanded the convictions qualifying for expungement. The law also provided for the creation of tools for individuals to complete the expungement process without having to retain an attorney to assist.
-
-## How to help
-
-1. Please review the Mockups
-2. Setup a development environment
-3. Pick out an issue to work on 
-
-
+# Developer Notes
 
 ## Developer Setup
 
