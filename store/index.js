@@ -117,6 +117,9 @@ const store = () => new Vuex.Store({
             }
 
         },
+        addCase(state, data) {
+            state.cases.push(data);
+        },
 
         // SET_TODOS (state, todos) {
         //     state.todos = todos

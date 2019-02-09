@@ -2,6 +2,14 @@
 <template>
     <div class="container">
 
+        <add-case></add-case>
+
+        <input-case-fields v-for="(ccase, offset) in this.$store.getters.allCases" :key="ccase.id" :offset="offset" :ccase="ccase">
+
+        </input-case-fields>
+
+
+
         <section-do-you-qualify></section-do-you-qualify>
         <section-is-expungeable></section-is-expungeable>
         <section-terms-of-use></section-terms-of-use>
@@ -27,9 +35,13 @@
     import SectionPersonsInformation from "../components/section-persons-information";
     import SectionPrint from "../components/section-print";
     import SectionWorkSheet from "../components/section-work-sheet";
+    import InputCaseFields from "../components/input-case-fields";
+    import AddCase from "../components/add-case";
 
     export default {
         components: {
+            AddCase,
+            InputCaseFields,
             SectionWorkSheet,
             SectionPrint,
             SectionPersonsInformation,

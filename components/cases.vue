@@ -1,7 +1,7 @@
 <template>
     <div>
         <H5>
-            Court Case: {{ this.ccase.case_number }},     {{ this.ccase.agency }}
+            Court Case: {{ this.ccase.case_number }}, {{ this.ccase.agency }}
             <span v-if="this.ccase.release_status"> -- {{ this.ccase.release_status }}  {{ this.ccase.release_date  }}</span>
         </H5>
         <ol>
@@ -14,6 +14,7 @@
 
 <script>
     import Charges from "./charges";
+
     export default {
         components: {Charges},
         name: "cases",

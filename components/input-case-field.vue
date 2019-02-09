@@ -3,6 +3,14 @@
     <div class="mb-3">
         <label>
             <slot></slot>
+            <img src="/images/FontAwesome47 1.svg" style="margin-left:20px;" v-if="this.$slots.help !== undefined"
+                 v-on:click="showHelp = !showHelp"/>
+            <transition name="slide-fade">
+                <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
+                     v-if="showHelp && this.$slots.help !== undefined">
+                    <slot name="help"></slot>
+                </div>
+            </transition>
         </label>
         <div class="input-group">
             <input type="text"
@@ -27,6 +35,11 @@
                 default: 'name',
             }
         },
+        data: function () {
+            return {
+                showHelp: false,
+            }
+        },
         computed: {
             question: {
                 get() {
@@ -42,6 +55,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>
