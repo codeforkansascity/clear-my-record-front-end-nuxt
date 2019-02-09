@@ -28,7 +28,11 @@
         props: {
             i: {
                 type: [Number,String],
-                value: 0,
+                default: '0',
+            },
+            j: {
+                type: [Number,String],
+                default: '0'
             },
             f: {
                 type: String,
@@ -43,11 +47,11 @@
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.cases[this.i];
+                    const q = this.$store.state.cases[this.i].charges[this.j];
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeCaseField', {index: this.i, field: this.f, value: value});
+                    this.$store.commit('storeChargeField', {case_index: this.i, charge_index: this.j, field: this.f, value: value});
                 },
             },
         },

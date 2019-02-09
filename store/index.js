@@ -117,8 +117,22 @@ const store = () => new Vuex.Store({
             }
 
         },
+        storeChargeField(state, data) {
+
+            const q = state.cases[data.case_index].charges[data.charge_index];
+
+            if (!q) {
+                state.cases[data.case_index].charges.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
         addCase(state, data) {
             state.cases.push(data);
+        },
+        addCharge(state, data) {
+            state.cases[data.case_index].charges.push(data.charge);
         },
 
         // SET_TODOS (state, todos) {
