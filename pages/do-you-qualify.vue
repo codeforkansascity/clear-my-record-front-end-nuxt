@@ -4,10 +4,10 @@
 
 
 
-        <input-case-fields v-for="(ccase, case_index) in this.$store.getters.allCases" :key="ccase.id" :case_index="case_index" :ccase="ccase">
-        </input-case-fields>
+        <!--<input-case-fields v-for="(ccase, case_index) in this.$store.getters.allCases" :key="ccase.id" :case_index="case_index" :ccase="ccase">-->
+        <!--</input-case-fields>-->
 
-        <add-case></add-case>
+        <!--<add-case></add-case>-->
 
         <section-do-you-qualify></section-do-you-qualify>
         <section-is-expungeable></section-is-expungeable>

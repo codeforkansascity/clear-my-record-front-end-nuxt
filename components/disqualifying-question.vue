@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-11 ques">
             <slot></slot>
-            <img src="/images/FontAwesome47 1.svg" style="margin-left:20px;" v-if="this.$slots.help !== undefined"
+            <img src="/images/FontAwesome47 1.svg" style="margin-left: 1em;" v-if="this.$slots.help !== undefined"
                  v-on:click="showHelp = !showHelp"/>
             <transition name="slide-fade">
                 <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
