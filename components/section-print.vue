@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="padding-top: 3em;">
 
-        <h4>Print Form</h4>
+        <h2>Print Form</h2>
 
         <p>If you are satisfied with this form and decide to file it, you will have to sign the following statement
             contained on the form:</p>
@@ -11,8 +11,6 @@
 
         <p>Only submit this form if all of the information you have provided is true and complete.</p>
 
-
-        <h2>Thank you for using...</h2>
 
         <button @click="printForm">Show PDF</button>
 

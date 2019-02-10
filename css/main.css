@@ -33,6 +33,7 @@
 .radio-toolbar {
     margin-top: 10px;
     margin-right: 20px;
+    margin-left: 3em;       /* PDB Added */
 
 }
 
@@ -42,7 +43,7 @@
 
 .radio-toolbar label {
     display:inline-block;
-    width: 100px;
+    width: 75px;            /* PDB reduced from 100px */
     height: 34px;
     padding: 3px 10px;
     margin-right: 5px;
@@ -66,6 +67,12 @@
     background-color:#c8c8c8;
     border-color: #c8c8c8;
     color: #050505;
+}
+
+/* Question */
+
+.ques {
+    padding-left: 2em;
 }
 
 /* other */

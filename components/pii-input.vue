@@ -1,11 +1,16 @@
 <template>
     <div class="mb-3">
-        <label><slot></slot></label>
-        <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   required="*"
-                    v-model="question">
+        <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
+            <label>
+                <slot></slot>
+            </label>
+
+                <input type="text"
+                       class="form-control"
+                       style="padding-left: 2em; padding-right: 2em;"
+                       required="*"
+                       v-model="question">
+
         </div>
     </div>
 </template>
@@ -26,7 +31,7 @@
                     return q ? q.value : '';
                 },
                 set(value) {
-                     this.$store.commit('storePii', { question: this.questionname, value: value});
+                    this.$store.commit('storePii', {question: this.questionname, value: value});
                 },
             },
         },

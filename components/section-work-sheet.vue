@@ -1,6 +1,6 @@
 <template>
-<div>
-    <h2>Cases</h2>
+<div style="padding-top: 3em;">
+    <h2>Review Case and Charges</h2>
 
     <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
 
