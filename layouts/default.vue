@@ -60,7 +60,7 @@ html {
 
 /* Space out content a bit */
 body {
-  padding-top: 1.5rem;
+  /*padding-top: 1.5rem;*/
   padding-bottom: 1.5rem;
 }
 
