@@ -1,6 +1,6 @@
 <template>
 
-    <div class="mb-3">
+    <div>
         <label>
             <slot></slot>
             <img src="/images/FontAwesome47 1.svg" style="margin-left:20px;" v-if="this.$slots.help !== undefined"
@@ -12,14 +12,12 @@
                 </div>
             </transition>
         </label>
-        <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   required="*"
-                   v-model="question">
-        </div>
-    </div>
 
+        <input type="text"
+               class="form-control"
+               required="*"
+               v-model="question">
+    </div>
 </template>
 
 <script>
@@ -27,7 +25,7 @@
         name: "input-case-field",
         props: {
             i: {
-                type: [Number,String],
+                type: [Number, String],
                 value: 0,
             },
             f: {

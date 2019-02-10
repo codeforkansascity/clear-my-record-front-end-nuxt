@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="padding-top: 3em;">
 
-        <h4>Terms of Use</h4>
+        <h2>Terms of Use</h2>
 
         <p>This service has been created by the University of Missouri-Kansas City School of Law and Code for KC
             (Authors) to promote expungement of criminal convictions in Missouri. Use of this service is limited to

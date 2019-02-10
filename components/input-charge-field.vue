@@ -1,10 +1,12 @@
 <template>
 
-    <div class="mb-3">
+    <div>
         <label>
             <slot></slot>
-            <img src="/images/FontAwesome47 1.svg" style="margin-left:20px;" v-if="this.$slots.help !== undefined"
+            <img src="/images/FontAwesome47 1.svg" style="display: inline-block;" v-if="this.$slots.help !== undefined"
                  v-on:click="showHelp = !showHelp"/>
+
+
             <transition name="slide-fade">
                 <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
                      v-if="showHelp && this.$slots.help !== undefined">
@@ -12,14 +14,14 @@
                 </div>
             </transition>
         </label>
-        <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   required="*"
-                   v-model="question">
-        </div>
-    </div>
 
+        <input type="text"
+               class="form-control"
+               required="*"
+               v-model="question">
+
+
+    </div>
 </template>
 
 <script>
@@ -27,11 +29,11 @@
         name: "input-case-field",
         props: {
             i: {
-                type: [Number,String],
+                type: [Number, String],
                 default: '0',
             },
             j: {
-                type: [Number,String],
+                type: [Number, String],
                 default: '0'
             },
             f: {
@@ -51,7 +53,12 @@
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeChargeField', {case_index: this.i, charge_index: this.j, field: this.f, value: value});
+                    this.$store.commit('storeChargeField', {
+                        case_index: this.i,
+                        charge_index: this.j,
+                        field: this.f,
+                        value: value
+                    });
                 },
             },
         },

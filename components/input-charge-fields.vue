@@ -1,21 +1,32 @@
 <template>
-    <div>
-        <hr>
-        <hr>
-        <h3>{{ this.case_index }} - {{ this.charge_index }}</h3>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="type">What was the type?
-            <template slot="help">
-                How to resarch??
-            </template>
-        </input-charge-field>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="class">Class</input-charge-field>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="citation">Citation</input-charge-field>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="charge">Charge</input-charge-field>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="sentence">Sentence</input-charge-field>
-        <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="not_eligible">Not Eligible</input-charge-field>
-        <hr>
+    <div class="row">
+        <div class="col-md-6" style="padding-left: 2em;">
+            <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="charge">Charge
+            </input-charge-field>
+        </div>
+        <div class="col-md-2">
+            <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="citation">Citation
+            </input-charge-field>
+        </div>
+        <div class="col-md-2">
+            <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="type">Charge type?
+                <template slot="help">
+                    How to resarch??
+                </template>
+            </input-charge-field>
+        </div>
 
-
+        <div class="col-md-2">
+            <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="class">Class
+            </input-charge-field>
+        </div>
+        <div class="col-md-6" style="padding-left: 2em;">
+            <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="sentence">Sentence
+            </input-charge-field>
+        </div>
+        <div class="col" style="padding-top: 6em;">
+&nbsp;
+        </div>
     </div>
 </template>
 
@@ -33,11 +44,11 @@
                 default: {},
             },
             case_index: {
-                type: [Number,String],
+                type: [Number, String],
                 default: 0
             },
             charge_index: {
-                type: [Number,String],
+                type: [Number, String],
                 default: 0
             },
 

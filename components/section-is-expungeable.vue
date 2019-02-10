@@ -2,7 +2,7 @@
     <div>
         <div class="row" style="padding-top: 3em">
             <div class="col-sm">
-                <h3>Is the offense expungeable?</h3>
+                <h2>Is the offense expungeable?</h2>
 
                 <p>Some offenses cannot be expunged. <br/>
                     Your offense may not be expungeable if any of the following are true:</p>

@@ -12,11 +12,17 @@
         <section-do-you-qualify></section-do-you-qualify>
         <section-is-expungeable></section-is-expungeable>
         <section-terms-of-use></section-terms-of-use>
-        <section-convictions></section-convictions>d
-        <section-charges></section-charges>
         <section-persons-information></section-persons-information>
-        <section-print></section-print>
+
+        <!--<section-convictions></section-convictions>-->
+        <!--<section-charges></section-charges>-->
+
+        <section-case-charges></section-case-charges>
+
         <section-work-sheet></section-work-sheet>
+
+        <section-print></section-print>
+
 
     </div>
 
@@ -36,9 +42,11 @@
     import SectionWorkSheet from "../components/section-work-sheet";
     import InputCaseFields from "../components/input-case-fields";
     import AddCase from "../components/add-case";
+    import SectionCaseCharges from "../components/section-case-charges";
 
     export default {
         components: {
+            SectionCaseCharges,
             AddCase,
             InputCaseFields,
             SectionWorkSheet,

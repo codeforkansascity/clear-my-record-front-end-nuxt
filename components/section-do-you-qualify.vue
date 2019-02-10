@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-xs-12">
-                <h4>Do you Qualify?</h4>
+                <h2>Do you Qualify?</h2>
 
                 <p>To qualify, you must be eligible to apply and the offense must be one that can be expunged. <br/>
                     You may not be eligible to apply if any of the following are true:</p>
