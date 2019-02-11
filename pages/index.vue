@@ -8,7 +8,7 @@
                 </a>
             </template>
             <template slot="right">
-                <h5>THIS IS HOW IT WORKS</h5>
+                <h5>THIS IS HOW IT WORKS.</h5>
                 <ol class="works-list">
                     <li>See if you qualify for expungement</li>
                     <li>Give us some information about you and your conviction</li>
