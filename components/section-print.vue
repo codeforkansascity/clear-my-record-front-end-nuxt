@@ -46,6 +46,16 @@
                                     ['Domestic Assault?', this.getAns('are-you-excluded', 'domesticAssault')],
                                     ['Operating a car, boat, or plane while intoxicated?', this.getAns('are-you-excluded', 'intoxicated')],
                                     ['A violation of a motor vehicle ordinance/law while CDL?', this.getAns('are-you-excluded', 'cdl')],
+                                    [' ', ' '],
+                                    ['Full name', this.getPii('pii', 'full_name')],
+                                    ['Sex', this.getPii('pii', 'sex')],
+                                    ['Race', this.getPii('pii', 'race')],
+                                    ['Date of Birth', this.getPii('pii', 'dob')],
+                                    ['Address', this.getPii('pii', 'address')],
+                                    ['License number', this.getPii('pii', 'license_number')],
+                                    ['License issuing state', this.getPii('pii', 'license_issuing_state')],
+                                    ['License experation date', this.getPii('pii', 'license_expiration_date')],
+
 
                                 ]
                             },
@@ -69,6 +79,23 @@
                     return '---';
                 } else {
                     return all[index].answer;
+                }
+            },
+            getPii: function (group, questionname) {
+
+                var all = this.$store.getters.allPii;
+
+                console.log(questionname);
+                console.log(all);
+
+                var index = all.findIndex(p =>
+                    (p.question == questionname)
+                );
+
+                if (index === -1) {
+                    return '---';
+                } else {
+                    return all[index].value;
                 }
             }
         }

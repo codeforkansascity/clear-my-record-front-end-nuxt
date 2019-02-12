@@ -52,6 +52,9 @@ const store = () => new Vuex.Store({
         allQuestions(state) {
             return state.questions
         },
+        allPii(state) {
+            return state.pii
+        },
         allCases(state) {
             return state.cases
         },
