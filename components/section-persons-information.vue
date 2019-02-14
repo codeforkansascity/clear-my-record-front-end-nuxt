@@ -2,23 +2,21 @@
     <div style="padding-top: 3em;">
 
         <h2>Your Personal Information</h2>
-        <p style="color: lightcoral;">DEVELOPER NOTE: All of the following personal information is required for the Petition for Expungement</p>
-
 
         <div class="row">
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>&nbsp;</p>
-                <pii-input>What is your full name?</pii-input>
-                <pii-input>What is your Sex?</pii-input>
-                <pii-input>What is your Race?</pii-input>
-                <pii-input>What is your Date of Birth?</pii-input>
-                <pii-input>What is your current address</pii-input>
+                <pii-input questionname="full_name">What is your full name?</pii-input>
+                <pii-input questionname="sex">What is your sex?</pii-input>
+                <pii-input questionname="race">What is your race?</pii-input>
+                <pii-input questionname="dob">What is your date of birth?</pii-input>
+                <pii-input questionname="address">What is your current address?</pii-input>
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>Your Driver’s License information?</p>
-                <pii-input>License Number?</pii-input>
-                <pii-input>Issuing State?</pii-input>
-                <pii-input>Expiration Date?</pii-input>
+                <pii-input questionname="license_number">License number</pii-input>
+                <pii-input questionname="license_issuing_state">Issuing state</pii-input>
+                <pii-input questionname="license_expiration_date">Expiration date</pii-input>
             </div>
         </div>
 

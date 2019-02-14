@@ -7,7 +7,6 @@
 
                 <input type="text"
                        class="form-control"
-                       style="padding-left: 2em; padding-right: 2em;"
                        required="*"
                        v-model="question">
 
@@ -39,6 +38,4 @@
     }
 </script>
 
-<style scoped>
 
-</style>

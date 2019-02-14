@@ -24,8 +24,10 @@
             <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="sentence">Sentence
             </input-charge-field>
         </div>
-        <div class="col" style="padding-top: 6em;">
-&nbsp;
+
+
+        <div class="col-12" style="padding-left: 2em; padding-top: 1em; padding-bottom: 1em;">
+<hr>
         </div>
     </div>
 </template>

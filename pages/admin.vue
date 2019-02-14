@@ -1,12 +1,23 @@
 <template>
-    <button @click="add_case">Add Case</button>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button @click="clearData()">Clear data</button>
+        </div>
+
+        <section-work-sheet></section-work-sheet>
+    </div>
+</div>
 </template>
 
 <script>
+    import SectionWorkSheet from "../components/section-work-sheet";
     export default {
-        name: "add-case",
+        name: "admin",
+        components: {SectionWorkSheet},
         methods: {
-            add_case: function () {
+            clearData: function () {
+                this.$store.dispatch('clearAll');
                 this.$store.commit('addCase', {
                     case_number: '',
                     agancy: '',
@@ -28,7 +39,6 @@
                         }
                     ]
                 });
-
             }
         }
     }

@@ -12,6 +12,7 @@ const store = () => new Vuex.Store({
         namespace: 'cmr-app',
         initialState: {},
         //       expires: 7 * 24 * 60 * 60 * 1000,
+               expires: 10 * 60 * 1000,
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value, {expires: 365}),
@@ -52,6 +53,9 @@ const store = () => new Vuex.Store({
         allQuestions(state) {
             return state.questions
         },
+        allPii(state) {
+            return state.pii
+        },
         allCases(state) {
             return state.cases
         },
@@ -81,7 +85,9 @@ const store = () => new Vuex.Store({
     },
     mutations: {
         CLEAR_ALL(state) {
-            //           state.questions = [];
+            state.questions = [];
+            state.pii = [];
+            state.cases = [];
         },
         STORE_QUESTION(state, data) {
 

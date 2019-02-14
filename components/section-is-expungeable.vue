@@ -20,14 +20,14 @@
                 </disqualifying-question>
 
                 <disqualifying-question group="are-you-excluded" questionname="felonyAssault">
-                    Felony Assault or kidnapping?
+                    Felony assault or kidnapping?
                 </disqualifying-question>
 
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
 
                 <disqualifying-question group="are-you-excluded" questionname="domesticAssault">
-                    Domestic Assault?
+                    Domestic assault?
                 </disqualifying-question>
 
                 <disqualifying-question group="are-you-excluded" questionname="intoxicated">

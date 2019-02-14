@@ -15,7 +15,7 @@
             add_case: function () {
                 this.$store.commit('addCharge', {
                     case_index: this.case_index,
-                    charge: [
+                    charge:
                         {
                             not_eligible: false,
                             type: '',
@@ -24,7 +24,7 @@
                             charge: '',
                             sentence: '',
                         }
-                    ]
+
                 });
 
             }
@@ -32,6 +32,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>
