@@ -2,8 +2,6 @@
     <div style="padding-top: 3em;">
 
         <h2>Your Personal Information</h2>
-        <p style="color: lightcoral;">DEVELOPER NOTE: All of the following personal information is required for the Petition for Expungement</p>
-
 
         <div class="row">
             <div class="col-md-6" style="padding-left: 1em;">
