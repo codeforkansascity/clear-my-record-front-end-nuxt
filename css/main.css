@@ -103,3 +103,13 @@
 .not_eligible {
     color: red;
 }
+
+/* Help button */
+
+.help-button {
+    margin-left: 1em;
+}
+
+.help-button:hover {
+    color: lightgray;
+}
