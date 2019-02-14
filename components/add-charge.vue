@@ -24,7 +24,7 @@
                             charge: '',
                             sentence: '',
                         }
-                    
+
                 });
 
             }
@@ -32,6 +32,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>

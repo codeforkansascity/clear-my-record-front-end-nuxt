@@ -14,6 +14,4 @@
     }
 </script>
 
-<style scoped>
 
-</style>
