@@ -10,29 +10,8 @@ Clear My Record is focused on providing assistance to persons seeking expungemen
 
 1. Please review the [Mockups](https://github.com/zmon/clear-my-record-front-end-nuxt/blob/develop/MOCKUP.md)
 2. Pick out an issue to work on 
-3. Setup a [development environment](
+3. Fork the project 
+4. Setup a [development environment](https://github.com/codeforkansascity/clear-my-record-front-end-nuxt/blob/develop/DEVELOPER.md)
+4. Make modifications and suggest changes with a Pull Request
 
 
-
-## Developer Setup
-
-To setup Bootstrap to compile I used https://gist.github.com/benmccallum/33ff008660218a578fc27fd33f51d1c1
-
-``` bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
-
-Added https://www.npmjs.com/package/@nuxtjs/markdownit for markdown support.
