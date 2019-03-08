@@ -66,6 +66,7 @@
                         question: this.questionname,
                         answer: value
                     });
+
                     this.$axios.$post('/qualifying_answer', {
                         question_identifier: this.questionname,
                         answer: value,
@@ -79,6 +80,7 @@
                         .catch(error => {
                             console.log(error.response);  // for developers
                         });
+
 
                 },
             },
