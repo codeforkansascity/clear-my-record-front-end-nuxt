@@ -66,7 +66,7 @@
                         question: this.questionname,
                         answer: value
                     });
-                    this.$axios.$post('http://localhost:3001/qualifying_answer', {
+                    this.$axios.$post('/qualifying_answer', {
                         question_identifier: this.questionname,
                         answer: value,
                         qualifying_answer: 'No',
