@@ -40,6 +40,12 @@ Added https://www.npmjs.com/package/@nuxtjs/markdownit for markdown support.
 
 Used instructions at https://gist.github.com/benmccallum/33ff008660218a578fc27fd33f51d1c1
 
+### vue-select
+
+[vue-select](https://sagalbot.github.io/vue-select/docs/)
+
+[Why Your Third-Party Plugin Don’t Work in Nuxt and How to Fix it](https://medium.com/@codebeast_/why-your-third-party-plugin-dont-work-in-nuxt-and-how-to-fix-it-d1a8caadf422)
+
 ## Issue with using browser arrow keys.
 
 VueX will not remember the data store if you use the browser arrow keys.

@@ -15,7 +15,7 @@
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>Your Driver’s License information?</p>
                 <pii-input questionname="license_number">License number</pii-input>
-                <pii-input questionname="license_issuing_state">Issuing state</pii-input>
+                <input-state questionname="license_issuing_state">Issuing state</input-state>
                 <pii-input questionname="license_expiration_date">Expiration date</pii-input>
             </div>
         </div>
@@ -25,10 +25,11 @@
 
 <script>
     import PiiInput from "../components/pii-input";
+    import InputState from '../components/input-state';
 
     export default {
         name: "section-persons-information",
-        components: {PiiInput},
+        components: {PiiInput, InputState},
     }
 </script>
 
