@@ -22,8 +22,7 @@
                 the court’s records?
             </input-case-field>
             <input-case-field v-bind:i="this.case_index" f="release_status">Release Status</input-case-field>
-            <input-case-field v-bind:i="this.case_index" f="release_date">Release Date</input-case-field>
-
+            <input-case-date-field v-bind:i="this.case_index" f="release_date">Release Date</input-case-date-field>
         </div>
 
 
@@ -50,9 +49,10 @@
     import InputCaseField from "./input-case-field";
     import InputChargeFields from "./input-charge-fields";
     import AddCharge from "./add-charge";
+    import InputCaseDateField from "./input-case-date-field";
 
     export default {
-        components: {AddCharge, InputChargeFields, Charges, InputCaseField},
+        components: {InputCaseDateField, AddCharge, InputChargeFields, Charges, InputCaseField},
         name: "input-case-fields",
         props: {
             ccase: {
