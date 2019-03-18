@@ -67,8 +67,9 @@
                         answer: value
                     });
 
-                    this.$axios.$post('/qualifying_answer', {
-                        question_identifier: this.questionname,
+                  this.$axios.$post('http://localhost:5000/qualifying_answer', {
+                        user_session: 'abcef',
+                        question_id: this.questionname,
                         answer: value,
                         qualifying_answer: 'No',
                         question_version_number: '0.0',
@@ -88,5 +89,3 @@
 
     }
 </script>
-
-
