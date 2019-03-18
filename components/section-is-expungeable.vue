@@ -11,32 +11,32 @@
         <div class="row">
             <div class="col-md-6" style="padding-left: 1em;">
 
-                <disqualifying-question group="are-you-excluded" questionname="classA">
+                <qualifying-question group="are-you-excluded" questionname="classA">
                     A Class A or dangerous felony?
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="are-you-excluded" questionname="death">
+                <qualifying-question group="are-you-excluded" questionname="death">
                     A crime where a death occurred?
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="are-you-excluded" questionname="felonyAssault">
+                <qualifying-question group="are-you-excluded" questionname="felonyAssault">
                     Felony assault or kidnapping?
-                </disqualifying-question>
+                </qualifying-question>
 
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
 
-                <disqualifying-question group="are-you-excluded" questionname="domesticAssault">
+                <qualifying-question group="are-you-excluded" questionname="domesticAssault">
                     Domestic assault?
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="are-you-excluded" questionname="intoxicated">
+                <qualifying-question group="are-you-excluded" questionname="intoxicated">
                     Operating a car, boat, or plane while intoxicated?
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="are-you-excluded" questionname="cdl">
+                <qualifying-question group="are-you-excluded" questionname="cdl">
                     A violation of a motor vehicle ordinance/law while CDL?
-                </disqualifying-question>
+                </qualifying-question>
 
             </div>
         </div>
@@ -57,11 +57,11 @@
 </template>
 
 <script>
-    import DisqualifyingQuestion from "../components/disqualifying-question";
+    import QualifyingQuestion from "../components/qualifying-question";
 
     export default {
         name: "section-is-expungeable",
-        components: {DisqualifyingQuestion},
+        components: {QualifyingQuestion},
         computed: {
             numberOfNotNo: function () {
                 var all = this.$store.getters.allQuestions;

@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        name: "disqualifying-question",
+        name: "qualifying-question",
         props: {
             group: {
                 type: String,

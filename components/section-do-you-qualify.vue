@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6" style="padding-left: 1em;">
 
-                <disqualifying-question group="do-you-qualify" questionname="criminalCharge">
+                <qualifying-question group="do-you-qualify" questionname="criminalCharge">
                     I have a criminal charge pending against me now.
                     <template slot="help">
                         A pending criminal charge is a criminal charge against you that is currently in court
@@ -19,9 +19,9 @@
                         has not been
                         dismissed, you have been found innocent, or you have been found guilty.
                     </template>
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="do-you-qualify" questionname="previously">
+                <qualifying-question group="do-you-qualify" questionname="previously">
                     I have had one or more convictions expunged.
                     <template slot="help">
                         <b>Why does this matter?</b> Missouri limits the number of convictions that can be
@@ -34,22 +34,22 @@
                         and a
                         paraphernalia count would be treated as a single conviction to be expunged.
                     </template>
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="do-you-qualify" questionname="obligations">
+                <qualifying-question group="do-you-qualify" questionname="obligations">
                     I have not completed all requirements of my sentence.
-                </disqualifying-question>
+                </qualifying-question>
 
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
 
-                <disqualifying-question group="do-you-qualify" questionname="felonytime">
+                <qualifying-question group="do-you-qualify" questionname="felonytime">
                     I completed my sentence less than seven years ago (if a felony).
-                </disqualifying-question>
+                </qualifying-question>
 
-                <disqualifying-question group="do-you-qualify" questionname="misdereanortime">
+                <qualifying-question group="do-you-qualify" questionname="misdereanortime">
                     I completed my sentence less than three years ago (if a misdemeanor).
-                </disqualifying-question>
+                </qualifying-question>
 
             </div>
         </div>
@@ -94,11 +94,11 @@
 </template>
 
 <script>
-    import DisqualifyingQuestion from "../components/disqualifying-question";
+    import QualifyingQuestion from "../components/qualifying-question";
 
     export default {
         name: "section-do-you-qualify",
-        components: {DisqualifyingQuestion},
+        components: {QualifyingQuestion},
         computed: {
             numberOfNotNo: function () {
                 var all = this.$store.getters.allQuestions;
