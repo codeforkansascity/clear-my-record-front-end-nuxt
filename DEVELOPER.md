@@ -7,9 +7,7 @@
    To store data [VueX](https://vuex.vuejs.org/) is being used for local storage.
    
 ### Back End
-   No backend has been developed.  
-   There was discussion that it would be a singel page app without a backend to
-   storing all criminal records in a backend. 
+   Backend work has started see  [codeforkansascity/clear_my_record_backend](https://github.com/codeforkansascity/clear_my_record_backend)
 
 ## Developer Setup
 
@@ -30,17 +28,42 @@ $ npm start
 $ npm run generate
 ```
 
+## Configuration
+
+### API
+
+Adjust the API endpoint host name in `nusxt.config.js`
+```
+  /*
+  ** Axios module configuration
+  */
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+      baseURL: 'http://localhost:3001/'
+  },
+```
+
+
+# Notes and things we have bumped into.
+
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 ## Packages used
-Added https://www.npmjs.com/package/@nuxtjs/markdownit for markdown support.
-
+* Markdown: https://www.npmjs.com/package/@nuxtjs/markdownit for markdown support.
+* Axios: https://axios.nuxtjs.org/ for API support
+* API Testing: https://github.com/typicode/json-server but put in a seperate project area.
 
 ### nuxtjs, vue-bootstrap with custom bootstrap build
 
 Used instructions at https://gist.github.com/benmccallum/33ff008660218a578fc27fd33f51d1c1
 
-## Issue with using browser arrow keys.
+### vue-select
+
+[vue-select](https://sagalbot.github.io/vue-select/docs/)
+
+[Why Your Third-Party Plugin Don’t Work in Nuxt and How to Fix it](https://medium.com/@codebeast_/why-your-third-party-plugin-dont-work-in-nuxt-and-how-to-fix-it-d1a8caadf422)
+
+### Issue with using browser arrow keys.
 
 VueX will not remember the data store if you use the browser arrow keys.
 This is especaly true if you leave the single page app.  To demonstrate this:
@@ -57,7 +80,7 @@ This is especaly true if you leave the single page app.  To demonstrate this:
 The way to get around this is to use localstorage or cookies with the following
 [GitHub - robinvdvleuten/vuex-persistedstate: Persist and rehydrate your Vuex state between page reloads.](https://github.com/robinvdvleuten/vuex-persistedstate)
 
-### Installing and Config
+#### Installing and Config
 
 
 ``````
