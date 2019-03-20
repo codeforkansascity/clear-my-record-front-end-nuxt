@@ -66,11 +66,26 @@
                         question: this.questionname,
                         answer: value
                     });
+
+                  this.$axios.$post('qualifying_answer', {
+                        user_session: 'abcef',
+                        question_id: this.questionname,
+                        answer: value,
+                        qualifying_answer: 'No',
+                        question_version_number: '0.0',
+                        timestamp: Date.now(),
+                    })
+                        .then(function (response) {
+                            // no interaction with the user
+                        })
+                        .catch(error => {
+                            console.log(error.response);  // for developers
+                        });
+
+
                 },
             },
         },
 
     }
 </script>
-
-
