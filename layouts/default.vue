@@ -1,9 +1,16 @@
 <template>
   <div>
+    <nav-standard></nav-standard>
     <nuxt/>
   </div>
 </template>
 
+<script>
+    import NavStandard from "../components/nav-standard";
+    export default {
+        components: {NavStandard}
+    }
+</script>
 
 <style>
 html {
