@@ -2,7 +2,7 @@
 <template>
     <div class="container">
 
-
+        <auth-login></auth-login>
 
         <!--<input-case-fields v-for="(ccase, case_index) in this.$store.getters.allCases" :key="ccase.id" :case_index="case_index" :ccase="ccase">-->
         <!--</input-case-fields>-->
@@ -43,9 +43,11 @@
     import InputCaseFields from "../components/input-case-fields";
     import AddCase from "../components/add-case";
     import SectionCaseCharges from "../components/section-case-charges";
+    import AuthLogin from "../components/auth-login";
 
     export default {
         components: {
+            AuthLogin,
             SectionCaseCharges,
             AddCase,
             InputCaseFields,
