@@ -16,7 +16,7 @@
         <b-form-input v-model="question"
                       type="date"
                       class="form-control"
-                      required="*"/>
+                      required="true"></b-form-input>
 
     </div>
 </template>

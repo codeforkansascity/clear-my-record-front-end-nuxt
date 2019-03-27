@@ -5,7 +5,7 @@
                 <slot></slot>
             </label>
 
-            <b-form-input v-model="question" type="date"/>
+            <b-form-input v-model="question" type="date" style="width: 10em"/>
 
         </div>
     </div>

@@ -18,6 +18,11 @@
                 </li>
 
             </ul>
+            <ul class="navbar-nav my-2 my-md-01">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
