@@ -50,14 +50,20 @@ module.exports = {
         // Doc: https://github.com/nuxt-community/axios-module#usage
         '@nuxtjs/axios',
         // Doc: https://bootstrap-vue.js.org/docs/
-        ['@nuxtjs/bootstrap-vue', {css: false}] // don't include a default build, use ours
+        // ['@nuxtjs/bootstrap-vue', {css: false}] // don't include a default build, use ours
+        'bootstrap-vue/nuxt'
     ],
+    bootstrapVue: {
+        bootstrapCSS: 'css', // or `css`  - was false
+        bootstrapVueCSS: 'bvCSS' // or `bvCSS`
+    },
     /*
     ** Axios module configuration
     */
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
-        baseURL: 'http://localhost:5000/'
+        // baseURL: 'http://localhost:5000/'
+        // baseURL: 'http://localhost:3001/'
     },
 
     /*

@@ -1,7 +1,5 @@
 <template>
-    <div style="padding-top: 3em;">
 
-        <h2>Your Personal Information</h2>
 
         <div class="row">
             <div class="col-md-6" style="padding-left: 1em;">
