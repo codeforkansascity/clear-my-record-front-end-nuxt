@@ -111,3 +111,44 @@ const store = () => new Vuex.Store({
         todos: [],
 
 ```
+
+### `@nuxtjs/auth` for JWT
+
+From https://scotch.io/tutorials/implementing-authentication-in-nuxtjs-app
+
+Note: js-cookie might of already of been installed.
+```
+npm install @nuxtjs/auth
+npm install js-cookie --save
+npm install cookieparser --save
+```
+
+Add the following to nuxt.config.js
+
+```
+modules: [
+  '@nuxtjs/axios',
+  '@nuxtjs/auth'
+],
+axios: {
+  baseURL: 'http://127.0.0.1:3333/api'
+},
+
+auth: {
+  strategies: {
+    local: {
+      endpoints: {
+        login: { url: 'login', method: 'post', propertyName: 'data.token' },
+        user: { url: 'me', method: 'get', propertyName: 'data' },
+        logout: false
+      }
+    }
+  }
+}
+
+
+```
+
+
+
+

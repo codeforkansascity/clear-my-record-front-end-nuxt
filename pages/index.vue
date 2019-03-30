@@ -1,6 +1,19 @@
 <template>
     <two-panels style="padding-top: 30px;">
         <template slot="left">
+
+            <div class="container">
+                <h1 class="title">Nuxt Auth</h1>
+
+                <ul>
+                    <li> logged in {{ this.$auth.loggedIn }}</li>
+                    <li> user {{ this.$auth.user }}</li>
+                </ul>
+
+                <h1>Need to logout</h1>
+                <button v-on:click="logout">Log me out now!</button>
+            </div>
+
             <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a
                 job, housing, or other things you need?</h3>
             <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means
@@ -40,10 +53,27 @@
 
 <script>
     import TwoPanels from "../components/two-panels";
+    const Cookie = process.client ? require('js-cookie') : undefined
 
 
     export default {
-        components: {TwoPanels}
+        components: {TwoPanels},
+        methods: {
+            logout() {
+                console.log('start logout');
+                // One of the following should work but does not
+                Cookie.remove('auth')
+                Cookie.remove('auth._token')
+                Cookie.remove('auth._token.local')
+                Cookie.remove('auth._refresh_token.local')
+
+               // document.cookie = 'auth' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;domain=localhost;';
+
+                localStorage.removeItem('auth._token.local');
+                console.log('end logout');
+               // this.$store.commit('setAuth', null)
+            }
+        },
     }
 </script>
 
