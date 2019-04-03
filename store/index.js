@@ -89,6 +89,15 @@ const store = () => new Vuex.Store({
             state.pii = [];
             state.cases = [];
         },
+        LOGOUT(state) {
+            state.auth.loggedIn = false;
+            state.auth.user = null;
+            // redirect and strategy needs to be removed
+
+        },
+        setAuth(state, auth) {
+            state.auth = auth
+        },
         STORE_QUESTION(state, data) {
 
             //   var group_index = state.questions.findIndex(p => p.group == data.group);
@@ -161,6 +170,9 @@ const store = () => new Vuex.Store({
 
         clearAll({commit}) {
             commit('CLEAR_ALL');
+        },
+        logout({commit}) {
+            commit('LOG_OUT');
         },
         storeQuestion({commit}, quest) {
             commit('STORE_QUESTION', quest)

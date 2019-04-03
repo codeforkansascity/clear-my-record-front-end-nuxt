@@ -14,7 +14,6 @@
     "@nuxt/builder": "^2.4.5",
     "@nuxtjs/auth": "^4.5.3",
     "@nuxtjs/axios": "^5.0.0",
-    "@nuxtjs/bootstrap-vue": "^2.0.4",
     "@nuxtjs/markdownit": "^1.2.3",
     "@vue/cli": "^3.5.3",
     "bootstrap-vue": "^2.0.0-rc.14",
@@ -28,6 +27,7 @@
     "pdfmake": "^0.1.39",
     "precss": "^2.0.0",
     "sass-loader": "^6.0.6",
+    "typescript": "^3.4.1",
     "vue-select": "^2.6.0",
     "vuex-persistedstate": "^2.5.4"
   },

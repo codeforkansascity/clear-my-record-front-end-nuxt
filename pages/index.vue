@@ -1,19 +1,6 @@
 <template>
     <two-panels style="padding-top: 30px;">
         <template slot="left">
-
-            <div class="container">
-                <h1 class="title">Nuxt Auth</h1>
-
-                <ul>
-                    <li> logged in {{ this.$auth.loggedIn }}</li>
-                    <li> user {{ this.$auth.user }}</li>
-                </ul>
-
-                <h1>Need to logout</h1>
-                <button v-on:click="logout">Log me out now!</button>
-            </div>
-
             <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a
                 job, housing, or other things you need?</h3>
             <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means
