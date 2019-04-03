@@ -7,6 +7,20 @@ npm install
 npm run dev
 ```
 
+## Install Backend code
+
+```
+git clone git@github.com:codeforkansascity/clear_my_record_backend.git
+cd clear_my_record_backend
+   .
+   .
+   .
+pyenv activate cmr
+export FLASK_APP=cmr_app.py
+flask db upgrade
+flask run
+```
+
 ## Install a test JWT Server
  
  ```
