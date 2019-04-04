@@ -1,5 +1,46 @@
 # Quick update notes
 
+## Error core-js/modules/es6.array.find in ./.nuxt/client.js
+To resolve this try the following
+
+Checkout this branch jwt-try
+
+1. Remove current install
+```
+rm -rf package-lock.json node_modules
+```
+
+2. Install the a clean version of package.json, develop
+```
+cp dev-package.json package.json
+```
+
+3. Install Nuxt Auth
+```
+npm install @nuxtjs/auth @nuxtjs/axios
+```
+
+4. The build should work, may have some other errors of missing packages
+```
+npm install
+npm run dev
+```
+
+5. Install new package.json
+```
+cp jwt-package.json package.json
+```
+
+6. The build should work,
+```
+npm install
+npm run dev
+```
+
+7. spin up the test JWT server, see below
+
+NOTE: I do not know why the typescrpt paackge is a dependency.
+
 ## Update `node_modules`
 
 ```
