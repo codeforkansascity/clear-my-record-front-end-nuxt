@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/faq">FAQs</a>
                 </li>
+                <li class="nav-item" v-if="this.$auth.loggedIn">
+                    <a class="nav-link" href="/intake">Intake Form</a>
+                </li>
 
             </ul>
             <ul class="navbar-nav my-2 my-md-01">
