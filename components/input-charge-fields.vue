@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row"  style="background-color: lightgoldenrodyellow">
         <div class="col-md-6" style="padding-left: 2em;">
             <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="charge">Charge
             </input-charge-field>

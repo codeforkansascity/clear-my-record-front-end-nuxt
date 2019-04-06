@@ -1,6 +1,21 @@
 <template>
     <two-panels style="padding-top: 30px;">
         <template slot="left">
+
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Button with data-target
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+
             <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a
                 job, housing, or other things you need?</h3>
             <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means

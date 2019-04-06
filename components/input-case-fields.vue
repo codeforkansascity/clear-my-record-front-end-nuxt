@@ -26,7 +26,7 @@
         </div>
 
 
-        <div class="col-md-12" style="padding-left: 2em; padding-top:3em;">
+        <div class="col-md-12" style="padding-left: 10em; padding-top:3em;">
 
             <h4>CHARGE(S)</h4>
 
