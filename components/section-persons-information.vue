@@ -5,32 +5,88 @@
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>&nbsp;</p>
                 <pii-input questionname="full_name">What is your full name?</pii-input>
-                <input-sex questionname="sex">What is your sex?</input-sex>
-                <input-race questionname="race">What is your race?</input-race>
+                <input-select-other questionname="sex" v-bind:options="sex_options">What is your sex</input-select-other>
+                <input-select-other questionname="race" v-bind:options="race_options">What is your race?</input-select-other>
                 <input-date questionname="dob">What is your date of birth?</input-date>
                 <pii-input questionname="address">What is your current address?</pii-input>
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>Your Driver’s License information?</p>
                 <pii-input questionname="license_number">License number</pii-input>
-                <input-state questionname="license_issuing_state">Issuing state</input-state>
+                <input-state questionname="license_issuing_state" v-bind:options="state_options">Issuing state</input-state>
                 <input-date questionname="license_expiration_date">Expiration date</input-date>
             </div>
         </div>
 
-    </div>
 </template>
 
 <script>
     import PiiInput from "../components/pii-input";
-    import InputState from '../components/input-state';
-    import InputSex from "../components/input-sex";
-    import InputRace from "../components/input-race";
+
     import InputDate from "./input-date";
+    import InputState from "./input-state";
+    import InputSelectOther from "./input-select-other";
 
     export default {
         name: "section-persons-information",
-        components: {InputDate, InputRace, InputSex, PiiInput, InputState},
+        components: {InputSelectOther, InputDate, PiiInput, InputState},
+        data() {
+            return {
+                race_options: [
+                    {
+                        "name": "Please select a race or other",
+                        "abbreviation": ""
+                    },
+                    {
+                        "name": "White",
+                        "abbreviation": "White"
+                    },
+                    {
+                        "name": "Black or African American",
+                        "abbreviation": "Black or African American"
+                    },
+                    {
+                        "name": "American Indian or Alaska Native",
+                        "abbreviation": "American Indian or Alaska Native"
+                    },
+                    {
+                        "name": "Asian",
+                        "abbreviation": "Asian"
+                    },
+                    {
+                        "name": "Native Hawaiian or Other Pacific Islander",
+                        "abbreviation": "Native Hawaiian or Other Pacific Islander"
+                    },
+                    {
+                        "name": "Other",
+                        "abbreviation": "Other"
+                    }
+                ],
+                sex_options: [
+                    {
+                        "name": "Please indicate your sex",
+                        "abbreviation": ""
+                    },
+                    {
+                        "name": "Female",
+                        "abbreviation": "Female"
+                    },
+                    {
+                        "name": "Intersex",
+                        "abbreviation": "Intersex"
+                    },
+                    {
+                        "name": "Male",
+                        "abbreviation": "Male"
+                    },
+                    {
+                        "name": "Other",
+                        "abbreviation": "Other"
+                    }
+                ],
+            }
+        },
+
     }
 </script>
 
