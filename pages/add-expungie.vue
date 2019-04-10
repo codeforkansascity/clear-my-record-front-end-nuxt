@@ -58,7 +58,7 @@
                 release_date: '',
                 charges: [
                     {
-                        not_eligible: false,
+                        eligible: true,
                         type: '',
                         class: '',
                         citation: '',

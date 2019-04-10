@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" style="padding-top: 3em">
 
         <div class="col-md-6" style="padding-left: 2em;">
             <input-case-field v-bind:i="this.case_index" f="case_number">What was the case number?
@@ -26,13 +26,14 @@
         </div>
 
 
-        <div class="col-md-12" style="padding-left: 10em; padding-top:3em;">
+        <h4  style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;">CHARGE(S)</h4>
+        <div class="col-md-12" style="padding-left: 5em;">
 
-            <h4>CHARGE(S)</h4>
+
 
             <input-charge-fields v-for="(charge, charge_index) in this.ccase.charges" :key="charge.id"
                                  :charge_index="charge_index" :charge="charge"
-                                 :case_index="0"
+                                 :case_index="case_index"
             >
             </input-charge-fields>
 

@@ -1,5 +1,5 @@
 <template>
-    <li v-bind:class="{ not_eligible: charge.not_eligible }">
+    <li v-bind:class="{ eligible: charge.eligible }">
         {{ charge.type }}
         {{ charge.class }},
         {{ charge.citation }},

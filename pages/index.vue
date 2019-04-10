@@ -1,18 +1,6 @@
 <template>
     <two-panels style="padding-top: 30px;">
         <template slot="left">
-
-            <b-button v-b-toggle.collapse-1 variant="primary">Toggle Collapse</b-button>
-            <b-collapse id="collapse-1" class="mt-2">
-                <b-card>
-                    <p class="card-text">Collapse contents Here</p>
-                    <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
-                    <b-collapse id="collapse-1-inner" class="mt-2">
-                        <b-card>Hello!</b-card>
-                    </b-collapse>
-                </b-card>
-            </b-collapse>
-
             <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a
                 job, housing, or other things you need?</h3>
             <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means
