@@ -2,19 +2,16 @@
     <two-panels style="padding-top: 30px;">
         <template slot="left">
 
-            <p>
-                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Link with href
-                </a>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Button with data-target
-                </button>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
+            <b-button v-b-toggle.collapse-1 variant="primary">Toggle Collapse</b-button>
+            <b-collapse id="collapse-1" class="mt-2">
+                <b-card>
+                    <p class="card-text">Collapse contents Here</p>
+                    <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
+                    <b-collapse id="collapse-1-inner" class="mt-2">
+                        <b-card>Hello!</b-card>
+                    </b-collapse>
+                </b-card>
+            </b-collapse>
 
             <h3 style="padding-bottom: 30px; font-weight: bold;">Is a crime on your record preventing you from getting a
                 job, housing, or other things you need?</h3>
@@ -58,7 +55,12 @@
 
 
     export default {
-        components: {TwoPanels}
+        components: {TwoPanels},
+        data() {
+            return {
+                selected: null
+            }
+        },
     }
 </script>
 
