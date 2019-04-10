@@ -26,26 +26,26 @@ const store = () => new Vuex.Store({
         cases: [
             {"id": 1, "arrested_on": "6/30/1979", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749999B",
 
-                "release_status": "complete release", "release_date": "6/30/1989",
+                "release_status": "complete release", "release_date": "6/30/1989", "note": "",
                 "charges": [
                     {"id": 1, "type": "Felony", "class": "C", "citation": "569.080", "charge": "Tamp 1st W Serv of Utily",
-                        "sentence": "Confinement 2 years", "eligible": true, "expunge": false},
+                        "sentence": "Confinement 2 years", "eligible": true, "expunge": false, "note": ""},
                     {"id": 2, "type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing",
-                        "sentence": "Confinement 2 years", "eligible": false, "expunge": false},
+                        "sentence": "Confinement 2 years", "eligible": false, "expunge": false, "note": ""},
                     {"id": 3, "type": "Felony", "class": "C", "citation": "570.030", "charge": "Stealing",
-                        "sentence": "Confinement 2 years", "eligible": false, "expunge": false},
+                        "sentence": "Confinement 2 years", "eligible": false, "expunge": false, "note": ""},
                 ]},
             {"id": 2, "arrested_on": "7/13/1998", "agency": "MDC-Recept/Diag Ctr-Fulton", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR8749888C",
-                "release_status": "complete release", "release_date": "6/9/2004",
+                "release_status": "complete release", "release_date": "6/9/2004", "note": "",
                 "charges": [
                     {"id": 1, "type": "Felony", "class": "B", "citation": "195.211", "charge": "Dist Del Manuf Contr Sub",
-                        "sentence": "Confinement 5 years", "eligible": true, "expunge": false},
+                        "sentence": "Confinement 5 years", "eligible": true, "expunge": false, "note": ""},
                 ]},
             {"id": 3, "arrested_on": "4/15/2003", "agency": "Kansas City PD", "court_id": "MO948103J", "court_name": "Jackson Co Cir Crt-Kansas City", "case_number": "CR874111e",
-                "release_status": "", "release_date": "",
+                "release_status": "", "release_date": "", "note": "",
                 "charges": [
                     {"id": 1, "type": "Felony", "class": "C", "citation": "195.202", "charge": "Poss Controlled Substance-Felony",
-                        "sentence": "Confinement 3 years suspended, probation 3 years 1/24/2006", "eligible": true, "expunge": false},
+                        "sentence": "Confinement 3 years suspended, probation 3 years 1/24/2006", "eligible": true, "expunge": false, "note": ""},
                 ]}
         ]
     },

@@ -1,6 +1,6 @@
 <template>
-    <b-container>
-        <div class="row" style="background-color: lightgoldenrodyellow; margin-top: 2em">
+    <b-container style="background-color: lightgoldenrodyellow;">
+        <div class="row" style="background-color: lightgoldenrodyellow; margin-top: 2em; padding-top: 1em;">
 
             <div class="col-md-5" >
                 <h5>{{ this.charge.citation }} {{ this.charge.charge }}</h5>
@@ -69,10 +69,39 @@
                 </input-charge-field>
             </div>
 
-
-            <div class="col-12" style="padding-left: 2em; padding-top: 1em; padding-bottom: 1em;">
-                <hr>
+            <div class="col-md-2">
+                &nbsp;
             </div>
+
+            <div class="col-md-1" style="padding-top: 1.25em;">
+                Notes:
+            </div>
+
+            <div class="col-md-7" style="padding-left: 2em; ">
+                <input-charge-note-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="note">
+                </input-charge-note-field>
+            </div>
+
+            <div class="col-md-2"  style="padding-top: 1.25em;">
+
+            </div>
+
+            <div class="col-md-2">
+                &nbsp;
+            </div>
+
+            <div class="col-md-1" style="padding-top: 1.25em;">
+                <button class="float-left">Remove</button>
+            </div>
+
+            <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
+
+            </div>
+
+            <div class="col-md-2"  style="padding-top: 1.25em; padding-bottom: 1em">
+                <button class="float-right">Save</button>
+            </div>
+
         </div>
     </b-container>
 </template>
@@ -80,11 +109,12 @@
 <script>
     import Charges from "./charges";
     import InputChargeField from "./input-charge-field";
+    import InputChargeNoteField from "./input-charge-note-field";
     import BContainer from "bootstrap-vue/src/components/layout/container";
 
 
     export default {
-        components: {BContainer, Charges, InputChargeField},
+        components: {BContainer, Charges, InputChargeField, InputChargeNoteField},
         name: "input-charge-fields",
         props: {
             charge: {
