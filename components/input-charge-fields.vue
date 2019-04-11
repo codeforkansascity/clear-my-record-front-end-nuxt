@@ -91,7 +91,7 @@
             </div>
 
             <div class="col-md-1" style="padding-top: 1.25em;">
-                <button class="float-left">Remove</button>
+                <button class="float-left" @click="remove_charge">Remove</button>
             </div>
 
             <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
@@ -99,7 +99,7 @@
             </div>
 
             <div class="col-md-2"  style="padding-top: 1.25em; padding-bottom: 1em">
-                <button class="float-right">Save</button>
+                <button class="float-right" @click="save_charge">Save</button>
             </div>
 
         </div>
@@ -166,6 +166,18 @@
                     });
                 },
             },
+        },
+        methods: {
+            remove_charge() {
+
+                if ( confirm("Remove this charge")) {
+                    alert('Code remove code')
+                }
+
+            },
+            save_charge() {
+                alert('code save code')
+            }
         },
     }
 </script>
