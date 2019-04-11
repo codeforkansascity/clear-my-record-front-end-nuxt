@@ -135,7 +135,7 @@ const store = () => new Vuex.Store({
 
         },
         addCase(state, data) {
-            state.cases.push(data);
+            state.cases = data;
         },
         addCharge(state, data) {
             state.cases[data.case_index].charges.push(data.charge);
@@ -164,6 +164,19 @@ const store = () => new Vuex.Store({
         },
         storeQuestion({commit}, quest) {
             commit('STORE_QUESTION', quest)
+        },
+
+        async getCase({commit}) {
+            console.log('getCase');
+            await this.$axios.get('http://127.0.0.1:5000/clients/1')
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log(res);
+                        commit('addCase', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
         },
 
         //       addTodo ({ commit }, todo) {
