@@ -17,7 +17,8 @@
                     case_index: this.case_index,
                     charge:
                         {
-                            not_eligible: false,
+                            eligible: false,
+                            expunge: false,
                             type: '',
                             class: '',
                             citation: '',
