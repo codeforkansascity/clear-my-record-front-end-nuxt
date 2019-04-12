@@ -1,10 +1,25 @@
 <template>
 
+    <div style="border: #7f828b; margin-left: .1em; border-width: thin; border-style: solid;">
 
-        <div class="row">
+        <div class="row"
+             >
+            <div class="col-md-11" style="padding-left: 1em; ">
+                <h2>{{this.$store.state.client.full_name}}</h2>
+            </div>
+            <div>
+                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                     src="/images/noun_collapse_2091048_000000.png" class="help-button">
+                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                     src="/images/noun_expand_1211939_000000.png" class="help-button">
+
+
+            </div>
+        </div>
+        <div class="row" v-show="isShowing">
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>&nbsp;</p>
-                <pii-input field="full_name">What is your full name?</pii-input>
+                <pii-input field="full_name">What is your fullaa name?</pii-input>
 
                 <input-select-other field="sex" v-bind:options="sex_options">What is your sex</input-select-other>
                 <input-select-other field="race" v-bind:options="race_options">What is your race?</input-select-other>
@@ -15,11 +30,13 @@
                 <input-state field="state" style="width: 20em;display: inline-block">State?</input-state>
                 <pii-input field="zip"
                            style="width: 10em; display: inline-block; padding-right: 0em;"
-                >Zip?</pii-input>
+                >Zip?
+                </pii-input>
 
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
-                <p>Your Driver’s License information?</p>
+                <p style="display: inline">Your Driver’s License information?</p>
+
                 <pii-input field="license_number">License number</pii-input>
 
                 <input-state field="license_issuing_state">Issuing state</input-state>
@@ -27,9 +44,9 @@
                 <input-date field="dob">What is your date of birth?</input-date>
 
 
-
             </div>
         </div>
+    </div>
 
 </template>
 
@@ -97,6 +114,7 @@
                         "abbreviation": "Other"
                     }
                 ],
+                isShowing: true,
             }
         },
 
