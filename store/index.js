@@ -112,7 +112,7 @@ const store = () => new Vuex.Store({
             }
 
         },
-        storeCaseField(state, data) {
+       storeCaseField(state, data) {
 
             const q = state.cases[data.index];
 
@@ -135,11 +135,23 @@ const store = () => new Vuex.Store({
 
         },
         addCase(state, data) {
-            state.cases = data;
+            state.cases.push(data);
         },
         addCharge(state, data) {
             state.cases[data.case_index].charges.push(data.charge);
         },
+
+        addClientIntake(state, data) {
+            state.client = data;
+        },
+        storeClientField(state, data) {
+
+            state.client[data.question] = data.value;
+
+        },
+
+
+
 
         // SET_TODOS (state, todos) {
         //     state.todos = todos
@@ -166,39 +178,18 @@ const store = () => new Vuex.Store({
             commit('STORE_QUESTION', quest)
         },
 
-        async getCase({commit}) {
-            console.log('getCase');
-            await this.$axios.get('http://127.0.0.1:5000/clients/1')
+        async getClientIntake({commit}, client_id) {
+            console.log('getClientIntake');
+            await this.$axios.get('http://127.0.0.1:5000/clients/' + client_id)
                 .then((res) => {
                     if (res.status === 200) {
                         console.log(res);
-                        commit('addCase', res.data)
+                        commit('addClientIntake', res.data)
                     } else {
                         console.log('error');
                     }
                 })
         },
-
-        //       addTodo ({ commit }, todo) {
-        //           commit('ADD_TODO', todo)
-        //       },
-        //       setTodos ({ commit }, todos) {
-        //           commit('SET_TODOS', todos)
-        //       },
-        //       removeTodo ({ commit }, todo) {
-        //           commit('REMOVE_TODO', todo)
-        //       },
-        //       allDone ({ state, commit }) {
-        //           var value = state.todos.filter(todo => todo.completed).length === state.todos.length
-        //           commit('FILTER_TODOS', value)
-        //       },
-        //       saveTodos ({ state }) {
-        // //          axios.put('/api/todos', { todos: state.todos })
-        //           console.log('Save to database');
-        //       },
-        //       nuxtServerInit ({ commit }, { req }) {
-        //           commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
-        //       }
     },
 
 })

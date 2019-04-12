@@ -46,32 +46,7 @@
         components: {InputDate, PiiInput, InputState},
         mounted() {
             this.$store.dispatch('clearAll');
-            this.$store.dispatch('getCase');
-            // var rec = this.$axios.$get('http://127.0.0.1:5000/clients/3');
-            // console.log(rec);
-
-            //this.$store.commit('addCase', rec);
-            // this.$store.commit('addCase', {
-            //     case_number: 'www',
-            //     agancy: 'www',
-            //     court_id: 'www',
-            //     court_name: 'www',
-            //     city_county: 'www',
-            //     name_of_judge: '',
-            //     your_name_in_case: '',
-            //     release_status: '',
-            //     release_date: '',
-            //     charges: [
-            //         {
-            //             eligible: true,
-            //             type: 'vvv',
-            //             class: 'vvv',
-            //             citation: 'vvv',
-            //             charge: 'vvv',
-            //             sentence: 'vvv',
-            //         }
-            //     ]
-            // });
+            this.$store.dispatch('getClientIntake',1);  // Fix: need to pass the correct client_id
         },
         data() {
             return {
