@@ -4,21 +4,23 @@
             <h2>Add Expungie</h2>
             <div class="row">
                 <div class="col-md-6" style="padding-left: 1em;">
-                    <p>&nbsp;</p>
-                    <pii-input questionname="full_name">Full name?</pii-input>
-                    <pii-input questionname="phone" v-bind:style="phoneStyle">Phone/Cell?</pii-input>
+                    <pii-input field="full_name">Full name?</pii-input>
+                    <pii-input field="phone" v-bind:style="phoneStyle">Phone/Cell</pii-input>
+                    <pii-input field="email" v-bind:style="phoneStyle">Email</pii-input>
 
-                    <input-date questionname="dob">Date of birth?</input-date>
-                    <pii-input questionname="address_line_1">Address Line 1?</pii-input>
-                    <pii-input questionname="address_line_2">Address Line 1?</pii-input>
-                    <pii-input questionname="city">City?</pii-input>
-                    <input-state questionname="state">State?</input-state>
-                    <pii-input questionname="zip" v-bind:style="zipStyle">Zip?</pii-input>
-                    <pii-input questionname="status">Status?</pii-input>
+                    <input-date field="dob">Date of birth?</input-date>
+
+                    <pii-input field="status">Status?</pii-input>
 
                 </div>
                 <div class="col-md-6" style="padding-left: 1em;">
-
+                    <pii-input field="address_line_1">Address Line 1</pii-input>
+                    <pii-input field="address_line_2">Address Line 2</pii-input>
+                    <pii-input field="city">City?</pii-input>
+                    <input-state field="state" style="width: 20em;display: inline-block">State?</input-state>
+                    <pii-input field="zip"
+                               style="width: 10em; display: inline-block; padding-right: 0em;"
+                    >Zip?</pii-input>
                 </div>
             </div>
         </div>

@@ -5,12 +5,12 @@
                 <slot></slot>
             </label>
 
-            <v-select v-model="question" label="name" :options="options"></v-select>
+            <v-select v-model="inp_value" label="name" :options="options"></v-select>
 
-            <input v-if="show_value"
+            <input v-if="show_other_input"
                    type="text"
                    class="form-control"
-                   v-model="input_value">
+                   v-model="other_value">
         </div>
     </div>
 </template>
@@ -20,11 +20,11 @@
         name: "input-select-other",
         data() {
             return {
-                show_value: false,
+                show_other_input: false,
             }
         },
         props: {
-            questionname: {
+            field: {
                 type: String,
                 default: 'q1',
             },
@@ -43,30 +43,26 @@
             }
         },
         computed: {
-            question: {
+            inp_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
                     if (value.abbreviation === 'Other') {
-                        this.show_value = true;
+                        this.show_other_input = true;
                     } else {
-                        this.show_value = false;
-                        this.$store.commit('storePii', {question: this.questionname, value: value.abbreviation});
-                        this.input_value = value.abbreviation;
+                        this.show_other_input = false;
+                        this.$store.commit('storeClientField', {field: this.field, value: value});
+                        this.other_value = value.abbreviation;
                     }
-
                 },
             },
-            input_value: {
+            other_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    console.log(value);
-                    this.$store.commit('storePii', {question: this.questionname, value: value});
+                    this.$store.commit('storeClientField', {field: this.field, value: value});
                 },
             },
 

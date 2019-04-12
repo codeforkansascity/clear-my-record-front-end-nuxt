@@ -1,5 +1,4 @@
 <template>
-    <div class="mb-3">
         <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
             <label>
                 <slot></slot>
@@ -11,7 +10,7 @@
                        v-model="inp_value">
 
         </div>
-    </div>
+
 </template>
 
 <script>

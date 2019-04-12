@@ -8,16 +8,25 @@
 
                 <input-select-other field="sex" v-bind:options="sex_options">What is your sex</input-select-other>
                 <input-select-other field="race" v-bind:options="race_options">What is your race?</input-select-other>
-                <input-date field="dob">What is your date of birth?</input-date>
+                <p>Address</p>
+                <pii-input field="address_line_1">Address Line 1</pii-input>
+                <pii-input field="address_line_2">Address Line 2</pii-input>
+                <pii-input field="city">City?</pii-input>
+                <input-state field="state" style="width: 20em;display: inline-block">State?</input-state>
+                <pii-input field="zip"
+                           style="width: 10em; display: inline-block; padding-right: 0em;"
+                >Zip?</pii-input>
 
-                <pii-input field="address">What is your current address?</pii-input>
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>Your Driver’s License information?</p>
                 <pii-input field="license_number">License number</pii-input>
 
-                <!--<input-state field="license_issuing_state">Issuing state</input-state>-->
-                <!--<input-date field="license_expiration_date">Expiration date</input-date>-->
+                <input-state field="license_issuing_state">Issuing state</input-state>
+                <input-date field="license_expiration_date">Expiration date</input-date>
+                <input-date field="dob">What is your date of birth?</input-date>
+
+
 
             </div>
         </div>

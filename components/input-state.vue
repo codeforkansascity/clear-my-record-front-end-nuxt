@@ -5,7 +5,7 @@
                 <slot></slot>
             </label>
 
-            <v-select v-model="question" label="name" :options="states"></v-select>
+            <v-select v-model="inp_value" label="name" :options="states"></v-select>
 
 
         </div>
@@ -258,19 +258,19 @@
             }
         },
         props: {
-            questionname: {
+            field: {
                 type: String,
                 default: 'q1',
             }
         },
         computed: {
-            question: {
+            inp_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    console.log('get full name');
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    this.$store.commit('storePii', {question: this.questionname, value: value.abbreviation});
+                    this.$store.commit('storeClientField', {field: this.field, value: value.name});
                 },
             },
         },

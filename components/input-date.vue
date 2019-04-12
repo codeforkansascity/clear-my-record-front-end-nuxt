@@ -5,7 +5,7 @@
                 <slot></slot>
             </label>
 
-            <b-form-input v-model="question" type="date" style="width: 10em"/>
+            <b-form-input v-model="inp_value" type="date" style="width: 10em"/>
 
         </div>
     </div>
@@ -15,20 +15,19 @@
     export default {
         name: "input-date",
         props: {
-            questionname: {
+            field: {
                 type: String,
                 default: 'q1',
             }
         },
         computed: {
-            question: {
+            inp_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    console.log('get full name');
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    console.log(value)
-                    this.$store.commit('storePii', {question: this.questionname, value: value});
+                    this.$store.commit('storeClientField', {field: this.field, value: value});
                 },
             },
         },
