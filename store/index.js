@@ -73,21 +73,13 @@ const store = () => new Vuex.Store({
                 return state.questions[index].answer;
             }
         },
-        // allTodos (state) {
-        //     return state.todos
-        // },
-        // activeTodos (state) {
-        //     return state.todos.filter(todo => !todo.completed)
-        // },
-        // completedTodos (state) {
-        //     return state.todos.filter(todo => todo.completed)
-        // }
     },
     mutations: {
         CLEAR_ALL(state) {
             state.questions = [];
             state.pii = [];
             state.cases = [];
+            state.client = {};
         },
         STORE_QUESTION(state, data) {
 
@@ -144,30 +136,13 @@ const store = () => new Vuex.Store({
         addClientIntake(state, data) {
             state.client = data;
         },
-        storeClientField(state, data) {
+        storeClientField(state, payload) {
 
-            state.client[data.question] = data.value;
+            console.log('storeClientField ' + payload.field + '|' + payload.value);
+            state.client[payload.field] = payload.value;
 
         },
 
-
-
-
-        // SET_TODOS (state, todos) {
-        //     state.todos = todos
-        // },
-        // ADD_TODO (state, todo) {
-        //     state.todos.push(todo)
-        // },
-        // REMOVE_TODO (state, todo) {
-        //     var i = state.todos.indexOf(todo)
-        //     state.todos.splice(i, 1)
-        // },
-        // FILTER_TODOS (state, value) {
-        //     state.todos.forEach((todo) => {
-        //         todo.completed = !value
-        //     })
-        // }
     },
     actions: {
 

@@ -8,7 +8,7 @@
                 <input type="text"
                        class="form-control"
                        required="*"
-                       v-model="question">
+                       v-model="inp_value">
 
         </div>
     </div>
@@ -18,19 +18,19 @@
     export default {
         name: "pii-input",
         props: {
-            questionname: {
+            field: {
                 type: String,
                 default: 'q1',
             }
         },
         computed: {
-            question: {
+            inp_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    console.log('get full name');
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    this.$store.commit('storePii', {question: this.questionname, value: value});
+                    this.$store.commit('storeClientField', {field: this.field, value: value});
                 },
             },
         },
