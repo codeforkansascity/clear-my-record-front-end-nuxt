@@ -6,37 +6,57 @@
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
 
+                        <form @submit.prevent="login">
 
-                        <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-                            <div class="col-md-6">
-                                <input id="email" v-model="email" type="email" class="form-control" name="email"
-                                       value="" required autofocus>
+
+                            <div class="form-group">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input
+                                            type="email"
+                                            class="form-control"
+                                            name="email"
+                                            required
+                                            autofocus
+                                            v-model="email"
+                                    >
+
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <div class="form-group">
+                                <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" v-model="password" type="password" class="form-control"
-                                       name="password" required>
+                                <div class="col-md-6">
+                                    <input
+                                            type="password"
+                                            class="form-control"
+                                            name="password"
+                                            required
+                                            v-model="password"
+                                    >
 
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button v-on:click="login" class="btn btn-primary">
-                                    Login
-                                </button>
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Login
+                                    </button>
 
-                                <a class="btn btn-link" href="/reset-password">
-                                    Forgot Your Password?
-                                </a>
+                                    <a class="btn btn-link" href="/reset-password">
+                                        Forgot Your Password?
+                                    </a>
+                                </div>
+                                <div class="col-md-8 col-md-offset-4">
+                                    <p>
+                                        Don't have an account?
+                                        <nuxt-link to="/register">Register</nuxt-link>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-
+                        </form>
                     </div>
                 </div>
             </div>
@@ -50,28 +70,39 @@
 
     export default {
         name: "auth-login",
-        data: function () {
+
+
+        data() {
             return {
                 email: '',
-                password: ''
+                password: '',
+                error: null
             }
         },
-        methods: {
-            login: function (event) {
-                // axios.post('/login', {
-                //     email: this.email,
-                //     password: this.password
-                // })
-                // .then(function (response) {
-                //     console.log(response);
-                //     this.$router.push('/intake')
-                // })
-                // .catch(function (error) {
-                //     console.log(error);
-                // });
 
-                this.$router.push('/clients')
+        methods: {
+            async login() {
+                try {
+                    await this.$auth.loginWith('local', {  // NUXT AUTH
+                        data: {
+                            username: this.email,
+                            password: this.password,
+                            grant_type: 'password',
+                            client_id: 2,
+                            client_secret: '2Vkp2GSnLLkAffhJuYXr3aV22BXCuh86HEBHWY1q',
+                            scope: '*'
+
+                        }
+                    })
+                    console.log('done await');
+                    this.$router.push('/clients')
+                } catch (e) {
+                    this.error = e.response.data.message;
+                    console.log(e.response.data.message);
+                }
+                console.log('done try');
             }
+
         }
     }
 
