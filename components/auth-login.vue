@@ -47,6 +47,7 @@
 
 <script>
     import axios from 'axios';
+
     export default {
         name: "auth-login",
         data: function () {
@@ -69,7 +70,7 @@
                 //     console.log(error);
                 // });
 
-                this.$router.push('/expungie-list')
+                this.$router.push('/clients')
             }
         }
     }

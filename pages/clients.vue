@@ -27,21 +27,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Giacomo Guilizzoni</td>
-                    <td>4-Apr-1930</td>
-                    <td>816-555-1212</td>
-                    <td>300 Grand KCMO 64222</td>
-                    <td>Records Requested</td>
-                    <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td>Sam Spaid</td>
-                    <td>15-Feb-1951</td>
-                    <td>913-555-1212</td>
-                    <td>300 Main KCMO 64222</td>
-                    <td>Records Entered</td>
-                    <td><a href="#">Edit</a></td>
+                <tr v-for="client in clients" :key="client.id">
+                    <td>{{ client.full_name }}</td>
+                    <td>{{ client.dob }}</td>
+                    <td>{{ client.phone }}</td>
+                    <td>{{ client.address_line_1}} {{ client.address_line_2 }} {{ client.city }} {{ client.state }}</td>
+                    <td>{{ client.status }}</td>
+                    <td><a @click="edit(client.id)">Edit</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -54,12 +46,33 @@
         name: "client-list",
         data() {
             return {
-                key: ''
+                key: '',
+                clients: []
             }
         },
+        mounted() {
+            this.getClientList();
+        },
         methods: {
+
+            async getClientList() {
+                await this.$axios.get('http://public.test/api/clients')
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log(res);
+                            this.clients =  res.data;
+                        } else {
+                            console.log('error');
+                        }
+                    })
+            },
             goToNew() {
                 this.$router.push('/add-expungie')
+            },
+            edit(client_id) {
+                console.log(client_id);
+                this.$store.dispatch('getClientIntake',client_id);  // Fix: need to pass the correct client_id
+                this.$router.push('/intake')
             }
         },
     }
