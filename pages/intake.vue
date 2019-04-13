@@ -1,9 +1,8 @@
-
 <template>
     <div class="container">
         <div style="padding-top: 3em;">
             <h2>Expungie Information</h2>
-                <section-persons-information></section-persons-information>
+            <section-persons-information></section-persons-information>
         </div>
 
         <!--<section-convictions></section-convictions>-->
@@ -48,6 +47,17 @@
             SectionPrint,
             SectionPersonsInformation,
             SectionCharges,
-            SectionConvictions}
+            SectionConvictions
+        },
+        beforeCreate() {
+
+            // We should have the client populated, if not take the user to the clients
+            // page where they can pick one to edit, or create one.
+
+            if ((typeof this.$store.state.client['full_name'] === undefined)
+                || (Object.keys(this.$store.state.client).length === 0 && this.$store.state.client.constructor === Object)) {
+                this.$router.push('/clients')
+            }
+        }
     }
 </script>
