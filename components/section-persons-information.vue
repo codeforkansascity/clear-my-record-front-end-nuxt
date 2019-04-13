@@ -46,6 +46,17 @@
 
             </div>
         </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <button v-on:click="update" type="submit" class="btn btn-primary btn-sm">
+                        Save
+                    </button>
+                </div>
+                <div class="col-md-6 text-right">
+                </div>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -116,6 +127,11 @@
                 ],
                 isShowing: true,
             }
+        },
+        methods: {
+            update() {
+                this.$store.dispatch('updateClientInfo',this.$store.state.client);  // Fix: need to pass the correct client_id
+            },
         },
 
     }

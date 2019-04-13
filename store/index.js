@@ -72,7 +72,9 @@ const store = () => new Vuex.Store({
             } else {
                 return state.questions[index].answer;
             }
-        },
+        }
+
+
     },
     mutations: {
         CLEAR_ALL(state) {
@@ -142,6 +144,9 @@ const store = () => new Vuex.Store({
             state.client[payload.field] = payload.value;
 
         },
+        saveClientId(state, new_id) {
+            state.client.id = new_id;
+        },
 
     },
     actions: {
@@ -153,13 +158,42 @@ const store = () => new Vuex.Store({
             commit('STORE_QUESTION', quest)
         },
 
+        async addClient({commit}) {
+            console.log('addClient');
+            commit('ADD_CLIENT');
+
+        },
         async getClientIntake({commit}, client_id) {
             console.log('getClientIntake');
-            await this.$axios.get('http://127.0.0.1:5000/clients/' + client_id)
+            await this.$axios.get('http://public.test/api/clients/' + client_id)
                 .then((res) => {
                     if (res.status === 200) {
                         console.log(res);
                         commit('addClientIntake', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
+        },
+        async addClientInfo({commit}, data) {
+            console.log('addClientInfo -----');
+            await this.$axios.post('http://public.test/api/clients',data)
+                .then((res) => {
+                    if (res.status === 201) {
+                        console.log(res);
+                        commit('saveClientId', res.data.id)
+                    } else {
+                        console.log('error');
+                    }
+                })
+        },
+        async updateClientInfo({commit}, data) {
+            console.log('updateClientInfo -----');
+
+            await this.$axios.patch('http://public.test/api/clients/'+data.id,data)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log(res);
                     } else {
                         console.log('error');
                     }

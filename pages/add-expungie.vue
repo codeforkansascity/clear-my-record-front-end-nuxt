@@ -48,8 +48,7 @@
         components: {InputDate, PiiInput, InputState},
         mounted() {
             this.$store.dispatch('clearAll');
-            this.$store.dispatch('getClientIntake',1);  // Fix: need to pass the correct client_id
-        },
+         },
         data() {
             return {
                 zipStyle: {
@@ -63,6 +62,8 @@
 
         methods: {
             add() {
+                this.$store.dispatch('addClientInfo',this.$store.state.client);  // Fix: need to pass the correct client_id
+
                 this.$router.push('/intake')
             },
             cancel() {
