@@ -12,7 +12,7 @@ const store = () => new Vuex.Store({
         namespace: 'cmr-app',
         initialState: {},
         //       expires: 7 * 24 * 60 * 60 * 1000,
-               expires: 10 * 60 * 1000,
+               expires: .01,
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value, {expires: 365}),
