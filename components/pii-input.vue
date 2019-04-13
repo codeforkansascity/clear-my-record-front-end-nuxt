@@ -25,7 +25,6 @@
         computed: {
             inp_value: {
                 get() {
-                    console.log('get full name');
                     return this.$store.state.client[this.field];
                 },
                 set(value) {
