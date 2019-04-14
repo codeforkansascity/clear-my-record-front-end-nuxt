@@ -61,6 +61,7 @@
 <script>
     export default {
         name: "client-list",
+        middleware: 'auth',
         data() {
             return {
                 gridState: 'wait',

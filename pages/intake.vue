@@ -38,6 +38,7 @@
     import AuthLogin from "../components/auth-login";
 
     export default {
+        middleware: 'auth',
         components: {
             AuthLogin,
             SectionCaseCharges,
