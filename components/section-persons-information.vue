@@ -129,7 +129,7 @@
         },
         methods: {
             update() {
-                this.$store.dispatch('updateClientInfo',this.$store.state.client);  // Fix: need to pass the correct client_id
+                this.$store.dispatch('updateClient',this.$store.state.client);  // Fix: need to pass the correct client_id
             },
         },
 

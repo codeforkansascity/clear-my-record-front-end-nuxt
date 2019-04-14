@@ -62,7 +62,7 @@
 
         methods: {
             add() {
-                this.$store.dispatch('addClientInfo',this.$store.state.client);  // Fix: need to pass the correct client_id
+                this.$store.dispatch('addClient',this.$store.state.client);  // Fix: need to pass the correct client_id
 
                 this.$router.push('/intake')
             },

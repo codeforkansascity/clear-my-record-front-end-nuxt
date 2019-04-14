@@ -110,18 +110,17 @@ const store = () => new Vuex.Store({
        //      state.cases[data.case_index].charges.push(data.charge);
        //  },
        //
-       //  addClientIntake(state, data) {
-       //      state.client = data;
-       //  },
-       //  storeClientField(state, payload) {
-       //
-       //      console.log('storeClientField ' + payload.field + '|' + payload.value);
-       //      state.client[payload.field] = payload.value;
-       //
-       //  },
-       //  saveClientId(state, new_id) {
-       //      state.client.id = new_id;
-       //  },
+        STORE_CLIENT(state, data) {
+            state.client = data;
+        },
+
+        SAVE_CLIENT_ID(state, new_id) {
+            state.client.id = new_id;
+        },
+
+        storeClientField(state, payload) {
+            state.client[payload.field] = payload.value;
+        },
 
     },
     actions: {
@@ -138,37 +137,37 @@ const store = () => new Vuex.Store({
         //     commit('ADD_CLIENT');
         //
         // },
-        async getClientIntake({commit}, client_id) {
-            console.log('getClientIntake');
-            await this.$axios.get('/api/clients/' + client_id)
+
+
+        async getClient({commit}, id) {
+            console.log('getClient');
+            await this.$axios.get('/api/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log(res);
-                        commit('addClientIntake', res.data)
+                        commit('STORE_CLIENT', res.data)
                     } else {
                         console.log('error');
                     }
                 })
         },
-        async addClientInfo({commit}, data) {
-            console.log('addClientInfo -----');
+        async addClient({commit}, data) {
+            console.log('addClient -----');
             await this.$axios.post('/api/clients',data)
                 .then((res) => {
                     if (res.status === 201) {
-                        console.log(res);
-                        commit('saveClientId', res.data.id)
+                        commit('SAVE_CLIENT_ID', res.data.id)
                     } else {
                         console.log('error');
                     }
                 })
         },
-        async updateClientInfo({commit}, data) {
-            console.log('updateClientInfo -----');
+        async updateClient({commit}, data) {
+            console.log('updateClient -----');
 
             await this.$axios.patch('/api/clients/'+data.id,data)
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log(res);
+
                     } else {
                         console.log('error');
                     }
