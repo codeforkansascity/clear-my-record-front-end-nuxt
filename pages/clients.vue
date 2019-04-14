@@ -56,7 +56,7 @@
         methods: {
 
             async getClientList() {
-                await this.$axios.get('http://public.test/api/clients')
+                await this.$axios.get('/api/clients')
                     .then((res) => {
                         if (res.status === 200) {
                             console.log(res);

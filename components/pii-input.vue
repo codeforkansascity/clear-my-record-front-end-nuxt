@@ -1,15 +1,14 @@
 <template>
-        <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
-            <label>
-                <slot></slot>
-            </label>
+    <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
+        <label>
+            <slot></slot>
+        </label>
 
-                <input type="text"
-                       class="form-control"
-                       required="*"
-                       v-model="inp_value">
+        <input type="text"
+               class="form-control"
+               v-model="inp_value">
 
-        </div>
+    </div>
 
 </template>
 
