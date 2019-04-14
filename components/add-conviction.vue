@@ -1,18 +1,17 @@
 <template>
-    <button @click="add_case">Add Case</button>
+    <button @click="add_conviction">Add Conviction</button>
 </template>
 
 <script>
     export default {
-        name: "add-case",
+        name: "add-conviction",
         methods: {
-            add_case: function () {
-                this.$store.commit('addCase', {
+            add_conviction: function () {
+                this.$store.commit('addConviction', {
                     case_number: '',
                     agancy: '',
-                    court_id: '',
                     court_name: '',
-                    city_county: '',
+                    count_city_county: '',
                     name_of_judge: '',
                     your_name_in_case: '',
                     release_status: '',

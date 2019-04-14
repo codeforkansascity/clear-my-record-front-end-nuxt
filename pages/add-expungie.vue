@@ -45,6 +45,7 @@
     import InputDate from "../components/input-date";
     export default {
         name: "add-expungie",
+        middleware: 'auth',
         components: {InputDate, PiiInput, InputState},
         mounted() {
             this.$store.dispatch('clearAll');

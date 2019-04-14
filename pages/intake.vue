@@ -11,8 +11,8 @@
         <div style="padding-top: 3em;">
             <h2>What are your conviction and charge details?</h2>
 
-            <h3>CONVICTION</h3>
-            <section-case-charges></section-case-charges>
+            <h3>CONVICTIONS</h3>
+            <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
         </div>
 
         <!--<section-work-sheet></section-work-sheet>-->
@@ -27,28 +27,28 @@
 
 <script>
 
-    import SectionConvictions from "../components/section-convictions";
-    import SectionCharges from "../components/section-charges";
     import SectionPersonsInformation from "../components/section-persons-information";
-    import SectionPrint from "../components/section-print";
-    import SectionWorkSheet from "../components/section-work-sheet";
-    import InputCaseFields from "../components/input-case-fields";
-    import AddCase from "../components/add-case";
-    import SectionCaseCharges from "../components/section-case-charges";
-    import AuthLogin from "../components/auth-login";
+    import SectionConvictionCharges from "../components/section-conviction-charges";
+
+
+    // import SectionConvictions from "../components/section-convictions";
+    // import SectionCharges from "../components/section-charges";
+    // import SectionPrint from "../components/section-print";
+    // import SectionWorkSheet from "../components/section-work-sheet";
+    // import InputCaseFields from "../components/input-case-fields";
+    // import AuthLogin from "../components/auth-login";
 
     export default {
         middleware: 'auth',
         components: {
-            AuthLogin,
-            SectionCaseCharges,
-            AddCase,
-            InputCaseFields,
-            SectionWorkSheet,
-            SectionPrint,
             SectionPersonsInformation,
-            SectionCharges,
-            SectionConvictions
+            SectionConvictionCharges,
+            // AuthLogin,
+            // InputCaseFields,
+            // SectionWorkSheet,
+            // SectionPrint,
+            // SectionCharges,
+            // SectionConvictions
         },
         beforeCreate() {
 
@@ -59,6 +59,13 @@
                 || (Object.keys(this.$store.state.client).length === 0 && this.$store.state.client.constructor === Object)) {
                 this.$router.push('/clients')
             }
-        }
+        },
+        computed: {
+            client_id() {
+                let x =  this.$store.state.client.id;
+                console.log('x=' + x);
+                return x;
+            }
+        },
     }
 </script>

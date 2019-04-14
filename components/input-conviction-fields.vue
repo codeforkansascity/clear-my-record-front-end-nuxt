@@ -31,11 +31,11 @@
 
 
 
-            <input-charge-fields v-for="(charge, charge_index) in this.ccase.charges" :key="charge.id"
-                                 :charge_index="charge_index" :charge="charge"
-                                 :case_index="case_index"
-            >
-            </input-charge-fields>
+            <!--<input-charge-fields v-for="(charge, charge_index) in this.ccase.charges" :key="charge.id"-->
+                                 <!--:charge_index="charge_index" :charge="charge"-->
+                                 <!--:case_index="case_index"-->
+            <!--&gt;-->
+            <!--</input-charge-fields>-->
 
 
             <add-charge v-bind:case_index="this.case_index"></add-charge>
@@ -54,7 +54,7 @@
 
     export default {
         components: {InputCaseDateField, AddCharge, InputChargeFields, Charges, InputCaseField},
-        name: "input-case-fields",
+        name: "input-conviction-fields",
         props: {
             ccase: {
                 type: Object,
@@ -65,6 +65,12 @@
                 default: 0
             }
 
+        },
+        data() {
+            return {
+                gridState: 'wait',
+                global_error_message: null,
+            }
         },
     }
 </script>

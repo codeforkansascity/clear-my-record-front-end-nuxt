@@ -31,9 +31,10 @@ const store = () => new Vuex.Store({
         // allPii(state) {
         //     return state.pii
         // },
-        // allCases(state) {
-        //     return state.cases
-        // },
+        allCases(state) {
+            console.log(state.client.cases);
+            return state.client.cases;
+        },
         // anyGroupQuestionsYes(state, group) {
         //     return state.questions.reduce(
         //         (accumulator, item) => accumulator += (item.answer === 'Yes' && item.group === group ? 1 : 0)
@@ -103,9 +104,19 @@ const store = () => new Vuex.Store({
        //      }
        //
        //  },
-       //  addCase(state, data) {
-       //      state.cases.push(data);
-       //  },
+        addConviction(state, data) {
+console.log(typeof state.client['cases']);
+
+            data['charges'] = [];
+            if ((typeof state.client['cases'] === "undefined"))
+            {
+                console.log('FFFFF');
+                state.client['cases'] = [];
+                state.client.cases[0] = data;
+            } else {
+                state.client.cases.push(data);
+            }
+        },
        //  addCharge(state, data) {
        //      state.cases[data.case_index].charges.push(data.charge);
        //  },

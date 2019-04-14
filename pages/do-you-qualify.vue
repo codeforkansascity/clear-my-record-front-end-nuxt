@@ -23,7 +23,7 @@
             <h2>What are you conviction and charge details?</h2>
 
             <h3>CONVICTION</h3>
-        <section-case-charges></section-case-charges>
+        <section-convction-charges></section-convction-charges>
         </div>
 
         <section-work-sheet></section-work-sheet>
@@ -47,17 +47,17 @@
     import SectionPersonsInformation from "../components/section-persons-information";
     import SectionPrint from "../components/section-print";
     import SectionWorkSheet from "../components/section-work-sheet";
-    import InputCaseFields from "../components/input-case-fields";
-    import AddCase from "../components/add-case";
-    import SectionCaseCharges from "../components/section-case-charges";
+    //import InputCaseFields from "../components/input-case-fields";
+    // import AddCase from "../components/add-case";
+    import SectionConvictionCharges from "../components/section-conviction-charges";
     import AuthLogin from "../components/auth-login";
 
     export default {
         components: {
             AuthLogin,
-            SectionCaseCharges,
-            AddCase,
-            InputCaseFields,
+            SectionConvictionCharges,
+            // AddCase,
+            //InputCaseFields,
             SectionWorkSheet,
             SectionPrint,
             SectionPersonsInformation,
