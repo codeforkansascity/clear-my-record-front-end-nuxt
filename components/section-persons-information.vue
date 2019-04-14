@@ -2,10 +2,9 @@
 
     <div style="border: #7f828b; margin-left: .1em; border-width: thin; border-style: solid;">
 
-        <div class="row"
-             >
+        <div class="row">
             <div class="col-md-11" style="padding-left: 1em; ">
-                <h2>{{ components/pii-input.vue }}</h2>
+                <h2>{{ this.$store.state.client.full_name }}</h2>
             </div>
             <div>
                 <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"

@@ -18,16 +18,33 @@
             <table class="table table-striped table-hover mb-0">
                 <thead>
                 <tr>
-                    <th >Name</th>
-                    <th >DOB</th>
-                    <th >Phone</th>
-                    <th >Address</th>
-                    <th >Status</th>
-                    <th >Action</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="client in clients" :key="client.id">
+                <tr v-if="gridState == 'wait'">
+                    <td colspan="4" style=" height: 475px;">
+                        <div class="alert alert-info"
+                             style="font-size: 2em;   vertical-align: middle;   text-align: center; margin-top: 160px;"
+                             role="alert">Please wait.
+                        </div>
+                    </td>
+                </tr>
+                <tr v-if="gridState == 'error'">
+                    <td colspan="4" style=" height: 475px;">
+                        <div class="alert alert-warning"
+                             style="font-size: 2em;   vertical-align: middle;   text-align: center; margin-top: 160px;"
+                             role="alert">Error please try again.<br>{{ global_error_message }}
+                        </div>
+                    </td>
+                </tr>
+
+                <tr v-else v-for="client in clients" :key="client.id">
                     <td>{{ client.full_name }}</td>
                     <td>{{ client.dob }}</td>
                     <td>{{ client.phone }}</td>
@@ -46,32 +63,47 @@
         name: "client-list",
         data() {
             return {
+                gridState: 'wait',
+                global_error_message: null,
                 key: '',
                 clients: []
             }
         },
         mounted() {
-            this.getClientList();
+
+        },
+        async beforeCreate() {
+            this.gridState = 'wait';
+            await this.$axios.get('/api/clientss')
+                .then((res) => {
+                    if (res.status === 200) {
+                        this.clients = res.data;
+                        this.gridState = 'good';
+                    } else {
+                        this.gridState = 'error';
+                    }
+                }).catch(error => {
+                    if (error.response) {
+                        this.gridState = 'error';
+                        console.log(error.response);
+                        this.global_error_message = error.response.data.errors;
+                    }
+
+                }).then(() => {
+                    }
+                );
         },
         methods: {
 
             async getClientList() {
-                await this.$axios.get('/api/clients')
-                    .then((res) => {
-                        if (res.status === 200) {
-                            console.log(res);
-                            this.clients =  res.data;
-                        } else {
-                            console.log('error');
-                        }
-                    })
+
             },
             goToNew() {
                 this.$router.push('/add-expungie')
             },
             edit(client_id) {
                 console.log(client_id);
-                this.$store.dispatch('getClientIntake',client_id);  // Fix: need to pass the correct client_id
+                this.$store.dispatch('getClientIntake', client_id);  // Fix: need to pass the correct client_id
                 this.$router.push('/intake')
             }
         },
