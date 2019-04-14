@@ -12,7 +12,7 @@ const store = () => new Vuex.Store({
         namespace: 'cmr-app',
         initialState: {},
         //       expires: 7 * 24 * 60 * 60 * 1000,
-               expires: .01,
+        expires: .01,
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value, {expires: 365}),
@@ -21,7 +21,6 @@ const store = () => new Vuex.Store({
     })],
     state: {
         // todos: [],
-        cases: [],
         client: {}
     },
     getters: {
@@ -31,9 +30,8 @@ const store = () => new Vuex.Store({
         // allPii(state) {
         //     return state.pii
         // },
-        allCases(state) {
-            console.log(state.client.cases);
-            return state.client.cases;
+        allConvictions(state) {
+            return state.client.convictions;
         },
         // anyGroupQuestionsYes(state, group) {
         //     return state.questions.reduce(
@@ -56,71 +54,76 @@ const store = () => new Vuex.Store({
         CLEAR_ALL(state) {
             // state.questions = [];
             // state.pii = [];
-            state.cases = [];
+            //state.cases = [];
             state.client = {};
         },
-       //  STORE_QUESTION(state, data) {
-       //
-       //      //   var group_index = state.questions.findIndex(p => p.group == data.group);
-       //
-       //      var index = state.questions.findIndex(p => (p.group == data.group) && (p.question == data.question));
-       //
-       //      if (index === -1) {
-       //          state.questions.push(data)
-       //      } else {
-       //          state.questions[index].answer = data.answer;
-       //      }
-       //  },
-       //  storePii(state, data) {
-       //
-       //      var index = state.pii.findIndex(p => (p.question == data.question));
-       //
-       //      if (index === -1) {
-       //          state.pii.push(data)
-       //      } else {
-       //          state.pii[index].value = data.value;
-       //      }
-       //
-       //  },
-       // storeCaseField(state, data) {
-       //
-       //      const q = state.cases[data.index];
-       //
-       //      if (!q) {
-       //          state.cases.push(data)
-       //      } else {
-       //          q[data.field] = data.value;
-       //      }
-       //
-       //  },
-       //  storeChargeField(state, data) {
-       //
-       //      const q = state.cases[data.case_index].charges[data.charge_index];
-       //
-       //      if (!q) {
-       //          state.cases[data.case_index].charges.push(data)
-       //      } else {
-       //          q[data.field] = data.value;
-       //      }
-       //
-       //  },
+        //  STORE_QUESTION(state, data) {
+        //
+        //      //   var group_index = state.questions.findIndex(p => p.group == data.group);
+        //
+        //      var index = state.questions.findIndex(p => (p.group == data.group) && (p.question == data.question));
+        //
+        //      if (index === -1) {
+        //          state.questions.push(data)
+        //      } else {
+        //          state.questions[index].answer = data.answer;
+        //      }
+        //  },
+        //  storePii(state, data) {
+        //
+        //      var index = state.pii.findIndex(p => (p.question == data.question));
+        //
+        //      if (index === -1) {
+        //          state.pii.push(data)
+        //      } else {
+        //          state.pii[index].value = data.value;
+        //      }
+        //
+        //  },
+        // storeCaseField(state, data) {
+        //
+        //      const q = state.cases[data.index];
+        //
+        //      if (!q) {
+        //          state.cases.push(data)
+        //      } else {
+        //          q[data.field] = data.value;
+        //      }
+        //
+        //  },
+        //  storeChargeField(state, data) {
+        //
+        //      const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
+        //
+        //      if (!q) {
+        //          state.client.convictions[data.conviction_index].charges.push(data)
+        //      } else {
+        //          q[data.field] = data.value;
+        //      }
+        //
+        //  },
         addConviction(state, data) {
-console.log(typeof state.client['cases']);
 
             data['charges'] = [];
-            if ((typeof state.client['cases'] === "undefined"))
-            {
+            if ((typeof state.client['convictions'] === "undefined")) {
                 console.log('FFFFF');
-                state.client['cases'] = [];
-                state.client.cases[0] = data;
+                state.client['convictions'] = [];
+                state.client.convictions[0] = data;
             } else {
-                state.client.cases.push(data);
+                state.client.convictions.push(data);
             }
         },
-       //  addCharge(state, data) {
-       //      state.cases[data.case_index].charges.push(data.charge);
-       //  },
-       //
+         addCharge(state, data) {
+
+             if ((typeof state.client['convictions'].charges === "undefined")) {
+                 console.log('FFFFF');
+                 state.client['convictions'].charges = [];
+                 state.client.convictions[data.conviction_index].charges[0] = data.charge;
+             } else {
+                 state.client.convictions[data.conviction_index].charges.push(data.charge);
+             }
+         },
+
         STORE_CLIENT(state, data) {
             state.client = data;
         },
@@ -163,7 +166,7 @@ console.log(typeof state.client['cases']);
         },
         async addClient({commit}, data) {
             console.log('addClient -----');
-            await this.$axios.post('/api/clients',data)
+            await this.$axios.post('/api/clients', data)
                 .then((res) => {
                     if (res.status === 201) {
                         commit('SAVE_CLIENT_ID', res.data.id)
@@ -175,7 +178,7 @@ console.log(typeof state.client['cases']);
         async updateClient({commit}, data) {
             console.log('updateClient -----');
 
-            await this.$axios.patch('/api/clients/'+data.id,data)
+            await this.$axios.patch('/api/clients/' + data.id, data)
                 .then((res) => {
                     if (res.status === 200) {
 

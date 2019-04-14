@@ -8,7 +8,7 @@
 <script>
     import InputConvictionFields from "./input-conviction-fields";
     export default {
-        name: "input-cases",
+        name: "input-convictions",
         components: {InputConvictionFields}
     }
 </script>

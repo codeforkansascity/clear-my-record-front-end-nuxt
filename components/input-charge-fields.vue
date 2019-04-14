@@ -41,11 +41,11 @@
 
         <div class="row" v-show="isShowing" style="background-color: lightgoldenrodyellow; margin-top: 1em">
             <div class="col-md-2">
-                <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="citation">Citation
+                <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="citation">Citation
                 </input-charge-field>
             </div>
             <div class="col-md-10" style="padding-bottom: 1em">
-                <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="charge">Charge
+                <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="charge">Charge
                 </input-charge-field>
             </div>
             <div class="col-md-2">
@@ -53,7 +53,7 @@
 
 
             <div class="col-md-2">
-                <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="type">Charge type?
+                <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="type">Charge type?
                     <template slot="help">
                         How to resarch??
                     </template>
@@ -61,11 +61,11 @@
             </div>
 
             <div class="col-md-2">
-                <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="class">Class
+                <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="class">Class
                 </input-charge-field>
             </div>
             <div class="col-md-6" style="padding-left: 2em;">
-                <input-charge-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="sentence">Sentence
+                <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="sentence">Sentence
                 </input-charge-field>
             </div>
 
@@ -78,7 +78,7 @@
             </div>
 
             <div class="col-md-7" style="padding-left: 2em; ">
-                <input-charge-note-field v-bind:i="this.case_index" v-bind:j="this.charge_index" f="note">
+                <input-charge-note-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="note">
                 </input-charge-note-field>
             </div>
 
@@ -121,7 +121,7 @@
                 type: Object,
                 default: {},
             },
-            case_index: {
+            conviction_index: {
                 type: [Number, String],
                 default: 0
             },
@@ -140,12 +140,12 @@
         computed: {
             eligible: {
                 get() {
-                    const q = this.$store.state.cases[this.case_index].charges[this.charge_index];
+                    const q = this.$store.state.client.convictions[this.conviction_index].charges[this.charge_index];
                     return q ? q['eligible'] : '';
                 },
                 set(value) {
                     this.$store.commit('storeChargeField', {
-                        case_index: this.case_index,
+                        conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
                         field: 'eligible',
                         value: value
@@ -154,12 +154,12 @@
             },
             expunge: {
                 get() {
-                    const q = this.$store.state.cases[this.case_index].charges[this.charge_index];
+                    const q = this.$store.state.client.convictions[this.conviction_index].charges[this.charge_index];
                     return q ? q['expunge'] : '';
                 },
                 set(value) {
                     this.$store.commit('storeChargeField', {
-                        case_index: this.case_index,
+                        conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
                         field: 'expunge',
                         value: value

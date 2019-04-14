@@ -2,18 +2,18 @@
 <div style="padding-top: 3em;">
     <h2>Review Case and Charges</h2>
 
-    <cases v-for="ccase in this.$store.getters.allCases" :key="ccase.id"  :ccase="ccase">
+    <convictions v-for="ccase in this.$store.getters.allConvictions" :key="convction.id"  :conviction="convction">
 
-    </cases>
+    </convictions>
 
 </div>
 </template>
 
 <script>
-    import Cases from "../components/cases";
+    import Convictions from "../components/convictions";
     export default {
         name: "section-work-sheet",
-        components: {Cases},
+        components: {Convictions},
     }
 </script>
 

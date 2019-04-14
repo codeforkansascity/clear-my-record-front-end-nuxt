@@ -49,12 +49,12 @@
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.cases[this.i].charges[this.j];
+                    const q = this.$store.state.client.convictions[this.i].charges[this.j];
                     return q ? q[this.f] : '';
                 },
                 set(value) {
                     this.$store.commit('storeChargeField', {
-                        case_index: this.i,
+                        conviction_index: this.i,
                         charge_index: this.j,
                         field: this.f,
                         value: value

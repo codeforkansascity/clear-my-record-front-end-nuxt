@@ -13,16 +13,16 @@
             </transition>
         </label>
 
-        <input type="text"
-               class="form-control"
-               required="*"
-               v-model="question">
+        <b-form-input v-model="question"
+                      type="date"
+                      class="form-control"></b-form-input>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "input-case-field",
+        name: "input-conviction-date-field",
         props: {
             i: {
                 type: [Number, String],
@@ -41,11 +41,11 @@
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.cases[this.i];
+                    const q = this.$store.state.client.convictions[this.i];
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeCaseField', {index: this.i, field: this.f, value: value});
+                    this.$store.commit('storeConvictionField', {index: this.i, field: this.f, value: value});
                 },
             },
         },

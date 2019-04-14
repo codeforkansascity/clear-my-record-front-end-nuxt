@@ -2,7 +2,7 @@
     <div>
         <h4>What are your conviction and charge details?</h4>
         <form>
-            <input-case-field i="1" f="case_number">Case Number</input-case-field>
+            <input-conviction-field i="1" f="case_number">Case Number</input-conviction-field>
             <hr>
 
             <pii-input group="conviction" questionname="inMo">Was the court a Missouri circuit (county) court or a
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-    import InputCaseField from "../components/input-case-field";
     import PiiInput from "../components/pii-input";
+    import InputConvictionField from "./input-conviction-field";
 
     export default {
         name: "section-convictions",
-        components: {InputCaseField, PiiInput},
+        components: {InputConvictionField, PiiInput},
     }
 </script>
 

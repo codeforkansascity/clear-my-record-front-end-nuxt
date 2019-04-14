@@ -17,7 +17,7 @@
 
     export default {
         components: {Charges},
-        name: "cases",
+        name: "convictions",
         props: {
             ccase: {
                 type: Object,
