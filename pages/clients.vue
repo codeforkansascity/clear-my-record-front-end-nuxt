@@ -104,7 +104,7 @@
             },
             edit(client_id) {
                 console.log(client_id);
-                this.$store.dispatch('getClient', client_id);  // Fix: need to pass the correct client_id
+                this.$store.dispatch('getClient', client_id);
                 this.$router.push('/intake')
             }
         },
