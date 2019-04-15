@@ -93,17 +93,17 @@ const store = () => new Vuex.Store({
         //      }
         //
         //  },
-        //  storeChargeField(state, data) {
-        //
-        //      const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
-        //
-        //      if (!q) {
-        //          state.client.convictions[data.conviction_index].charges.push(data)
-        //      } else {
-        //          q[data.field] = data.value;
-        //      }
-        //
-        //  },
+        storeChargeField(state, data) {
+
+            const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
+
+            if (!q) {
+                state.client.convictions[data.conviction_index].charges.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
         addConviction(state, data) {
 
             data['charges'] = [];
