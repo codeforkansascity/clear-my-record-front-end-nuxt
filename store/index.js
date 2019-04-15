@@ -115,16 +115,16 @@ const store = () => new Vuex.Store({
                 state.client.convictions.push(data);
             }
         },
-         addCharge(state, data) {
+        addCharge(state, data) {
 
-             if ((typeof state.client['convictions'].charges === "undefined")) {
-                 console.log('FFFFF');
-                 state.client['convictions'].charges = [];
-                 state.client.convictions[data.conviction_index].charges[0] = data.charge;
-             } else {
-                 state.client.convictions[data.conviction_index].charges.push(data.charge);
-             }
-         },
+            if ((typeof state.client['convictions'].charges === "undefined")) {
+                console.log('FFFFF');
+                state.client['convictions'].charges = [];
+                state.client.convictions[data.conviction_index].charges[0] = data.charge;
+            } else {
+                state.client.convictions[data.conviction_index].charges.push(data.charge);
+            }
+        },
 
         STORE_CLIENT(state, data) {
             state.client = data;
