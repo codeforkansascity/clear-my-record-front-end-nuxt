@@ -94,6 +94,22 @@ const store = () => new Vuex.Store({
         //      }
         //
         //  },
+        storeConvictionField(state, data) {
+
+            console.log('storeConvictionField ' + data.index);
+            console.log(data);
+
+            const q = state.client.convictions[data.index];
+
+            if (!q) {
+                console.log('storeConvictionField add');
+                state.client.convictions.push(data)
+            } else {
+                console.log('storeConvictionField set');
+                q[data.field] = data.value;
+            }
+
+        },
         storeChargeField(state, data) {
 
             const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
@@ -107,7 +123,6 @@ const store = () => new Vuex.Store({
         },
         addConviction(state, data) {
 
-            data['charges'] = [];
             if ((typeof state.client['convictions'] === "undefined")) {
                 state.client['convictions'] = [];
                 state.client.convictions[0] = data;
@@ -130,8 +145,8 @@ const store = () => new Vuex.Store({
             if (!state.client.convictions) {
                 state.client['convictions'] = [];
                 state.client.convictions[0] = {
-                    conviction_index: 0,
                     name: '',
+                    arrest_date: '',
                     case_number: '',
                     agency: '',
                     court_name: '',
@@ -142,15 +157,14 @@ const store = () => new Vuex.Store({
                     release_date: '',
                     charges: [
                         {
-                            conviction_index: 0,
-                            charge_index: 0,
+                            charge: '',
+                            citation: '',
+                            class: '',
+                            type: '',
+                            sentence: '',
+                            convicted: '',
                             eligible: '',
                             expunge: '',
-                            citation: '',
-                            charge: '',
-                            type: '',
-                            class: '',
-                            sentence: '',
                             note: '',
                         }
                     ]
@@ -195,9 +209,8 @@ const store = () => new Vuex.Store({
                         if (!res.data.convictions) {
                             res.data['convictions'] = [];
                             res.data.convictions[0] = {
-                                conviction_index: 0,
-                                name: '',
                                 case_number: '',
+                                arrest_date: '',
                                 agency: '',
                                 court_name: '',
                                 court_city_county: '',
@@ -207,15 +220,14 @@ const store = () => new Vuex.Store({
                                 release_date: '',
                                 charges: [
                                     {
-                                        conviction_index: 0,
-                                        charge_index: 0,
+                                        charge: '',
+                                        citation: '',
+                                        class: '',
+                                        type: '',
+                                        sentence: '',
+                                        convicted: '',
                                         eligible: '',
                                         expunge: '',
-                                        citation: '',
-                                        charge: '',
-                                        type: '',
-                                        class: '',
-                                        sentence: '',
                                         note: '',
                                     }
                                 ]

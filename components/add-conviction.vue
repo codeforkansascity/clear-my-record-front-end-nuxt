@@ -8,22 +8,27 @@
         methods: {
             add_conviction: function () {
                 this.$store.commit('addConviction', {
+                    name: '',
                     case_number: '',
-                    agancy: '',
+                    arrest_date: '',
+                    agency: '',
                     court_name: '',
-                    count_city_county: '',
+                    court_city_county: '',
                     name_of_judge: '',
                     your_name_in_case: '',
                     release_status: '',
                     release_date: '',
                     charges: [
                         {
-                            eligible: true,
-                            type: '',
-                            class: '',
-                            citation: '',
                             charge: '',
+                            citation: '',
+                            class: '',
+                            type: '',
                             sentence: '',
+                            convicted: '',
+                            eligible: '',
+                            expunge: '',
+                            note: '',
                         }
                     ]
                 });

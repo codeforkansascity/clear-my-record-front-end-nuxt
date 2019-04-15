@@ -45,7 +45,10 @@
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeConvictionField', {index: this.i, field: this.f, value: value});
+                    this.$store.commit('storeConvictionField', {
+                        index: this.i,
+                        field: this.f,
+                        value: value});
                 },
             },
         },

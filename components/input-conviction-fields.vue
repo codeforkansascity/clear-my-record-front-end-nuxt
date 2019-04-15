@@ -7,7 +7,7 @@
                     When speaking with the expungie, how they refere to this.  "Car 2005"
                 </template>
             </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Date of arrest?
+            <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Approx. date of arrest?
                 <template slot="help">
                     Any format is ok, even just year
                 </template>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-md-7" style="padding-left: 2em; ">
-            <input-conviction-note-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="note">
+            <input-conviction-note-field v-bind:i="this.conviction_index" f="note">
             </input-conviction-note-field>
         </div>
 
