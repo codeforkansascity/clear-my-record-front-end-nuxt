@@ -160,6 +160,35 @@ const store = () => new Vuex.Store({
             await this.$axios.get('/api/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
+                        if (!res.data.convictions) {
+                            res.data['convictions'] = [];
+                            res.data.convictions[0] = {
+                                conviction_index: 0,
+                                name: '',
+                                case_number: '',
+                                agency: '',
+                                court_name: '',
+                                court_city_county: '',
+                                name_of_judge: '',
+                                your_name_in_case: '',
+                                release_status: '',
+                                release_date: '',
+                                charges: [
+                                    {
+                                        conviction_index: 0,
+                                        charge_index: 0,
+                                        eligible: '',
+                                        expunge: '',
+                                        citation: '',
+                                        charge: '',
+                                        type: '',
+                                        class: '',
+                                        sentence: '',
+                                        note: '',
+                                    }
+                                ]
+                            };
+                        }
                         commit('STORE_CLIENT', res.data)
                     } else {
                         console.log('error');
