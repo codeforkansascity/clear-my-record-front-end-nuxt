@@ -20,19 +20,21 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
-        // todos: [],
         client: {}
     },
     getters: {
+
+        hasConvictions(state) {
+            return state.client.convictions;
+        }
+
         // allQuestions(state) {
         //     return state.questions
         // },
         // allPii(state) {
         //     return state.pii
         // },
-        allConvictions(state) {
-            return state.client.convictions;
-        },
+
         // anyGroupQuestionsYes(state, group) {
         //     return state.questions.reduce(
         //         (accumulator, item) => accumulator += (item.answer === 'Yes' && item.group === group ? 1 : 0)

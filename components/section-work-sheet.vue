@@ -2,7 +2,7 @@
 <div style="padding-top: 3em;">
     <h2>Review Case and Charges</h2>
 
-    <convictions v-for="ccase in this.$store.getters.allConvictions" :key="convction.id"  :conviction="convction">
+    <convictions v-for="ccase in this.$store.state.client.convictions" :key="convction.id"  :conviction="convction">
 
     </convictions>
 
