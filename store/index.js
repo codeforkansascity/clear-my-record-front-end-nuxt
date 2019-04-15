@@ -125,6 +125,39 @@ const store = () => new Vuex.Store({
             }
         },
 
+        addBlankConviction(state) {
+
+            if (!state.client.convictions) {
+                state.client['convictions'] = [];
+                state.client.convictions[0] = {
+                    conviction_index: 0,
+                    name: '',
+                    case_number: '',
+                    agency: '',
+                    court_name: '',
+                    court_city_county: '',
+                    name_of_judge: '',
+                    your_name_in_case: '',
+                    release_status: '',
+                    release_date: '',
+                    charges: [
+                        {
+                            conviction_index: 0,
+                            charge_index: 0,
+                            eligible: '',
+                            expunge: '',
+                            citation: '',
+                            charge: '',
+                            type: '',
+                            class: '',
+                            sentence: '',
+                            note: '',
+                        }
+                    ]
+                };
+            }
+        },
+
         STORE_CLIENT(state, data) {
             state.client = data;
         },
@@ -196,7 +229,7 @@ const store = () => new Vuex.Store({
         },
         async addClient({commit}, data) {
             console.log('addClient -----');
-            await this.$axios.post( this.state.apiUrlPrefix +  + '/clients', data)
+            await this.$axios.post( this.state.apiUrlPrefix + '/clients', data)
                 .then((res) => {
                     if (res.status === 201) {
                         commit('SAVE_CLIENT_ID', res.data.id)
@@ -217,6 +250,7 @@ const store = () => new Vuex.Store({
                     }
                 })
         },
+
     },
 
 })

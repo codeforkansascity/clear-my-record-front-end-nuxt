@@ -2,6 +2,17 @@
     <div class="row" style="padding-top: 3em">
 
         <div class="col-md-6" style="padding-left: 2em;">
+            <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
+                <template slot="help">
+                    When speaking with the expungie, how they refere to this.  "Car 2005"
+                </template>
+            </input-conviction-field>
+            <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Date of arrest?
+                <template slot="help">
+                    Any format is ok, even just year
+                </template>
+            </input-conviction-field>
+
             <input-conviction-field v-bind:i="this.conviction_index" f="case_number">What was the case number?
                 <template slot="help">
                     The best way to find your case number is by....
@@ -12,8 +23,7 @@
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="city_county">What was the name of the County or City?
             </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="name_of_judge">What was the name of the Judge?
-            </input-conviction-field>
+
 
         </div>
         <div class="col-md-6" style="padding-left: 2em;">
@@ -22,8 +32,44 @@
                 the court’s records?
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="release_status">Release Status</input-conviction-field>
-            <input-conviction-date-field v-bind:i="this.conviction_index" f="release_date">Release Date</input-conviction-date-field>
+            <input-conviction-date-field v-bind:i="this.conviction_index" f="release_date" style="width: 10em;">Release Date</input-conviction-date-field>
+            <input-conviction-field v-bind:i="this.conviction_index" f="name_of_judge">What was the name of the Judge?
+            </input-conviction-field>
         </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+
+        <div class="col-md-1" style="padding-top: 1.25em;">
+            Notes:
+        </div>
+
+        <div class="col-md-7" style="padding-left: 2em; ">
+            <input-conviction-note-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="note">
+            </input-conviction-note-field>
+        </div>
+
+        <div class="col-md-2"  style="padding-top: 1.25em;">
+
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+
+        <div class="col-md-1" style="padding-top: 1.25em;">
+            <button class="float-left" @click="remove_conviction">Remove</button>
+        </div>
+
+        <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
+
+        </div>
+
+        <div class="col-md-2"  style="padding-top: 1.25em; padding-bottom: 1em">
+            <button class="float-right" @click="save_conviction">Save</button>
+        </div>
+
 
 
         <h4  style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;">CHARGE(S)</h4>
@@ -51,9 +97,12 @@
     import InputChargeFields from "./input-charge-fields";
     import AddCharge from "./add-charge";
     import InputConvictionDateField from "./input-conviction-date-field";
+    import InputConvictionNoteField from "./input-conviction-note-field";
 
     export default {
-        components: {InputConvictionDateField, AddCharge, InputChargeFields, Charges, InputConvictionField},
+        components: {
+            InputConvictionNoteField,
+            InputConvictionDateField, AddCharge, InputChargeFields, Charges, InputConvictionField},
         name: "input-conviction-fields",
         props: {
             conviction: {
@@ -70,6 +119,18 @@
             return {
                 gridState: 'wait',
                 global_error_message: null,
+            }
+        },
+        methods: {
+            remove_conviction() {
+
+                if ( confirm("Remove this conviction?")) {
+                    alert('Code remove code')
+                }
+
+            },
+            save_conviction() {
+                alert('code save code')
             }
         },
     }

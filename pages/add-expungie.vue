@@ -64,7 +64,7 @@
         methods: {
             add() {
                 this.$store.dispatch('addClient',this.$store.state.client);  // Fix: need to pass the correct client_id
-
+                this.$store.commit('addBlankConviction');
                 this.$router.push('/intake')
             },
             cancel() {
