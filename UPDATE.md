@@ -57,7 +57,11 @@ cd clear_my_record_backend
    .
    .
 pyenv activate cmr
+
 export FLASK_APP=cmr_app.py
+export FLASK_DEBUG=1
+pip install -r requirements.txt 
+
 flask db upgrade
 flask run
 ```
@@ -100,4 +104,33 @@ Adjust the API endpoint hostname in `nusxt.config.js`
 
 Install and use [json-server](ps://github.com/typicode/json-serverps://github.com/typicode/json-server)
 
+ # Switch between python api and stub api
  
+ ## nuxt.config.js
+ 
+ ### baseURL
+ 
+ ```
+-        baseURL: 'http://pdb-cmr-backend.test'
++        baseURL: 'http://127.0.0.1:5000'
+```
+
+### JWT endpoints
+
+```
++                    login: { url: 'login', method: 'post', propertyName: 'data.token' },
++                    user: { url: 'me', method: 'get', propertyName: 'data' },
+                     logout:  { url: 'logout', method: 'post' },
++
++
++                    // login: { url: 'http://pdb-cmr-backend.test/oauth/token', method: 'post', propertyName: 'access_token' },
++                    // user: { url: 'http://pdb-cmr-backend.test/api/me', method: 'get', propertyName: 'data' },
++                    // logout:  { url: 'logout', method: 'post' },
+```
+
+## store/index.js
+
+```
++        apiUrlPrefix: '',  // '/api',     // Used infront of CRUD api calls.  /api
+
+```

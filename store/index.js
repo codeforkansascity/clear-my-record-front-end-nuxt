@@ -20,6 +20,7 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
+        apiUrlPrefix: '',  // '/api',     // Used infront of CRUD api calls.  /api
         client: {}
     },
     getters: {
@@ -108,7 +109,6 @@ const store = () => new Vuex.Store({
 
             data['charges'] = [];
             if ((typeof state.client['convictions'] === "undefined")) {
-                console.log('FFFFF');
                 state.client['convictions'] = [];
                 state.client.convictions[0] = data;
             } else {
@@ -118,7 +118,6 @@ const store = () => new Vuex.Store({
         addCharge(state, data) {
 
             if ((typeof state.client['convictions'].charges === "undefined")) {
-                console.log('FFFFF');
                 state.client['convictions'].charges = [];
                 state.client.convictions[data.conviction_index].charges[0] = data.charge;
             } else {
@@ -157,7 +156,7 @@ const store = () => new Vuex.Store({
 
         async getClient({commit}, id) {
             console.log('getClient');
-            await this.$axios.get('/api/clients/' + id)
+            await this.$axios.get(this.state.apiUrlPrefix  + '/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
                         if (!res.data.convictions) {
@@ -197,7 +196,7 @@ const store = () => new Vuex.Store({
         },
         async addClient({commit}, data) {
             console.log('addClient -----');
-            await this.$axios.post('/api/clients', data)
+            await this.$axios.post( this.state.apiUrlPrefix +  + '/clients', data)
                 .then((res) => {
                     if (res.status === 201) {
                         commit('SAVE_CLIENT_ID', res.data.id)
@@ -209,7 +208,7 @@ const store = () => new Vuex.Store({
         async updateClient({commit}, data) {
             console.log('updateClient -----');
 
-            await this.$axios.patch('/api/clients/' + data.id, data)
+            await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
                 .then((res) => {
                     if (res.status === 200) {
 

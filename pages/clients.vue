@@ -61,7 +61,7 @@
 <script>
     export default {
         name: "client-list",
-        middleware: 'auth',
+       // middleware: 'auth',
         data() {
             return {
                 gridState: 'wait',
@@ -75,7 +75,7 @@
         },
         async beforeCreate() {
             this.gridState = 'wait';
-            await this.$axios.get('/api/clients')
+            await this.$axios.get(this.$store.state.apiUrlPrefix + '/clients')
                 .then((res) => {
                     if (res.status === 200) {
                         this.clients = res.data;
