@@ -20,7 +20,7 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
-        apiUrlPrefix: '',  // '/api',     // Used infront of CRUD api calls.  /api
+        apiUrlPrefix:'/api',  // '/api',     // Used infront of CRUD api calls.  /api
         client: {}
     },
     getters: {

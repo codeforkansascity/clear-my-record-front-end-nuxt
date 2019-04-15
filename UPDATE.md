@@ -134,3 +134,9 @@ Install and use [json-server](ps://github.com/typicode/json-serverps://github.co
 +        apiUrlPrefix: '',  // '/api',     // Used infront of CRUD api calls.  /api
 
 ```
+
+## Verify that protected pages are protected
+
+* pages/add-expungie.vue
+* pages/clients.vue
+* pages/intake.vue
