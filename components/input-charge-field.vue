@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        name: "input-case-field",
+        name: "input-charge-field",
         props: {
             i: {
                 type: [Number, String],
