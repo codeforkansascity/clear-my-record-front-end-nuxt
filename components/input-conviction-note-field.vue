@@ -15,26 +15,25 @@
             </transition>
         </label>
 
-        <input type="text"
-               class="form-control"
-               required="*"
-               v-model="question">
 
 
+        <b-form-textarea
+                id="textarea"
+                v-model="question"
+                placeholder="Enter something..."
+                rows="3"
+                max-rows="6"
+        ></b-form-textarea>
     </div>
 </template>
 
 <script>
     export default {
-        name: "input-charge-field",
+        name: "input-conviction-note-field",
         props: {
             i: {
                 type: [Number, String],
                 default: '0',
-            },
-            j: {
-                type: [Number, String],
-                default: '0'
             },
             f: {
                 type: String,
@@ -49,13 +48,12 @@
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.client.convictions[this.i].charges[this.j];
+                    const q = this.$store.state.client.convictions[this.i];
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeChargeField', {
+                    this.$store.commit('storeConvictionField', {
                         conviction_index: this.i,
-                        charge_index: this.j,
                         field: this.f,
                         value: value
                     });

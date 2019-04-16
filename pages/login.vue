@@ -1,13 +1,7 @@
-
 <template>
     <div class="container">
-
         <auth-login></auth-login>
-
-
     </div>
-
-
 </template>
 
 <script>

@@ -3,10 +3,8 @@
     <div>
         <label>
             <slot></slot>
-            <img src="/images/FontAwesome47 1.svg" style="display: inline-block;" v-if="this.$slots.help !== undefined"
+            <img src="/images/FontAwesome47 1.svg" style="margin-left:20px;" v-if="this.$slots.help !== undefined"
                  v-on:click="showHelp = !showHelp"/>
-
-
             <transition name="slide-fade">
                 <div style="margin-left: 3em; margin-right: 2em; margin-bottom: .5em; margin-top: .5em;"
                      v-if="showHelp && this.$slots.help !== undefined">
@@ -19,22 +17,16 @@
                class="form-control"
                required="*"
                v-model="question">
-
-
     </div>
 </template>
 
 <script>
     export default {
-        name: "input-charge-field",
+        name: "input-conviction-field",
         props: {
             i: {
                 type: [Number, String],
-                default: '0',
-            },
-            j: {
-                type: [Number, String],
-                default: '0'
+                value: 0,
             },
             f: {
                 type: String,
@@ -49,16 +41,14 @@
         computed: {
             question: {
                 get() {
-                    const q = this.$store.state.client.convictions[this.i].charges[this.j];
+                    const q = this.$store.state.client.convictions[this.i];
                     return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeChargeField', {
-                        conviction_index: this.i,
-                        charge_index: this.j,
+                    this.$store.commit('storeConvictionField', {
+                        index: this.i,
                         field: this.f,
-                        value: value
-                    });
+                        value: value});
                 },
             },
         },

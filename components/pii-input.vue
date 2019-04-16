@@ -1,36 +1,33 @@
 <template>
-    <div class="mb-3">
-        <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
-            <label>
-                <slot></slot>
-            </label>
+    <div class="form-group" style="padding-left: 2em; padding-right: 2em;">
+        <label>
+            <slot></slot>
+        </label>
 
-                <input type="text"
-                       class="form-control"
-                       required="*"
-                       v-model="question">
+        <input type="text"
+               class="form-control"
+               v-model="inp_value">
 
-        </div>
     </div>
+
 </template>
 
 <script>
     export default {
         name: "pii-input",
         props: {
-            questionname: {
+            field: {
                 type: String,
                 default: 'q1',
             }
         },
         computed: {
-            question: {
+            inp_value: {
                 get() {
-                    const q = this.$store.state.pii.find(item => item.question === this.questionname);
-                    return q ? q.value : '';
+                    return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    this.$store.commit('storePii', {question: this.questionname, value: value});
+                    this.$store.commit('storeClientField', {field: this.field, value: value});
                 },
             },
         },

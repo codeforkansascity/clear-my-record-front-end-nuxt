@@ -43,7 +43,12 @@
 
 
     export default {
-        components: {TwoPanels}
+        components: {TwoPanels},
+        data() {
+            return {
+                selected: null
+            }
+        },
     }
 </script>
 

@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
     mode: 'spa',
 
+    env: {
+        apiPrefix: '',
+    },
+
     /*
     ** Headers of the page
     */
@@ -49,6 +53,7 @@ module.exports = {
         '@nuxtjs/markdownit',
         // Doc: https://github.com/nuxt-community/axios-module#usage
         '@nuxtjs/axios',
+        '@nuxtjs/auth',
         // Doc: https://bootstrap-vue.js.org/docs/
         // ['@nuxtjs/bootstrap-vue', {css: false}] // don't include a default build, use ours
         'bootstrap-vue/nuxt'
@@ -62,8 +67,25 @@ module.exports = {
     */
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
-        // baseURL: 'http://localhost:5000/'
-        // baseURL: 'http://localhost:3001/'
+        //baseURL: 'http://pdb-cmr-backend.test'
+         baseURL: 'http://127.0.0.1:5000'
+    },
+
+    auth: {
+        strategies: {
+            local: {
+                endpoints: {
+                    login: { url: 'login', method: 'post', propertyName: 'data.token' },
+                    user: { url: 'me', method: 'get', propertyName: 'data' },
+                    logout:  { url: 'logout', method: 'post' },
+
+
+                    // login: { url: 'http://pdb-cmr-backend.test/oauth/token', method: 'post', propertyName: 'access_token' },
+                    // user: { url: 'http://pdb-cmr-backend.test/api/me', method: 'get', propertyName: 'data' },
+                    // logout:  { url: 'logout', method: 'post' },
+                }
+            }
+        }
     },
 
     /*
