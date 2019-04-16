@@ -20,7 +20,7 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
-        apiUrlPrefix:'/api',  // '/api',     // Used infront of CRUD api calls.  /api
+        apiUrlPrefix:'',  // '/api',     // Used infront of CRUD api calls.  /api
         client: {}
     },
     getters: {
@@ -96,16 +96,11 @@ const store = () => new Vuex.Store({
         //  },
         storeConvictionField(state, data) {
 
-            console.log('storeConvictionField ' + data.index);
-            console.log(data);
-
             const q = state.client.convictions[data.index];
 
             if (!q) {
-                console.log('storeConvictionField add');
                 state.client.convictions.push(data)
             } else {
-                console.log('storeConvictionField set');
                 q[data.field] = data.value;
             }
 
@@ -180,6 +175,10 @@ const store = () => new Vuex.Store({
             state.client.id = new_id;
         },
 
+        SAVE_CONVICTION_ID(state, data) {
+            state.client.convictions[data.index].id = data.id;
+        },
+
         storeClientField(state, payload) {
             state.client[payload.field] = payload.value;
         },
@@ -241,6 +240,8 @@ const store = () => new Vuex.Store({
         },
         async addClient({commit}, data) {
             console.log('addClient -----');
+
+
             await this.$axios.post( this.state.apiUrlPrefix + '/clients', data)
                 .then((res) => {
                     if (res.status === 201) {
@@ -253,6 +254,10 @@ const store = () => new Vuex.Store({
         async updateClient({commit}, data) {
             console.log('updateClient -----');
 
+            if (data.convictions) {
+                delete data.convictions;
+            }
+
             await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
                 .then((res) => {
                     if (res.status === 200) {
@@ -260,7 +265,46 @@ const store = () => new Vuex.Store({
                     } else {
                         console.log('error');
                     }
-                })
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response);
+                    }
+                });
+        },
+
+        async saveConviction({commit}, data) {
+            console.log('saveConviction -----');
+
+            if (data.id) {
+                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + data.id, data)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            console.log(error.response);
+                        }
+
+                    });
+            } else {
+                await this.$axios.post(this.state.apiUrlPrefix + '/convictions', data)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                            commit('SAVE_CONVICTION_ID', { id: res.data.id, index: data.conviction_index });
+                        } else {
+                            console.log('error adding');
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            console.log(error.response);
+                        }
+                    });
+            }
+
         },
 
     },

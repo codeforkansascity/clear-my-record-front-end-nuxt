@@ -112,6 +112,10 @@
             conviction_index: {
                 type: [Number, String],
                 default: 0
+            },
+            client_id: {
+                type: [Number, String],
+                default: 0
             }
 
         },
@@ -130,7 +134,21 @@
 
             },
             save_conviction() {
-                alert('code save code')
+                alert('code save code client_id=' + this.client_id);
+
+
+                   let data = this.$store.state.client.convictions[this.conviction_index];
+                   data['client_id'] = this.client_id;
+                   data['conviction_index'] = this.conviction_index;
+                   delete data.charges;
+
+
+                this.$store.dispatch('saveConviction',data);
+
+                console.log('done saveing conviction');
+
+
+
             }
         },
     }

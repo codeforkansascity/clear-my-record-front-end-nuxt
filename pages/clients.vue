@@ -100,7 +100,7 @@
 
             },
             goToNew() {
-                this.$router.push('/add-expungie')
+                this.$router.push('/add-client')
             },
             edit(client_id) {
                 console.log(client_id);

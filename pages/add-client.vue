@@ -63,7 +63,19 @@
 
         methods: {
             add() {
-                this.$store.dispatch('addClient',this.$store.state.client);  // Fix: need to pass the correct client_id
+
+                // remove/delete convictions from client object on add
+                let payload = this.$store.state.client;
+                let data = {};
+                for (var property in payload) {
+                    if (payload.hasOwnProperty(property)) {
+                        if ( property != 'convictions') {
+                            data[property] = payload[property];
+                        }
+                    }
+                }
+
+                this.$store.dispatch('addClient',data);  // Fix: need to pass the correct client_id
                 this.$store.commit('addBlankConviction');
                 this.$router.push('/intake')
             },
