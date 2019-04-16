@@ -20,6 +20,11 @@
                     <a class="nav-link" href="/clients">Clients</a>
                 </li>
 
+                <!--TODO: Remove once auth is in place.-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients">CLIENTS</a>
+                </li>
+
             </ul>
             <ul class="navbar-nav my-2 my-md-01">
                 <li class="nav-item" v-if="!this.$auth.loggedIn">
