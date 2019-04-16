@@ -245,7 +245,7 @@ const store = () => new Vuex.Store({
             await this.$axios.post( this.state.apiUrlPrefix + '/clients', data)
                 .then((res) => {
                     if (res.status === 200) {
-                        commit('SAVE_CLIENT_ID', res.data.id)
+                        commit('SAVE_CLIENT_ID', res.data)
                     } else {
                         console.log('error');
                     }
