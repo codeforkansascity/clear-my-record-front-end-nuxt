@@ -27,7 +27,7 @@
                 <pii-input field="address_line_2">Address Line 2</pii-input>
                 <pii-input field="city">City?</pii-input>
                 <input-state field="state" style="width: 20em;display: inline-block">State?</input-state>
-                <pii-input field="zip"
+                <pii-input field="zip_code"
                            style="width: 10em; display: inline-block; padding-right: 0em;"
                 >Zip?
                 </pii-input>
