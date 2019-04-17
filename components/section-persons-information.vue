@@ -19,6 +19,8 @@
             <div class="col-md-6" style="padding-left: 1em;">
                 <p>&nbsp;</p>
                 <pii-input field="full_name">What is your full name?</pii-input>
+                <pii-input field="filing_court">Court where expungement will be filed.</pii-input>
+
 
                 <input-select-other field="sex" v-bind:options="sex_options">What is your sex</input-select-other>
                 <input-select-other field="race" v-bind:options="race_options">What is your race?</input-select-other>
@@ -41,6 +43,24 @@
                 <input-state field="license_issuing_state">Issuing state</input-state>
                 <input-date field="license_expiration_date">Expiration date</input-date>
                 <input-date field="dob">What is your date of birth?</input-date>
+
+                <pii-input field="judicial_ciruit_number">Judicial Circuit Number</pii-input>
+                <pii-input field="count_name">County Name</pii-input>
+                <pii-input field="judge_name">Judge Name</pii-input>
+                <pii-input field="division_name">Division Name</pii-input>
+                <pii-input field="petitioner_name">Petitioner Name</pii-input>
+                <pii-input field="division_number">Division Number</pii-input>
+                <pii-input field="city_name_here">Municipal Court Name</pii-input>
+                <pii-input field="county_name">County of Prosecutor(s)</pii-input>
+                <pii-input field="arresting_county">Arresting County Name</pii-input>
+                <pii-input field="prosecuting_county">County of Prosecutor(s)</pii-input>
+                <pii-input field="arresting_municipality">Arresting Municipality</pii-input>
+
+                <pii-note-field field="other_agencies_name">
+                    Other Agencies Names and Addreses
+                </pii-note-field>
+
+
 
 
             </div>
@@ -66,10 +86,11 @@
     import InputDate from "./input-date";
     import InputState from "./input-state";
     import InputSelectOther from "./input-select-other";
+    import PiiNoteField from "./pii-note-field";
 
     export default {
         name: "section-persons-information",
-        components: {InputSelectOther, InputDate, PiiInput, InputState},
+        components: {PiiNoteField, InputSelectOther, InputDate, PiiInput, InputState},
         data() {
             return {
                 race_options: [

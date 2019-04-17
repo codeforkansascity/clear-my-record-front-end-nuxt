@@ -253,8 +253,24 @@ const store = () => new Vuex.Store({
             let payload = {};
             for (var property in data) {
                 if (data.hasOwnProperty(property)) {
-                    if ( property != 'convictions') {
-                        payload[property] = data[property];
+                    switch (property) {
+                        case 'convictions':
+                            break;
+                        // case 'dob':
+                        //     if ( data.dob ) {
+                        //         payload[property] = data[property];
+                        //     }
+                        //     break;
+                        // case 'license_expiration_date':
+                        //     if ( data.license_expiration_date ) {
+                        //         payload[property] = data[property];
+                        //     }
+                        //     break;
+
+                        default:
+                            payload[property] = data[property];
+                            break;
+
                     }
                 }
             }
@@ -275,7 +291,12 @@ const store = () => new Vuex.Store({
 
             if (data.convictions) {
                 delete data.convictions;
+                delete data.active;
             }
+
+            if ( !data.dob ) delete data.dob;
+            if ( !data.license_expiration_date) delete data.license_expiration_date;
+
 
             await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
                 .then((res) => {
@@ -301,13 +322,6 @@ const store = () => new Vuex.Store({
                 if (data.convictions) {
                     delete data.charges;
                     delete data.conviction_index;
-
-                    delete data.name;           // TODO: remove when we have new fields
-                    delete data.arrest_date;
-                    delete data.name;
-                    delete data.release_date;
-
-
                 }
 
                 console.log('saving');
