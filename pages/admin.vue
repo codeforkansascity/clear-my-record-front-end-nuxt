@@ -4,8 +4,6 @@
         <div class="col">
             <button @click="clearData()">Clear data</button>
         </div>
-
-        <section-work-sheet></section-work-sheet>
     </div>
 </div>
 </template>
@@ -18,27 +16,6 @@
         methods: {
             clearData: function () {
                 this.$store.dispatch('clearAll');
-                this.$store.commit('addCase', {
-                    case_number: '',
-                    agancy: '',
-                    court_id: '',
-                    court_name: '',
-                    city_county: '',
-                    name_of_judge: '',
-                    your_name_in_case: '',
-                    release_status: '',
-                    release_date: '',
-                    charges: [
-                        {
-                            eligible: true,
-                            type: '',
-                            class: '',
-                            citation: '',
-                            charge: '',
-                            sentence: '',
-                        }
-                    ]
-                });
             }
         }
     }
