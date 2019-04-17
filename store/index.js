@@ -146,8 +146,8 @@ const store = () => new Vuex.Store({
                     agency: '',
                     court_name: '',
                     court_city_county: '',
-                    name_of_judge: '',
-                    your_name_in_case: '',
+                    judge: '',
+                    record_name: '',
                     release_status: '',
                     release_date: '',
                     charges: [
@@ -213,8 +213,8 @@ const store = () => new Vuex.Store({
                                 agency: '',
                                 court_name: '',
                                 court_city_county: '',
-                                name_of_judge: '',
-                                your_name_in_case: '',
+                                judge: '',
+                                record_name: '',
                                 release_status: '',
                                 release_date: '',
                                 charges: [
@@ -241,8 +241,27 @@ const store = () => new Vuex.Store({
         async addClient({commit}, data) {
             console.log('addClient -----');
 
+            // Need to remove convictions
 
-            await this.$axios.post( this.state.apiUrlPrefix + '/clients', data)
+            // This code works in updateClient() just below
+            // if (data.convictions) {
+            //     delete data.convictions;
+            // }
+
+            // remove/delete convictions from client object on add
+
+            let payload = {};
+            for (var property in data) {
+                if (data.hasOwnProperty(property)) {
+                    if ( property != 'convictions') {
+                        payload[property] = data[property];
+                    }
+                }
+            }
+
+            console.log(payload);
+
+            await this.$axios.post( this.state.apiUrlPrefix + '/clients', payload)
                 .then((res) => {
                     if (res.status === 200) {
                         commit('SAVE_CLIENT_ID', res.data)
@@ -274,8 +293,26 @@ const store = () => new Vuex.Store({
 
         async saveConviction({commit}, data) {
             console.log('saveConviction -----');
+            console.log(data);
+
 
             if (data.id) {
+
+                if (data.convictions) {
+                    delete data.charges;
+                    delete data.conviction_index;
+
+                    delete data.name;           // TODO: remove when we have new fields
+                    delete data.arrest_date;
+                    delete data.name;
+                    delete data.release_date;
+
+
+                }
+
+                console.log('saving');
+                console.log(data);
+
                 await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + data.id, data)
                     .then((res) => {
                         if (res.status === 200) {
@@ -290,11 +327,36 @@ const store = () => new Vuex.Store({
 
                     });
             } else {
-                await this.$axios.post(this.state.apiUrlPrefix + '/convictions', data)
+
+                let conviction_index = data.conviction_index;
+                let payload = {};
+                for (var property in data) {
+                    if (data.hasOwnProperty(property)) {
+
+                        switch (property) {
+                            case 'charges':
+                            case 'conviction_index':
+                            case 'arrest_date':
+                            case 'name':
+                            case 'release_date':
+                                break;
+
+                            default:
+                                payload[property] = data[property];
+                                break;
+
+                        }
+                    }
+                }
+
+                console.log('adding');
+                console.log(payload);
+
+                await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + data.client_id + '/convictions', payload)
                     .then((res) => {
-                        if (res.status === 201) {
+                        if (res.status === 200) {
                             console.log(res);
-                            commit('SAVE_CONVICTION_ID', { id: res.data.id, index: data.conviction_index });
+                            commit('SAVE_CONVICTION_ID', { id: res.data, index: conviction_index });
                         } else {
                             console.log('error adding');
                         }

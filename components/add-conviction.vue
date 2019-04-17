@@ -14,8 +14,8 @@
                     agency: '',
                     court_name: '',
                     court_city_county: '',
-                    name_of_judge: '',
-                    your_name_in_case: '',
+                    judge: '',
+                    record_name: '',
                     release_status: '',
                     release_date: '',
                     charges: [
