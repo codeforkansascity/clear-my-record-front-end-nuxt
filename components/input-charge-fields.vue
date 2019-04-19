@@ -140,7 +140,7 @@
         computed: {
             eligible: {
                 get() {
-                    const q = this.$store.state.client.convictions[this.conviction_index].charges[this.charge_index];
+                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
                     return q ? q['eligible'] : '';
                 },
                 set(value) {
@@ -154,7 +154,7 @@
             },
             expunge: {
                 get() {
-                    const q = this.$store.state.client.convictions[this.conviction_index].charges[this.charge_index];
+                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
                     return q ? q['expunge'] : '';
                 },
                 set(value) {

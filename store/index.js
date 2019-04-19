@@ -21,15 +21,16 @@ const store = () => new Vuex.Store({
     })],
     state: {
         apiUrlPrefix:'/api',  // '/api',     // Used infront of CRUD api calls.  /api
-        client: {}
+        client: {},
+        convictions: []
     },
     getters: {
 
         hasConvictions(state) {
-            return state.client.convictions;
+            return state.convictions;
         },
         allCases(state) {
-            return state.client.convictions;
+            return state.convictions;
         },
         // allQuestions(state) {
         //     return state.questions
@@ -61,6 +62,7 @@ const store = () => new Vuex.Store({
             // state.pii = [];
             //state.cases = [];
             state.client = {};
+            state.convictions = [];
         },
         //  STORE_QUESTION(state, data) {
         //
@@ -98,10 +100,10 @@ const store = () => new Vuex.Store({
         //  },
         storeConvictionField(state, data) {
 
-            const q = state.client.convictions[data.index];
+            const q = state.convictions[data.index];
 
             if (!q) {
-                state.client.convictions.push(data)
+                state.convictions.push(data)
             } else {
                 q[data.field] = data.value;
             }
@@ -109,10 +111,10 @@ const store = () => new Vuex.Store({
         },
         storeChargeField(state, data) {
 
-            const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
+            const q = state.convictions[data.conviction_index].charges[data.charge_index];
 
             if (!q) {
-                state.client.convictions[data.conviction_index].charges.push(data)
+                state.convictions[data.conviction_index].charges.push(data)
             } else {
                 q[data.field] = data.value;
             }
@@ -120,53 +122,48 @@ const store = () => new Vuex.Store({
         },
         addConviction(state, data) {
 
-            if ((typeof state.client['convictions'] === "undefined")) {
-                state.client['convictions'] = [];
-                state.client.convictions[0] = data;
-            } else {
-                state.client.convictions.push(data);
-            }
+                state.convictions.push(data);
         },
         addCharge(state, data) {
 
-            if ((typeof state.client['convictions'].charges === "undefined")) {
-                state.client['convictions'].charges = [];
-                state.client.convictions[data.conviction_index].charges[0] = data.charge;
+            if ((typeof state.convictions.charges === "undefined")) {
+                state.convictions.charges = [];
+                state.convictions[data.conviction_index].charges[0] = data.charge;
             } else {
-                state.client.convictions[data.conviction_index].charges.push(data.charge);
+                state.convictions[data.conviction_index].charges.push(data.charge);
             }
         },
 
         addBlankConviction(state) {
 
-            if (!state.client.convictions) {
-                state.client['convictions'] = [];
-                state.client.convictions[0] = {
-                    name: '',
-                    arrest_date: '',
-                    case_number: '',
-                    agency: '',
-                    court_name: '',
-                    court_city_county: '',
-                    judge: '',
-                    record_name: '',
-                    release_status: '',
-                    release_date: '',
-                    charges: [
-                        {
-                            charge: '',
-                            citation: '',
-                            class: '',
-                            type: '',
-                            sentence: '',
-                            convicted: '',
-                            eligible: '',
-                            expunge: '',
-                            note: '',
-                        }
-                    ]
-                };
-            }
+//            if (!state.t.convictions) {
+//                state.client['convictions'] = [];
+//                state.client.convictions[0] = {
+//                    name: '',
+//                    arrest_date: '',
+//                    case_number: '',
+//                    agency: '',
+//                    court_name: '',
+//                    court_city_county: '',
+//                    judge: '',
+//                    record_name: '',
+//                    release_status: '',
+//                    release_date: '',
+//                    charges: [
+//                        {
+//                            charge: '',
+//                            citation: '',
+//                            class: '',
+//                            type: '',
+//                            sentence: '',
+//                            convicted: '',
+//                            eligible: '',
+//                            expunge: '',
+//                            note: '',
+//                        }
+//                    ]
+//                };
+//            }
         },
 
         STORE_CLIENT(state, data) {
@@ -178,7 +175,7 @@ const store = () => new Vuex.Store({
         },
 
         SAVE_CONVICTION_ID(state, data) {
-            state.client.convictions[data.index].id = data.id;
+            state.convictions[data.index].id = data.id;
         },
 
         storeClientField(state, payload) {
@@ -207,33 +204,6 @@ const store = () => new Vuex.Store({
             await this.$axios.get(this.state.apiUrlPrefix  + '/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
-                        if (!res.data.convictions) {
-                            res.data['convictions'] = [];
-                            res.data.convictions[0] = {
-                                case_number: '',
-                                arrest_date: '',
-                                agency: '',
-                                court_name: '',
-                                court_city_county: '',
-                                judge: '',
-                                record_name: '',
-                                release_status: '',
-                                release_date: '',
-                                charges: [
-                                    {
-                                        charge: '',
-                                        citation: '',
-                                        class: '',
-                                        type: '',
-                                        sentence: '',
-                                        convicted: '',
-                                        eligible: '',
-                                        expunge: '',
-                                        note: '',
-                                    }
-                                ]
-                            };
-                        }
                         commit('STORE_CLIENT', res.data)
                     } else {
                         console.log('error');
@@ -290,14 +260,6 @@ const store = () => new Vuex.Store({
         },
         async updateClient({commit}, data) {
             console.log('updateClient -----');
-
-            if (data.convictions) {
-                delete data.convictions;
-                delete data.active;
-            }
-
-            if ( !data.dob ) delete data.dob;
-            if ( !data.license_expiration_date) delete data.license_expiration_date;
 
 
             await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)

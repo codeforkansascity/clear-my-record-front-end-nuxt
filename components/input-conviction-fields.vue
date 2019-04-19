@@ -141,7 +141,7 @@
             },
             save_conviction() {
 
-                let data = this.$store.state.client.convictions[this.conviction_index];
+                let data = this.$store.state.convictions[this.conviction_index];
 
                 data['client_id'] = this.client_id;
                 data['conviction_index'] = this.conviction_index;
