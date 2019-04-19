@@ -67,22 +67,22 @@ module.exports = {
     */
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
-        //baseURL: 'http://pdb-cmr-backend.test'
-         baseURL: 'http://127.0.0.1:5000'
+        baseURL: 'http://pdb-cmr-backend.test'
+        // baseURL: 'http://127.0.0.1:5000'
     },
 
     auth: {
         strategies: {
             local: {
                 endpoints: {
-                    login: { url: 'login', method: 'post', propertyName: 'data.token' },
-                    user: { url: 'me', method: 'get', propertyName: 'data' },
-                    logout:  { url: 'logout', method: 'post' },
+                    //login: { url: 'login', method: 'post', propertyName: 'data.token' },
+                    //user: { url: 'me', method: 'get', propertyName: 'data' },
+                    //logout:  { url: 'logout', method: 'post' },
 
 
-                    // login: { url: 'http://pdb-cmr-backend.test/oauth/token', method: 'post', propertyName: 'access_token' },
-                    // user: { url: 'http://pdb-cmr-backend.test/api/me', method: 'get', propertyName: 'data' },
-                    // logout:  { url: 'logout', method: 'post' },
+                     login: { url: 'http://pdb-cmr-backend.test/oauth/token', method: 'post', propertyName: 'access_token' },
+                     user: { url: 'http://pdb-cmr-backend.test/api/me', method: 'get', propertyName: 'data' },
+                     logout:  { url: 'logout', method: 'post' },
                 }
             }
         }
