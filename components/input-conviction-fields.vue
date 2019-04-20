@@ -2,6 +2,7 @@
     <div class="row" style="padding-top: 3em">
 
         <div class="col-md-6" style="padding-left: 2em;">
+            <h1>{{ this. conviction_index}}</h1>
             <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
                 <template slot="help">
                     When speaking with the expungie, how they refere to this. "Car 2005"
@@ -82,7 +83,7 @@
         <div class="col-md-12" style="padding-left: 5em;">
 
 
-            <input-charge-fields v-for="(charge, charge_index) in this.conviction.charges" :key="charge.id"
+            <input-charge-fields v-for="(charge, charge_index) in this.$store.getters.chargesForConviction(conviction_index)" :key="charge.id"
                                  :charge_index="charge_index" :charge="charge"
                                  :conviction_index="conviction_index"
             >
@@ -111,10 +112,6 @@
         },
         name: "input-conviction-fields",
         props: {
-            conviction: {
-                type: Object,
-                default: {},
-            },
             conviction_index: {
                 type: [Number, String],
                 default: 0
@@ -141,13 +138,35 @@
             },
             save_conviction() {
 
+                // let data = this.$store.state.convictions[this.conviction_index];
+                //
+                // data['client_id'] = this.$store.state.client.id;
+                // data['conviction_index'] = this.conviction_index;
+
+              //  let client = this.$store.state.client;          // TODO: we should get the client id from the parms
+                let client_id = this.$store.state.client.id;
+
                 let data = this.$store.state.convictions[this.conviction_index];
 
-                data['client_id'] = this.client_id;
-                data['conviction_index'] = this.conviction_index;
-                delete data.charges;
+                let conviction_payload = {};
+                for (let property in data) {
+                    if (data.hasOwnProperty(property)) {
 
-                this.$store.dispatch('saveConviction', data);
+                        switch (property) {
+                            case 'charges':
+                            case 'conviction_index':
+                                break;
+
+                            default:
+                                conviction_payload[property] = data[property];
+                                break;
+
+                        }
+                    }
+                }
+
+
+                this.$store.dispatch('saveConviction', {data: conviction_payload, conviction_index: this.conviction_index, client_id: client_id});
 
                 console.log('done saveing conviction');
 

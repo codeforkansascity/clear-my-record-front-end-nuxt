@@ -32,6 +32,9 @@ const store = () => new Vuex.Store({
         allCases(state) {
             return state.convictions;
         },
+        chargesForConviction: (state) => (conviction_offset) => {
+            return state.convictions[conviction_offset].charges;
+        }
         // allQuestions(state) {
         //     return state.questions
         // },
@@ -99,7 +102,7 @@ const store = () => new Vuex.Store({
         //
         //  },
         storeConvictionField(state, data) {
-
+            console.log(data);
             const q = state.convictions[data.index];
 
             if (!q) {
@@ -110,7 +113,8 @@ const store = () => new Vuex.Store({
 
         },
         storeChargeField(state, data) {
-
+            console.log(storeChargeField);
+            console.log(data);
             const q = state.convictions[data.conviction_index].charges[data.charge_index];
 
             if (!q) {
@@ -125,13 +129,14 @@ const store = () => new Vuex.Store({
                 state.convictions.push(data);
         },
         addCharge(state, data) {
+            console.log('addCharge');
+            console.log(data);
 
             if ((typeof state.convictions.charges === "undefined")) {
-                state.convictions.charges = [];
-                state.convictions[data.conviction_index].charges[0] = data.charge;
-            } else {
-                state.convictions[data.conviction_index].charges.push(data.charge);
+                console.log('adding');
+                Vue.set(state.convictions, 'charges', []);
             }
+            state.convictions[data.conviction_index].charges.push(data.charge);
         },
 
         addBlankConviction(state) {
@@ -183,6 +188,11 @@ const store = () => new Vuex.Store({
         },
 
     },
+
+// ==========================
+// ACTIONS
+// ==========================
+
     actions: {
 
         clearAll({commit}) {
@@ -210,6 +220,12 @@ const store = () => new Vuex.Store({
                     }
                 })
         },
+
+
+        // ---------------------------------------------
+        // CLIENT
+        // ---------------------------------------------
+
         async addClient({commit}, data) {
             console.log('addClient -----');
 
@@ -258,6 +274,7 @@ const store = () => new Vuex.Store({
                     }
                 })
         },
+
         async updateClient({commit}, data) {
             console.log('updateClient -----');
 
@@ -276,73 +293,49 @@ const store = () => new Vuex.Store({
                 });
         },
 
-        async saveConviction({commit}, data) {
-            console.log('saveConviction -----');
-            console.log(data);
+        // ---------------------------------------------
+        // CONVICTION
+        // ---------------------------------------------
 
+        async saveConviction({commit}, payload) {
+            console.log('action   saveConviction');
 
-            if (data.id) {
-
-                if (data.convictions) {
-                    delete data.charges;
-                    delete data.conviction_index;
-                }
-
-                console.log('saving');
-                console.log(data);
-
-                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + data.id, data)
+            if (payload.id) {
+                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + payload.data.id, payload.data)
                     .then((res) => {
-                        if (res.status === 200) {
+                        if (res.status === 201) {
                             console.log(res);
                         } else {
                             console.log('error with id');
                         }
                     }).catch(error => {
+                        console.log('saveConviction update error:');
                         if (error.response) {
-                            console.log(error.response);
+                            console.log('saveConviction update error:' + error.response);
                         }
 
                     });
             } else {
-
-                let conviction_index = data.conviction_index;
-                let payload = {};
-                for (var property in data) {
-                    if (data.hasOwnProperty(property)) {
-
-                        switch (property) {
-                            case 'charges':
-                            case 'conviction_index':
-                            case 'arrest_date':
-                            case 'name':
-                            case 'release_date':
-                                break;
-
-                            default:
-                                payload[property] = data[property];
-                                break;
-
-                        }
-                    }
-                }
-
-                console.log('adding');
-                console.log(payload);
-
-                await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + data.client_id + '/convictions', payload)
+                let new_id = await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + payload.client_id + '/convictions', payload.data)
                     .then((res) => {
                         if (res.status === 200) {
-                            console.log(res);
-                            commit('SAVE_CONVICTION_ID', { id: res.data, index: conviction_index });
+                            return res.data;
                         } else {
-                            console.log('error adding');
+                            return null;
                         }
                     }).catch(error => {
+                        console.log('saveConviction add error 88:');
+
                         if (error.response) {
-                            console.log(error.response);
+                            console.log('saveConviction add error:' + error.response);
                         }
+                        return null;
                     });
+
+                if (new_id) {
+                    commit('SAVE_CONVICTION_ID', {id: new_id, index: payload.conviction_index});
+                }
+
             }
 
         },

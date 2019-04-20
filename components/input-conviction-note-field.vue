@@ -53,7 +53,7 @@
                 },
                 set(value) {
                     this.$store.commit('storeConvictionField', {
-                        conviction_index: this.i,
+                        index: this.i,
                         field: this.f,
                         value: value
                     });

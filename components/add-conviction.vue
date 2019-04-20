@@ -18,6 +18,7 @@
                     record_name: '',
                     release_status: '',
                     release_date: '',
+                    note: '',
                     charges: [
                         {
                             charge: '',
