@@ -20,7 +20,7 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
-        apiUrlPrefix:'/api',  // '/api',     // Used infront of CRUD api calls.  /api
+        apiUrlPrefix: '/api',  // '/api',     // Used infront of CRUD api calls.  /api
         client: {},
         convictions: []
     },
@@ -59,6 +59,10 @@ const store = () => new Vuex.Store({
 
 
     },
+
+// ==============================
+// MUTATIONS
+// ==============================
     mutations: {
         CLEAR_ALL(state) {
             // state.questions = [];
@@ -67,40 +71,26 @@ const store = () => new Vuex.Store({
             state.client = {};
             state.convictions = [];
         },
-        //  STORE_QUESTION(state, data) {
-        //
-        //      //   var group_index = state.questions.findIndex(p => p.group == data.group);
-        //
-        //      var index = state.questions.findIndex(p => (p.group == data.group) && (p.question == data.question));
-        //
-        //      if (index === -1) {
-        //          state.questions.push(data)
-        //      } else {
-        //          state.questions[index].answer = data.answer;
-        //      }
-        //  },
-        //  storePii(state, data) {
-        //
-        //      var index = state.pii.findIndex(p => (p.question == data.question));
-        //
-        //      if (index === -1) {
-        //          state.pii.push(data)
-        //      } else {
-        //          state.pii[index].value = data.value;
-        //      }
-        //
-        //  },
-        // storeCaseField(state, data) {
-        //
-        //      const q = state.cases[data.index];
-        //
-        //      if (!q) {
-        //          state.cases.push(data)
-        //      } else {
-        //          q[data.field] = data.value;
-        //      }
-        //
-        //  },
+
+        // ---------------------------------------
+        // CLIENT
+        // ---------------------------------------
+        STORE_CLIENT(state, data) {
+            state.client = data;
+        },
+
+        SAVE_CLIENT_ID(state, new_id) {
+            state.client.id = new_id;
+        },
+
+
+        storeClientField(state, payload) {
+            state.client[payload.field] = payload.value;
+        },
+
+        // ---------------------------------------
+        // CONVICTION
+        // ---------------------------------------
         storeConvictionField(state, data) {
             console.log(data);
             const q = state.convictions[data.index];
@@ -112,8 +102,22 @@ const store = () => new Vuex.Store({
             }
 
         },
+
+        addConviction(state, data) {
+
+            state.convictions.push(data);
+        },
+
+        SAVE_CONVICTION_ID(state, data) {
+            state.convictions[data.index].id = data.id;
+        },
+
+        // ---------------------------------------
+        // CHARGE
+        // ---------------------------------------
+
         storeChargeField(state, data) {
-            console.log(storeChargeField);
+            console.log('storeChargeField');
             console.log(data);
             const q = state.convictions[data.conviction_index].charges[data.charge_index];
 
@@ -124,10 +128,7 @@ const store = () => new Vuex.Store({
             }
 
         },
-        addConviction(state, data) {
 
-                state.convictions.push(data);
-        },
         addCharge(state, data) {
             console.log('addCharge');
             console.log(data);
@@ -137,6 +138,13 @@ const store = () => new Vuex.Store({
                 Vue.set(state.convictions, 'charges', []);
             }
             state.convictions[data.conviction_index].charges.push(data.charge);
+        },
+
+        SAVE_CHARGE_ID(state, data) {
+            console.log('SAVE_CHARGE_ID');
+            console.log(data);
+
+            state.convictions[data.index].charges[data.charge_index].id = data.id;
         },
 
         addBlankConviction(state) {
@@ -171,21 +179,6 @@ const store = () => new Vuex.Store({
 //            }
         },
 
-        STORE_CLIENT(state, data) {
-            state.client = data;
-        },
-
-        SAVE_CLIENT_ID(state, new_id) {
-            state.client.id = new_id;
-        },
-
-        SAVE_CONVICTION_ID(state, data) {
-            state.convictions[data.index].id = data.id;
-        },
-
-        storeClientField(state, payload) {
-            state.client[payload.field] = payload.value;
-        },
 
     },
 
@@ -211,7 +204,7 @@ const store = () => new Vuex.Store({
 
         async getClient({commit}, id) {
             console.log('getClient');
-            await this.$axios.get(this.state.apiUrlPrefix  + '/clients/' + id)
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
                         commit('STORE_CLIENT', res.data)
@@ -265,7 +258,7 @@ const store = () => new Vuex.Store({
 
             console.log(payload);
 
-            await this.$axios.post( this.state.apiUrlPrefix + '/clients', payload)
+            await this.$axios.post(this.state.apiUrlPrefix + '/clients', payload)
                 .then((res) => {
                     if (res.status === 200) {
                         commit('SAVE_CLIENT_ID', res.data)
@@ -340,7 +333,64 @@ const store = () => new Vuex.Store({
 
         },
 
+
+        // ---------------------------------------------
+        // CHARGE
+        // ---------------------------------------------
+
+
+        async saveCharge({commit}, payload) {
+            console.log('action   saveCharge');
+            console.log(payload);
+
+            if (payload.data.id) {
+                await this.$axios.put(this.state.apiUrlPrefix + '/charges/' + payload.data.id, payload.data)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('saveConviction update error:');
+                        if (error.response) {
+                            console.log('saveConviction update error:' + error.response);
+                        }
+
+                    });
+            } else {
+                let new_id = await this.$axios.post(this.state.apiUrlPrefix +
+                    '/clients/' + payload.client_id +
+                    '/convictions/' + payload.conviction_id +
+                    '/charges', payload.data)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            return res.data;
+                        } else {
+                            return null;
+                        }
+                    }).catch(error => {
+                        console.log('saveCharge add error 88:');
+
+                        if (error.response) {
+                            console.log('saveCharge add error:' + error.response);
+                        }
+                        return null;
+                    });
+
+                if (new_id) {
+                    commit('SAVE_CHARGE_ID', {
+                        id: new_id,
+                        index: payload.conviction_index,
+                        charge_index: payload.charge_index
+                    });
+                }
+
+            }
+
+        },
     },
+
 
 })
 

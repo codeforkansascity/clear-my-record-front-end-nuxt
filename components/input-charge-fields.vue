@@ -176,7 +176,20 @@
 
             },
             save_charge() {
-                alert('code save code')
+                let client_id = this.$store.state.client.id;
+                let conviction_id = this.$store.state.convictions[this.conviction_index].id;
+
+                let data = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
+
+                this.$store.dispatch('saveCharge', {
+                    data: data,
+                    conviction_index: this.conviction_index,
+                    charge_index: this.charge_index,
+                    client_id: client_id,
+                    conviction_id: conviction_id}
+                    );
+
+                console.log('done saveing conviction');
             }
         },
     }
