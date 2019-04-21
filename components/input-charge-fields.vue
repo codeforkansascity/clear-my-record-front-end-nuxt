@@ -29,11 +29,11 @@
             </div>
             <div class="col-md-3" v-show="eligible">
 
-                <b-form-checkbox v-show="!expunge" v-model="please_expunge" name="check-button" switch>
+                <b-form-checkbox v-show="!please_expunge" v-model="please_expunge" name="check-button" switch>
                     Do NOT Expunge
                 </b-form-checkbox>
 
-                <b-form-checkbox v-show="expunge" v-model="please_expunge" name="check-button" switch>
+                <b-form-checkbox v-show="please_expunge" v-model="please_expunge" name="check-button" switch>
                     Expunge
                 </b-form-checkbox>
 
@@ -41,11 +41,11 @@
 
             <div class="col-md-3" v-show="please_expunge">
 
-                <b-form-checkbox v-show="!print" v-model="please_print" name="check-button" switch>
+                <b-form-checkbox v-show="!please_print" v-model="please_print" name="check-button" switch>
                     Do NOT print
                 </b-form-checkbox>
 
-                <b-form-checkbox v-show="print" v-model="please_print" name="check-button" switch>
+                <b-form-checkbox v-show="please_print" v-model="please_print" name="check-button" switch>
                     Print
                 </b-form-checkbox>
 

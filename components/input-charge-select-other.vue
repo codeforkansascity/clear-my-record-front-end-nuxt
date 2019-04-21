@@ -21,6 +21,7 @@
         data() {
             return {
                 show_other_input: false,
+                showHelp: false,
             }
         },
         props: {
@@ -48,11 +49,6 @@
                         "abbreviation": "Other"
                     }
                 ],
-            }
-        },
-        data: function () {
-            return {
-                showHelp: false,
             }
         },
         computed: {
