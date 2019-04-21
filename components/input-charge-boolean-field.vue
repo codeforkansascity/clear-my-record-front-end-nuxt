@@ -15,27 +15,30 @@
             </transition>
         </label>
 
-        <b-form-textarea
-                id="textarea"
-                v-model="question"
+        <input type="text"
+               class="form-control"
+               required="*"
+               v-model="question">
 
-                rows="3"
-                max-rows="6"
-        ></b-form-textarea>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "pii-note-field",
+        name: "input-charge-boolean-field.",
         props: {
-            field: {
+            i: {
+                type: [Number, String],
+                default: '0',
+            },
+            j: {
+                type: [Number, String],
+                default: '0'
+            },
+            f: {
                 type: String,
                 default: 'name',
-            },
-            vplaceholder: {
-                type: String,
-                default: 'Enter Name and address',
             }
         },
         data: function () {
@@ -46,10 +49,16 @@
         computed: {
             question: {
                 get() {
-                    return this.$store.state.client[this.field];
+                    const q = this.$store.state.convictions[this.i].charges[this.j];
+                    return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeClientField', {field: this.field, value: value});
+                    this.$store.commit('storeChargeField', {
+                        conviction_index: this.i,
+                        charge_index: this.j,
+                        field: this.f,
+                        value: value
+                    });
                 },
             },
         },

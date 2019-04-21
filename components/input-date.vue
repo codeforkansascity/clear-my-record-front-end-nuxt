@@ -26,7 +26,8 @@
                     return this.$store.state.client[this.field];
                 },
                 set(value) {
-                    this.$store.commit('storeClientField', {field: this.field, value: value});
+                    let db_value = value ? value : null;
+                    this.$store.commit('storeClientField', {field: this.field, value: db_value});
                 },
             },
         },

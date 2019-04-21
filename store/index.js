@@ -20,15 +20,21 @@ const store = () => new Vuex.Store({
         }
     })],
     state: {
-        apiUrlPrefix:'',  // '/api',     // Used infront of CRUD api calls.  /api
-        client: {}
+        apiUrlPrefix: '/api',  // '/api',     // Used infront of CRUD api calls.  /api
+        client: {},
+        convictions: []
     },
     getters: {
 
         hasConvictions(state) {
-            return state.client.convictions;
+            return state.convictions;
+        },
+        allCases(state) {
+            return state.convictions;
+        },
+        chargesForConviction: (state) => (conviction_offset) => {
+            return state.convictions[conviction_offset].charges;
         }
-
         // allQuestions(state) {
         //     return state.questions
         // },
@@ -53,137 +59,157 @@ const store = () => new Vuex.Store({
 
 
     },
+
+// ==============================
+// MUTATIONS
+// ==============================
     mutations: {
         CLEAR_ALL(state) {
             // state.questions = [];
             // state.pii = [];
             //state.cases = [];
-            state.client = {};
-        },
-        //  STORE_QUESTION(state, data) {
-        //
-        //      //   var group_index = state.questions.findIndex(p => p.group == data.group);
-        //
-        //      var index = state.questions.findIndex(p => (p.group == data.group) && (p.question == data.question));
-        //
-        //      if (index === -1) {
-        //          state.questions.push(data)
-        //      } else {
-        //          state.questions[index].answer = data.answer;
-        //      }
-        //  },
-        //  storePii(state, data) {
-        //
-        //      var index = state.pii.findIndex(p => (p.question == data.question));
-        //
-        //      if (index === -1) {
-        //          state.pii.push(data)
-        //      } else {
-        //          state.pii[index].value = data.value;
-        //      }
-        //
-        //  },
-        // storeCaseField(state, data) {
-        //
-        //      const q = state.cases[data.index];
-        //
-        //      if (!q) {
-        //          state.cases.push(data)
-        //      } else {
-        //          q[data.field] = data.value;
-        //      }
-        //
-        //  },
-        storeConvictionField(state, data) {
+            // state.client = {};
+            // state.convictions = [];
 
-            const q = state.client.convictions[data.index];
-
-            if (!q) {
-                state.client.convictions.push(data)
-            } else {
-                q[data.field] = data.value;
-            }
-
-        },
-        storeChargeField(state, data) {
-
-            const q = state.client.convictions[data.conviction_index].charges[data.charge_index];
-
-            if (!q) {
-                state.client.convictions[data.conviction_index].charges.push(data)
-            } else {
-                q[data.field] = data.value;
-            }
-
-        },
-        addConviction(state, data) {
-
-            if ((typeof state.client['convictions'] === "undefined")) {
-                state.client['convictions'] = [];
-                state.client.convictions[0] = data;
-            } else {
-                state.client.convictions.push(data);
-            }
-        },
-        addCharge(state, data) {
-
-            if ((typeof state.client['convictions'].charges === "undefined")) {
-                state.client['convictions'].charges = [];
-                state.client.convictions[data.conviction_index].charges[0] = data.charge;
-            } else {
-                state.client.convictions[data.conviction_index].charges.push(data.charge);
-            }
+            Vue.set(state, 'client', {});
+            Vue.set(state, 'convictions', []);
         },
 
-        addBlankConviction(state) {
-
-            if (!state.client.convictions) {
-                state.client['convictions'] = [];
-                state.client.convictions[0] = {
-                    name: '',
-                    arrest_date: '',
-                    case_number: '',
-                    agency: '',
-                    court_name: '',
-                    court_city_county: '',
-                    judge: '',
-                    record_name: '',
-                    release_status: '',
-                    release_date: '',
-                    charges: [
-                        {
-                            charge: '',
-                            citation: '',
-                            class: '',
-                            type: '',
-                            sentence: '',
-                            convicted: '',
-                            eligible: '',
-                            expunge: '',
-                            note: '',
-                        }
-                    ]
-                };
-            }
-        },
-
+        // ---------------------------------------
+        // CLIENT
+        // ---------------------------------------
         STORE_CLIENT(state, data) {
-            state.client = data;
+            console.log('mutation STORE_CLIENT');
+
+            Vue.set(state, 'client', data);
+            console.log('mutation STORE_CLIENT exit');
         },
 
         SAVE_CLIENT_ID(state, new_id) {
             state.client.id = new_id;
         },
 
-        SAVE_CONVICTION_ID(state, data) {
-            state.client.convictions[data.index].id = data.id;
-        },
 
         storeClientField(state, payload) {
             state.client[payload.field] = payload.value;
         },
 
+        // ---------------------------------------
+        // CONVICTION
+        // ---------------------------------------
+
+        STORE_CLIENT_CONVICTIONS(state, data) {
+            console.log('mutation STORE_CLIENT_CONVICTIONS');
+
+            Vue.set(state, 'convictions', data);
+
+            console.log('mutation STORE_CLIENT_CONVICTIONS  exit');
+            // state.client = data;
+        },
+
+        storeConvictionField(state, data) {
+            console.log(data);
+            const q = state.convictions[data.index];
+
+            if (!q) {
+                state.convictions.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
+
+        addConviction(state, data) {
+
+            state.convictions.push(data);
+        },
+
+        SAVE_CONVICTION_ID(state, data) {
+            state.convictions[data.index].id = data.id;
+        },
+
+        DELETE_CONVICTION(state,payload) {
+            state.convictions.splice([payload.conviction_index],1);
+        },
+
+        // ---------------------------------------
+        // CHARGE
+        // ---------------------------------------
+
+        storeChargeField(state, data) {
+            console.log('storeChargeField');
+            console.log(data);
+            const q = state.convictions[data.conviction_index].charges[data.charge_index];
+
+            if (!q) {
+                state.convictions[data.conviction_index].charges.push(data)
+            } else {
+                q[data.field] = data.value;
+            }
+
+        },
+
+        addCharge(state, data) {
+            console.log('addCharge');
+            console.log(data);
+
+            if ((typeof state.convictions.charges === "undefined")) {
+                console.log('adding');
+                Vue.set(state.convictions, 'charges', []);
+            }
+            state.convictions[data.conviction_index].charges.push(data.charge);
+        },
+
+        SAVE_CHARGE_ID(state, data) {
+            console.log('SAVE_CHARGE_ID');
+            console.log(data);
+
+            state.convictions[data.index].charges[data.charge_index].id = data.id;
+        },
+
+        DELETE_CHARGE(state,payload) {
+            state.convictions[payload.conviction_index].charges.splice(payload.charge_index,1);
+        },
+
+        addBlankConviction(state) {
+
+//            if (!state.t.convictions) {
+//                state.client['convictions'] = [];
+//                state.client.convictions[0] = {
+//                    name: '',
+//                    arrest_date: '',
+//                    case_number: '',
+//                    agency: '',
+//                    court_name: '',
+//                    court_city_county: '',
+//                    judge: '',
+//                    record_name: '',
+//                    release_status: '',
+//                    release_date: '',
+//                    charges: [
+//                        {
+//                            charge: '',
+//                            citation: '',
+//                            class: '',
+//                            type: '',
+//                            sentence: '',
+//                            convicted: '',
+//                            eligible: '',
+//                            please_expunge: '',
+//                            notes: '',
+//                        }
+//                    ]
+//                };
+//            }
+        },
+
+
     },
+
+// ==========================
+// ACTIONS
+// ==========================
+
     actions: {
 
         clearAll({commit}) {
@@ -200,44 +226,24 @@ const store = () => new Vuex.Store({
         // },
 
 
+        // ---------------------------------------------
+        // CLIENT
+        // ---------------------------------------------
+
         async getClient({commit}, id) {
             console.log('getClient');
-            await this.$axios.get(this.state.apiUrlPrefix  + '/clients/' + id)
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + id)
                 .then((res) => {
                     if (res.status === 200) {
-                        if (!res.data.convictions) {
-                            res.data['convictions'] = [];
-                            res.data.convictions[0] = {
-                                case_number: '',
-                                arrest_date: '',
-                                agency: '',
-                                court_name: '',
-                                court_city_county: '',
-                                judge: '',
-                                record_name: '',
-                                release_status: '',
-                                release_date: '',
-                                charges: [
-                                    {
-                                        charge: '',
-                                        citation: '',
-                                        class: '',
-                                        type: '',
-                                        sentence: '',
-                                        convicted: '',
-                                        eligible: '',
-                                        expunge: '',
-                                        note: '',
-                                    }
-                                ]
-                            };
-                        }
                         commit('STORE_CLIENT', res.data)
                     } else {
                         console.log('error');
                     }
                 })
+
+            console.log('getClient  exit');
         },
+
         async addClient({commit}, data) {
             console.log('addClient -----');
 
@@ -277,7 +283,7 @@ const store = () => new Vuex.Store({
 
             console.log(payload);
 
-            await this.$axios.post( this.state.apiUrlPrefix + '/clients', payload)
+            await this.$axios.post(this.state.apiUrlPrefix + '/clients', payload)
                 .then((res) => {
                     if (res.status === 200) {
                         commit('SAVE_CLIENT_ID', res.data)
@@ -286,16 +292,9 @@ const store = () => new Vuex.Store({
                     }
                 })
         },
+
         async updateClient({commit}, data) {
             console.log('updateClient -----');
-
-            if (data.convictions) {
-                delete data.convictions;
-                delete data.active;
-            }
-
-            if ( !data.dob ) delete data.dob;
-            if ( !data.license_expiration_date) delete data.license_expiration_date;
 
 
             await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
@@ -312,78 +311,194 @@ const store = () => new Vuex.Store({
                 });
         },
 
-        async saveConviction({commit}, data) {
-            console.log('saveConviction -----');
-            console.log(data);
+        // ---------------------------------------------
+        // CONVICTION
+        // ---------------------------------------------
 
+        async getClientConvictions({commit}, id) {
+            console.log('getClientConvictions');
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + id + '/convictions')
+                .then((res) => {
+                    if (res.status === 200) {
 
-            if (data.id) {
+                        console.log(res.data);
 
-                if (data.convictions) {
-                    delete data.charges;
-                    delete data.conviction_index;
-                }
+                        commit('STORE_CLIENT_CONVICTIONS', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
+            console.log('getClientConvictions exit');
+        },
+        async saveConviction({commit}, payload) {
+            console.log('action   saveConviction');
 
-                console.log('saving');
-                console.log(data);
-
-                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + data.id, data)
+            if (payload.id) {
+                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + payload.data.id, payload.data)
                     .then((res) => {
-                        if (res.status === 200) {
+                        if (res.status === 201) {
                             console.log(res);
                         } else {
                             console.log('error with id');
                         }
                     }).catch(error => {
+                        console.log('saveConviction update error:');
                         if (error.response) {
-                            console.log(error.response);
+                            console.log('saveConviction update error:' + error.response);
                         }
 
                     });
             } else {
-
-                let conviction_index = data.conviction_index;
-                let payload = {};
-                for (var property in data) {
-                    if (data.hasOwnProperty(property)) {
-
-                        switch (property) {
-                            case 'charges':
-                            case 'conviction_index':
-                            case 'arrest_date':
-                            case 'name':
-                            case 'release_date':
-                                break;
-
-                            default:
-                                payload[property] = data[property];
-                                break;
-
-                        }
-                    }
-                }
-
-                console.log('adding');
-                console.log(payload);
-
-                await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + data.client_id + '/convictions', payload)
+                let new_id = await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + payload.client_id + '/convictions', payload.data)
                     .then((res) => {
                         if (res.status === 200) {
-                            console.log(res);
-                            commit('SAVE_CONVICTION_ID', { id: res.data, index: conviction_index });
+                            return res.data;
                         } else {
-                            console.log('error adding');
+                            return null;
                         }
                     }).catch(error => {
+                        console.log('saveConviction add error 88:');
+
                         if (error.response) {
-                            console.log(error.response);
+                            console.log('saveConviction add error:' + error.response);
                         }
+                        return null;
                     });
+
+                if (new_id) {
+                    commit('SAVE_CONVICTION_ID', {id: new_id, index: payload.conviction_index});
+                }
+
+            }
+
+        },
+        async removeConviction({commit}, payload) {
+            console.log('action   removeConviction');
+
+            if ( payload.conviction_id ) {
+                await this.$axios.delete(this.state.apiUrlPrefix + '/convictions/' + payload.conviction_id)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('removeConviction update error:');
+                        if (error.response) {
+                            console.log('removeConviction update error:' + error.response);
+                        }
+
+                    });
+            }
+
+            commit('DELETE_CONVICTION', {conviction_index: payload.conviction_index});
+
+        },
+
+
+        // ---------------------------------------------
+        // CHARGE
+        // ---------------------------------------------
+
+        async getClientConvictionCharges({commit}, payload) {
+            console.log('getClientConvictionCharges '+ payload.conviction_id);
+            console.log(payload);
+
+
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + payload.client_id + '/convictions/' + payload.conviction_id)
+                .then((res) => {
+                    if (res.status === 200) {
+
+                        console.log(res.data);
+
+                        commit('STORE_CLIENT_CONVICTION_CHARGES', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
+
+            console.log('getClientConvictionCharges  end '+ payload.conviction_id);
+
+
+        },
+
+        async saveCharge({commit}, payload) {
+            console.log('action   saveCharge');
+            console.log(payload);
+
+            if (payload.data.id) {
+                await this.$axios.put(this.state.apiUrlPrefix + '/charges/' + payload.data.id, payload.data)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('saveConviction update error:');
+                        if (error.response) {
+                            console.log('saveConviction update error:' + error.response);
+                        }
+
+                    });
+            } else {
+                let new_id = await this.$axios.post(this.state.apiUrlPrefix +
+                    '/clients/' + payload.client_id +
+                    '/convictions/' + payload.conviction_id +
+                    '/charges', payload.data)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            return res.data;
+                        } else {
+                            return null;
+                        }
+                    }).catch(error => {
+                        console.log('saveCharge add error 88:');
+
+                        if (error.response) {
+                            console.log('saveCharge add error:' + error.response);
+                        }
+                        return null;
+                    });
+
+                if (new_id) {
+                    commit('SAVE_CHARGE_ID', {
+                        id: new_id,
+                        index: payload.conviction_index,
+                        charge_index: payload.charge_index
+                    });
+                }
+
             }
 
         },
 
+        async removeCharge({commit}, payload) {
+            console.log('action   removeCharge');
+
+            if ( payload.charge_id ) {
+                await this.$axios.delete(this.state.apiUrlPrefix + '/charges/' + payload.charge_id)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('removeCharge update error:');
+                        if (error.response) {
+                            console.log('removeCharge update error:' + error.response);
+                        }
+
+                    });
+            }
+
+            commit('DELETE_CHARGE', {conviction_index: payload.conviction_index, charge_index: payload.charge_index});
+
+        },
     },
+
 
 })
 

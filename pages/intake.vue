@@ -22,7 +22,7 @@
     // import SectionPrint from "../components/section-print";
 
     export default {
-        // middleware: 'auth',
+        middleware: 'auth',
         components: {
             SectionPersonsInformation,
             SectionConvictionCharges,

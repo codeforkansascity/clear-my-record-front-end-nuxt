@@ -1,7 +1,21 @@
 <template>
     <div class="row" style="padding-top: 3em">
 
-        <div class="col-md-6" style="padding-left: 2em;">
+            <div class="col-md-11">
+                <h3>CONVICTION: {{ this.heading }}</h3>
+            </div>
+            <div class="col-md-1">
+                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                     src="/images/noun_collapse_2091048_000000.png" class="help-button">
+                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                     src="/images/noun_expand_1211939_000000.png" class="help-button">
+            </div>
+
+
+        <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
+
+            <input-conviction-field v-bind:i="this.conviction_index" f="court_name">Court Name, used for printing
+            </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
                 <template slot="help">
                     When speaking with the expungie, how they refere to this. "Car 2005"
@@ -23,13 +37,14 @@
                 (county) court
                 or a municipal (city) court?
             </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="court_city_county">What was the name of the County or
+            <input-conviction-field v-bind:i="this.conviction_index" f="court_city_county">What was the name of the
+                County or
                 City?
             </input-conviction-field>
 
 
         </div>
-        <div class="col-md-6" style="padding-left: 2em;">
+        <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
 
             <input-conviction-field v-bind:i="this.conviction_index" f="record_name">What was your name as it
                 appeared on
@@ -44,47 +59,49 @@
             </input-conviction-field>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2" v-show="isShowing">
             &nbsp;
         </div>
 
-        <div class="col-md-1" style="padding-top: 1.25em;">
+        <div class="col-md-1" v-show="isShowing" style="padding-top: 1.25em;">
             Notes:
         </div>
 
-        <div class="col-md-7" style="padding-left: 2em; ">
-            <input-conviction-note-field v-bind:i="this.conviction_index" f="note">
+        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; ">
+            <input-conviction-note-field v-bind:i="this.conviction_index" f="notes">
             </input-conviction-note-field>
         </div>
 
-        <div class="col-md-2" style="padding-top: 1.25em;">
+        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em;">
 
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2" v-show="isShowing" >
             &nbsp;
         </div>
 
-        <div class="col-md-1" style="padding-top: 1.25em;">
+        <div class="col-md-1"  v-show="isShowing" style="padding-top: 1.25em;">
             <button class="float-left" @click="remove_conviction">Remove</button>
         </div>
 
-        <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
+        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; padding-bottom: 1em;">
 
         </div>
 
-        <div class="col-md-2" style="padding-top: 1.25em; padding-bottom: 1em">
+        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em; padding-bottom: 1em">
             <button class="float-right" @click="save_conviction">Save</button>
         </div>
 
 
-        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;">CHARGE(S)</h4>
-        <div class="col-md-12" style="padding-left: 5em;">
+        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;" v-show="isShowing" >CHARGE(S)</h4>
+        <div class="col-md-12"  style="padding-left: 5em;">
 
 
-            <input-charge-fields v-for="(charge, charge_index) in this.conviction.charges" :key="charge.id"
-                                 :charge_index="charge_index" :charge="charge"
-                                 :conviction_index="conviction_index"
+            <input-charge-fields
+                    v-for="(charge, charge_index) in this.$store.getters.chargesForConviction(conviction_index)"
+                    :key="charge.id"
+                    :charge_index="charge_index" :charge="charge"
+                    :conviction_index="conviction_index"
             >
             </input-charge-fields>
 
@@ -111,10 +128,6 @@
         },
         name: "input-conviction-fields",
         props: {
-            conviction: {
-                type: Object,
-                default: {},
-            },
             conviction_index: {
                 type: [Number, String],
                 default: 0
@@ -129,29 +142,67 @@
             return {
                 gridState: 'wait',
                 global_error_message: null,
+                isShowing: true,
             }
         },
         methods: {
             remove_conviction() {
 
                 if (confirm("Remove this conviction?")) {
-                    alert('Code remove code')
+                    this.$store.dispatch('removeConviction', {
+                            conviction_index: this.conviction_index,
+                            conviction_id: this.$store.state.convictions[this.conviction_index].id,
+                        }
+                    );
                 }
 
             },
             save_conviction() {
 
-                let data = this.$store.state.client.convictions[this.conviction_index];
+                // let data = this.$store.state.convictions[this.conviction_index];
+                //
+                // data['client_id'] = this.$store.state.client.id;
+                // data['conviction_index'] = this.conviction_index;
 
-                data['client_id'] = this.client_id;
-                data['conviction_index'] = this.conviction_index;
-                delete data.charges;
+                //  let client = this.$store.state.client;          // TODO: we should get the client id from the parms
+                let client_id = this.$store.state.client.id;
 
-                this.$store.dispatch('saveConviction', data);
+                let data = this.$store.state.convictions[this.conviction_index];
+
+                let conviction_payload = {};
+                for (let property in data) {
+                    if (data.hasOwnProperty(property)) {
+
+                        switch (property) {
+                            case 'charges':
+                            case 'conviction_index':
+                                break;
+
+                            default:
+                                conviction_payload[property] = data[property];
+                                break;
+
+                        }
+                    }
+                }
+
+
+                this.$store.dispatch('saveConviction', {
+                    data: conviction_payload,
+                    conviction_index: this.conviction_index,
+                    client_id: client_id
+                });
 
                 console.log('done saveing conviction');
 
 
+            }
+        },
+        computed: {
+            heading() {
+
+                const d = this.$store.state.convictions[this.conviction_index];
+                return d.court_name + ', ' + d.name  + ', ' + d.arrest_date  + ', ' + d.release_date ;
             }
         },
     }

@@ -45,16 +45,16 @@
                                         Login
                                     </button>
 
-                                    <a class="btn btn-link" href="/reset-password">
-                                        Forgot Your Password?
-                                    </a>
+                                    <!--<a class="btn btn-link" href="/reset-password">-->
+                                        <!--Forgot Your Password?-->
+                                    <!--</a>-->
                                 </div>
-                                <div class="col-md-8 col-md-offset-4">
-                                    <p>
-                                        Don't have an account?
-                                        <nuxt-link to="/register">Register</nuxt-link>
-                                    </p>
-                                </div>
+                                <!--<div class="col-md-8 col-md-offset-4">-->
+                                    <!--<p>-->
+                                        <!--Don't have an account?-->
+                                        <!--<nuxt-link to="/register">Register</nuxt-link>-->
+                                    <!--</p>-->
+                                <!--</div>-->
                             </div>
                         </form>
                     </div>
@@ -89,7 +89,7 @@
                             password: this.password,
                             grant_type: 'password',
                             client_id: 2,
-                            client_secret: '2Vkp2GSnLLkAffhJuYXr3aV22BXCuh86HEBHWY1q',
+                            client_secret: 'XXXXXX',
                             scope: '*'
 
                         }

@@ -1,7 +1,7 @@
 <template>
     <li v-bind:class="{ eligible: charge.eligible }">
-        {{ charge.type }}
-        {{ charge.class }},
+        {{ charge.conviction_charge_type }}
+        {{ charge.conviction_class_type }},
         {{ charge.citation }},
         {{ charge.charge }},
         {{ charge.sentence }}

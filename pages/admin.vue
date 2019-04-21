@@ -12,6 +12,7 @@
     import SectionWorkSheet from "../components/section-work-sheet";
     export default {
         name: "admin",
+        middleware: 'auth',
         components: {SectionWorkSheet},
         methods: {
             clearData: function () {

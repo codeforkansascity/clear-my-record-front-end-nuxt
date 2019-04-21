@@ -1,5 +1,5 @@
 <template>
-    <div class="container background-image">
+    <div class="container">
         <slot></slot>
 
         <div class="row">

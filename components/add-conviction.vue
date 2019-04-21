@@ -17,18 +17,19 @@
                     judge: '',
                     record_name: '',
                     release_status: '',
-                    release_date: '',
+                    release_date: null,
+                    notes: '',
                     charges: [
                         {
                             charge: '',
                             citation: '',
-                            class: '',
-                            type: '',
+                            conviction_class_type: '',
+                            conviction_charge_type: '',
                             sentence: '',
                             convicted: '',
                             eligible: '',
-                            expunge: '',
-                            note: '',
+                            please_expunge: '',
+                            notes: '',
                         }
                     ]
                 });

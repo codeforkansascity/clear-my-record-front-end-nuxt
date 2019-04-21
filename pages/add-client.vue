@@ -69,7 +69,7 @@
                 this.$router.push('/intake')
             },
             cancel() {
-                this.$router.push('/expungie-list')
+                this.$router.push('/clients')
             }
         },
     }

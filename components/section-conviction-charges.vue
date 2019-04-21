@@ -3,8 +3,9 @@
     <div>
 
         <div>
-            <input-conviction-fields v-for="(conviction, conviction_index) in this.$store.state.client.convictions" :key="conviction.id"
-                               :conviction_index="conviction_index" :conviction="conviction" :client_id="client_id">
+            <input-conviction-fields v-for="(conviction, conviction_index) in this.$store.getters.allCases"
+                                     :key="conviction.id"
+                                     :conviction_index="conviction_index" :client_id="client_id">
             </input-conviction-fields>
             <add-conviction></add-conviction>
         </div>

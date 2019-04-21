@@ -11,15 +11,11 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/do-you-qualify">Check Qualifications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/faq">FAQs</a>
+                    <a class="nav-link" href="/faq-intake">FAQs</a>
                 </li>
                 <li class="nav-item" v-if="this.$auth.loggedIn">
                     <a class="nav-link" href="/clients">Clients</a>
                 </li>
-
 
             </ul>
             <ul class="navbar-nav my-2 my-md-01">
@@ -33,7 +29,7 @@
                             extra-toggle-classes="nav-link-custom"
                             left>
                         <b-dropdown-item v-on:click="profile">Profile</b-dropdown-item>
-                        <b-dropdown-item v-on:click="change_password">Change Password</b-dropdown-item>
+                        <!--<b-dropdown-item v-on:click="change_password">Change Password</b-dropdown-item>-->
                         <b-dropdown-item v-on:click="logout">Logout</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </li>

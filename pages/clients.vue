@@ -19,7 +19,7 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>DOB</th>
+                    <th>Filing Court</th>
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Status</th>
@@ -46,7 +46,7 @@
 
                 <tr v-else v-for="client in clients" :key="client.id">
                     <td>{{ client.full_name }}</td>
-                    <td>{{ client.dob }}</td>
+                    <td>{{ client.filing_court }}</td>
                     <td>{{ client.phone }}</td>
                     <td>{{ client.address_line_1}} {{ client.address_line_2 }} {{ client.city }} {{ client.state }}</td>
                     <td>{{ client.status }}</td>
@@ -61,7 +61,7 @@
 <script>
     export default {
         name: "client-list",
-       // middleware: 'auth',
+        middleware: 'auth',
         data() {
             return {
                 gridState: 'wait',
@@ -104,7 +104,11 @@
             },
             edit(client_id) {
                 console.log(client_id);
+                // this.$store.dispatch('clearAll');
                 this.$store.dispatch('getClient', client_id);
+
+                this.$store.dispatch('getClientConvictions', client_id);
+
                 this.$router.push('/intake')
             }
         },

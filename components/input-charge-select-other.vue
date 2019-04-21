@@ -17,16 +17,25 @@
 
 <script>
     export default {
-        name: "input-charge-select-field",
+        name: "input-charge-select-other",
         data() {
             return {
                 show_other_input: false,
+                showHelp: false,
             }
         },
         props: {
-            field: {
+            i: {
+                type: [Number, String],
+                default: '0',
+            },
+            j: {
+                type: [Number, String],
+                default: '0'
+            },
+            f: {
                 type: String,
-                default: 'q1',
+                default: 'name',
             },
             options: {
                 type: Array,
@@ -45,26 +54,39 @@
         computed: {
             inp_value: {
                 get() {
-                    return this.$store.state.client[this.field];
+                    return this.$store.state.client[this.f];
                 },
                 set(value) {
                     if (value.abbreviation === 'Other') {
                         this.show_other_input = true;
                     } else {
                         this.show_other_input = false;
-                        this.$store.commit('storeClientField', {field: this.field, value: value});
+                        this.$store.commit('storeChargeField', {
+                            conviction_index: this.i,
+                            charge_index: this.j,
+                            field: this.f,
+                            value: value
+                        });
                         this.other_value = value.abbreviation;
                     }
                 },
             },
+
             other_value: {
                 get() {
-                    return this.$store.state.client[this.field];
+                    const q = this.$store.state.convictions[this.i].charges[this.j];
+                    return q ? q[this.f] : '';
                 },
                 set(value) {
-                    this.$store.commit('storeClientField', {field: this.field, value: value});
+                    this.$store.commit('storeChargeField', {
+                        conviction_index: this.i,
+                        charge_index: this.j,
+                        field: this.f,
+                        value: value
+                    });
                 },
             },
+
 
         },
 
