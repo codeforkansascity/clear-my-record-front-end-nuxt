@@ -46,23 +46,26 @@
 
                 <pii-input field="judicial_ciruit_number">Judicial Circuit Number</pii-input>
                 <pii-input field="count_name">County Name</pii-input>
-                <pii-input field="judge_name">Judge Name</pii-input>
-                <pii-input field="division_name">Division Name</pii-input>
-                <pii-input field="petitioner_name">Petitioner Name</pii-input>
-                <pii-input field="division_number">Division Number</pii-input>
-                <pii-input field="city_name_here">Municipal Court Name</pii-input>
-                <pii-input field="county_name">County of Prosecutor(s)</pii-input>
-                <pii-input field="arresting_county">Arresting County Name</pii-input>
-                <pii-input field="prosecuting_county">County of Prosecutor(s)</pii-input>
-                <pii-input field="arresting_municipality">Arresting Municipality</pii-input>
+                <pii-note-field field="judge_name">Judge Name/Address</pii-note-field>
+                <pii-note-field field="division_name">Division Name/Address</pii-note-field>
+
+            </div>
+            <div class="col-md-6" style="padding-left: 1em;">
+                <pii-note-field field="petitioner_name">Petitioner Name/Address</pii-note-field>
+                <pii-note-field field="division_number">Division Number/Address</pii-note-field>
+                <pii-note-field field="city_name_here">Municipal Court Name/Address</pii-note-field>
+                <pii-note-field field="county_name">County of Prosecutor(s)/Address</pii-note-field>
+
+            </div>
+
+            <div class="col-md-6" style="padding-left: 1em;">
+                <pii-note-field field="arresting_county">Arresting County Name/Address</pii-note-field>
+                <pii-note-field field="prosecuting_county">County of Prosecutor(s)/Address</pii-note-field>
+                <pii-note-field field="arresting_municipality">Arresting Municipality/Address</pii-note-field>
 
                 <pii-note-field field="other_agencies_name">
                     Other Agencies Names and Addreses
                 </pii-note-field>
-
-
-
-
             </div>
         </div>
         <div class="form-group">

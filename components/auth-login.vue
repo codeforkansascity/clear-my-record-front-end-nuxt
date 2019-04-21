@@ -89,7 +89,7 @@
                             password: this.password,
                             grant_type: 'password',
                             client_id: 2,
-                            client_secret: 'CbsImnaNyIePbnslHcdHrvsSVxZYPGRx4mRr3qE2',
+                            client_secret: 'XXXXXX',
                             scope: '*'
 
                         }

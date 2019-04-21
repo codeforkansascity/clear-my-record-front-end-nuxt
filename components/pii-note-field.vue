@@ -18,7 +18,7 @@
         <b-form-textarea
                 id="textarea"
                 v-model="question"
-                placeholder="Enter something..."
+
                 rows="3"
                 max-rows="6"
         ></b-form-textarea>
@@ -32,6 +32,10 @@
             field: {
                 type: String,
                 default: 'name',
+            },
+            vplaceholder: {
+                type: String,
+                default: 'Enter Name and address',
             }
         },
         data: function () {

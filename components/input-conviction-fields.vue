@@ -1,8 +1,19 @@
 <template>
     <div class="row" style="padding-top: 3em">
 
-        <div class="col-md-6" style="padding-left: 2em;">
-            <h1>{{ this. conviction_index}}</h1>
+            <div class="col-md-11">
+                <h3>CONVICTION: {{ this.heading }}</h3>
+            </div>
+            <div class="col-md-1">
+                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                     src="/images/noun_collapse_2091048_000000.png" class="help-button">
+                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                     src="/images/noun_expand_1211939_000000.png" class="help-button">
+            </div>
+
+
+        <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
+
             <input-conviction-field v-bind:i="this.conviction_index" f="court_name">Court Name, used for printing
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
@@ -33,7 +44,7 @@
 
 
         </div>
-        <div class="col-md-6" style="padding-left: 2em;">
+        <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
 
             <input-conviction-field v-bind:i="this.conviction_index" f="record_name">What was your name as it
                 appeared on
@@ -48,42 +59,42 @@
             </input-conviction-field>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2" v-show="isShowing">
             &nbsp;
         </div>
 
-        <div class="col-md-1" style="padding-top: 1.25em;">
+        <div class="col-md-1" v-show="isShowing" style="padding-top: 1.25em;">
             Notes:
         </div>
 
-        <div class="col-md-7" style="padding-left: 2em; ">
+        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; ">
             <input-conviction-note-field v-bind:i="this.conviction_index" f="notes">
             </input-conviction-note-field>
         </div>
 
-        <div class="col-md-2" style="padding-top: 1.25em;">
+        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em;">
 
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2" v-show="isShowing" >
             &nbsp;
         </div>
 
-        <div class="col-md-1" style="padding-top: 1.25em;">
+        <div class="col-md-1"  v-show="isShowing" style="padding-top: 1.25em;">
             <button class="float-left" @click="remove_conviction">Remove</button>
         </div>
 
-        <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
+        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; padding-bottom: 1em;">
 
         </div>
 
-        <div class="col-md-2" style="padding-top: 1.25em; padding-bottom: 1em">
+        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em; padding-bottom: 1em">
             <button class="float-right" @click="save_conviction">Save</button>
         </div>
 
 
-        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;">CHARGE(S)</h4>
-        <div class="col-md-12" style="padding-left: 5em;">
+        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;" v-show="isShowing" >CHARGE(S)</h4>
+        <div class="col-md-12"  style="padding-left: 5em;">
 
 
             <input-charge-fields
@@ -131,6 +142,7 @@
             return {
                 gridState: 'wait',
                 global_error_message: null,
+                isShowing: true,
             }
         },
         methods: {
@@ -184,6 +196,13 @@
                 console.log('done saveing conviction');
 
 
+            }
+        },
+        computed: {
+            heading() {
+
+                const d = this.$store.state.convictions[this.conviction_index];
+                return d.court_name + ', ' + d.name  + ', ' + d.arrest_date  + ', ' + d.release_date ;
             }
         },
     }
