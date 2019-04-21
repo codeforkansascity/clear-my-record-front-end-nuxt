@@ -333,7 +333,7 @@ const store = () => new Vuex.Store({
         async saveConviction({commit}, payload) {
             console.log('action   saveConviction');
 
-            if (payload.id) {
+            if (payload.data.id) {
                 await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + payload.data.id, payload.data)
                     .then((res) => {
                         if (res.status === 201) {
