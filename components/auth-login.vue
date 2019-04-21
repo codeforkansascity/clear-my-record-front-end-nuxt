@@ -45,16 +45,16 @@
                                         Login
                                     </button>
 
-                                    <a class="btn btn-link" href="/reset-password">
-                                        Forgot Your Password?
-                                    </a>
+                                    <!--<a class="btn btn-link" href="/reset-password">-->
+                                        <!--Forgot Your Password?-->
+                                    <!--</a>-->
                                 </div>
-                                <div class="col-md-8 col-md-offset-4">
-                                    <p>
-                                        Don't have an account?
-                                        <nuxt-link to="/register">Register</nuxt-link>
-                                    </p>
-                                </div>
+                                <!--<div class="col-md-8 col-md-offset-4">-->
+                                    <!--<p>-->
+                                        <!--Don't have an account?-->
+                                        <!--<nuxt-link to="/register">Register</nuxt-link>-->
+                                    <!--</p>-->
+                                <!--</div>-->
                             </div>
                         </form>
                     </div>
