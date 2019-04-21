@@ -61,7 +61,7 @@
 <script>
     export default {
         name: "client-list",
-       // middleware: 'auth',
+        // middleware: 'auth',
         data() {
             return {
                 gridState: 'wait',
@@ -104,11 +104,11 @@
             },
             edit(client_id) {
                 console.log(client_id);
-               // this.$store.dispatch('clearAll');
+                // this.$store.dispatch('clearAll');
                 this.$store.dispatch('getClient', client_id);
-                if ( this.$store.state.client.id ) {
-                    this.$store.dispatch('getClientConvictions', client_id);
-                }
+
+                this.$store.dispatch('getClientConvictions', client_id);
+                
                 this.$router.push('/intake')
             }
         },

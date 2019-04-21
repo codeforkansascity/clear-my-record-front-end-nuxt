@@ -260,7 +260,12 @@
             remove_charge() {
 
                 if (confirm("Remove this charge")) {
-                    alert('Code remove code')
+                    this.$store.dispatch('removeCharge', {
+                            conviction_index: this.conviction_index,
+                            charge_index: this.charge_index,
+                            charge_id: this.$store.state.convictions[this.conviction_index].charges[this.charge_index].id,
+                        }
+                    );
                 }
 
             },

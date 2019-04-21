@@ -137,7 +137,11 @@
             remove_conviction() {
 
                 if (confirm("Remove this conviction?")) {
-                    alert('Code remove code')
+                    this.$store.dispatch('removeConviction', {
+                            conviction_index: this.conviction_index,
+                            conviction_id: this.$store.state.convictions[this.conviction_index].id,
+                        }
+                    );
                 }
 
             },

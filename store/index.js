@@ -82,7 +82,7 @@ const store = () => new Vuex.Store({
             console.log('mutation STORE_CLIENT');
 
             Vue.set(state, 'client', data);
-            // state.client = data;
+            console.log('mutation STORE_CLIENT exit');
         },
 
         SAVE_CLIENT_ID(state, new_id) {
@@ -102,6 +102,8 @@ const store = () => new Vuex.Store({
             console.log('mutation STORE_CLIENT_CONVICTIONS');
 
             Vue.set(state, 'convictions', data);
+
+            console.log('mutation STORE_CLIENT_CONVICTIONS  exit');
             // state.client = data;
         },
 
@@ -124,6 +126,10 @@ const store = () => new Vuex.Store({
 
         SAVE_CONVICTION_ID(state, data) {
             state.convictions[data.index].id = data.id;
+        },
+
+        DELETE_CONVICTION(state,payload) {
+            state.convictions.splice([payload.conviction_index],1);
         },
 
         // ---------------------------------------
@@ -159,6 +165,10 @@ const store = () => new Vuex.Store({
             console.log(data);
 
             state.convictions[data.index].charges[data.charge_index].id = data.id;
+        },
+
+        DELETE_CHARGE(state,payload) {
+            state.convictions[payload.conviction_index].charges.splice(payload.charge_index,1);
         },
 
         addBlankConviction(state) {
@@ -230,6 +240,8 @@ const store = () => new Vuex.Store({
                         console.log('error');
                     }
                 })
+
+            console.log('getClient  exit');
         },
 
         async addClient({commit}, data) {
@@ -316,6 +328,7 @@ const store = () => new Vuex.Store({
                         console.log('error');
                     }
                 })
+            console.log('getClientConvictions exit');
         },
         async saveConviction({commit}, payload) {
             console.log('action   saveConviction');
@@ -359,12 +372,56 @@ const store = () => new Vuex.Store({
             }
 
         },
+        async removeConviction({commit}, payload) {
+            console.log('action   removeConviction');
+
+            if ( payload.conviction_id ) {
+                await this.$axios.delete(this.state.apiUrlPrefix + '/convictions/' + payload.conviction_id)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('removeConviction update error:');
+                        if (error.response) {
+                            console.log('removeConviction update error:' + error.response);
+                        }
+
+                    });
+            }
+
+            commit('DELETE_CONVICTION', {conviction_index: payload.conviction_index});
+
+        },
 
 
         // ---------------------------------------------
         // CHARGE
         // ---------------------------------------------
 
+        async getClientConvictionCharges({commit}, payload) {
+            console.log('getClientConvictionCharges '+ payload.conviction_id);
+            console.log(payload);
+
+
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + payload.client_id + '/convictions/' + payload.conviction_id)
+                .then((res) => {
+                    if (res.status === 200) {
+
+                        console.log(res.data);
+
+                        commit('STORE_CLIENT_CONVICTION_CHARGES', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
+
+            console.log('getClientConvictionCharges  end '+ payload.conviction_id);
+
+
+        },
 
         async saveCharge({commit}, payload) {
             console.log('action   saveCharge');
@@ -414,6 +471,30 @@ const store = () => new Vuex.Store({
                 }
 
             }
+
+        },
+
+        async removeCharge({commit}, payload) {
+            console.log('action   removeCharge');
+
+            if ( payload.charge_id ) {
+                await this.$axios.delete(this.state.apiUrlPrefix + '/charges/' + payload.charge_id)
+                    .then((res) => {
+                        if (res.status === 201) {
+                            console.log(res);
+                        } else {
+                            console.log('error with id');
+                        }
+                    }).catch(error => {
+                        console.log('removeCharge update error:');
+                        if (error.response) {
+                            console.log('removeCharge update error:' + error.response);
+                        }
+
+                    });
+            }
+
+            commit('DELETE_CHARGE', {conviction_index: payload.conviction_index, charge_index: payload.charge_index});
 
         },
     },
