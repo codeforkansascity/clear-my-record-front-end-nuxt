@@ -1,14 +1,14 @@
 <template>
   <div>
-    <nav-standard></nav-standard>
+    <nav-intake></nav-intake>
     <nuxt/>
   </div>
 </template>
 
 <script>
-    import NavStandard from "../components/nav-standard";
+    import NavIntake from "../components/nav-intake";
     export default {
-        components: {NavStandard}
+        components: {NavIntake}
     }
 </script>
 
