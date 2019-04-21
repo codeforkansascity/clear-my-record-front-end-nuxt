@@ -69,7 +69,7 @@ module.exports = {
         // See https://github.com/nuxt-community/axios-module#options
         // baseURL: 'http://pdb-cmr-backend.test'
         // baseURL: 'http://127.0.0.1:5000'
-        baseURL: 'https://cmr-app.codeforkc.org'
+        baseURL: 'https://cmr-app.codeforkc.org/api/'
     },
 
     auth: {
