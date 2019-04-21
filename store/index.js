@@ -68,15 +68,21 @@ const store = () => new Vuex.Store({
             // state.questions = [];
             // state.pii = [];
             //state.cases = [];
-            state.client = {};
-            state.convictions = [];
+            // state.client = {};
+            // state.convictions = [];
+
+            Vue.set(state, 'client', {});
+            Vue.set(state, 'convictions', []);
         },
 
         // ---------------------------------------
         // CLIENT
         // ---------------------------------------
         STORE_CLIENT(state, data) {
-            state.client = data;
+            console.log('mutation STORE_CLIENT');
+
+            Vue.set(state, 'client', data);
+            // state.client = data;
         },
 
         SAVE_CLIENT_ID(state, new_id) {
@@ -91,6 +97,14 @@ const store = () => new Vuex.Store({
         // ---------------------------------------
         // CONVICTION
         // ---------------------------------------
+
+        STORE_CLIENT_CONVICTIONS(state, data) {
+            console.log('mutation STORE_CLIENT_CONVICTIONS');
+
+            Vue.set(state, 'convictions', data);
+            // state.client = data;
+        },
+
         storeConvictionField(state, data) {
             console.log(data);
             const q = state.convictions[data.index];
@@ -171,8 +185,8 @@ const store = () => new Vuex.Store({
 //                            sentence: '',
 //                            convicted: '',
 //                            eligible: '',
-//                            expunge: '',
-//                            note: '',
+//                            please_expunge: '',
+//                            notes: '',
 //                        }
 //                    ]
 //                };
@@ -202,6 +216,10 @@ const store = () => new Vuex.Store({
         // },
 
 
+        // ---------------------------------------------
+        // CLIENT
+        // ---------------------------------------------
+
         async getClient({commit}, id) {
             console.log('getClient');
             await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + id)
@@ -213,11 +231,6 @@ const store = () => new Vuex.Store({
                     }
                 })
         },
-
-
-        // ---------------------------------------------
-        // CLIENT
-        // ---------------------------------------------
 
         async addClient({commit}, data) {
             console.log('addClient -----');
@@ -290,6 +303,20 @@ const store = () => new Vuex.Store({
         // CONVICTION
         // ---------------------------------------------
 
+        async getClientConvictions({commit}, id) {
+            console.log('getClientConvictions');
+            await this.$axios.get(this.state.apiUrlPrefix + '/clients/' + id + '/convictions')
+                .then((res) => {
+                    if (res.status === 200) {
+
+                        console.log(res.data);
+
+                        commit('STORE_CLIENT_CONVICTIONS', res.data)
+                    } else {
+                        console.log('error');
+                    }
+                })
+        },
         async saveConviction({commit}, payload) {
             console.log('action   saveConviction');
 

@@ -75,9 +75,9 @@ module.exports = {
         strategies: {
             local: {
                 endpoints: {
-                    //login: { url: 'login', method: 'post', propertyName: 'data.token' },
-                    //user: { url: 'me', method: 'get', propertyName: 'data' },
-                    //logout:  { url: 'logout', method: 'post' },
+                    // login: { url: 'login', method: 'post', propertyName: 'data.token' },
+                    // user: { url: 'me', method: 'get', propertyName: 'data' },
+                    // logout:  { url: 'logout', method: 'post' },
 
 
                      login: { url: 'http://pdb-cmr-backend.test/oauth/token', method: 'post', propertyName: 'access_token' },

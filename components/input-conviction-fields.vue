@@ -3,6 +3,8 @@
 
         <div class="col-md-6" style="padding-left: 2em;">
             <h1>{{ this. conviction_index}}</h1>
+            <input-conviction-field v-bind:i="this.conviction_index" f="court_name">Court Name, used for printing
+            </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
                 <template slot="help">
                     When speaking with the expungie, how they refere to this. "Car 2005"
@@ -24,7 +26,8 @@
                 (county) court
                 or a municipal (city) court?
             </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="court_city_county">What was the name of the County or
+            <input-conviction-field v-bind:i="this.conviction_index" f="court_city_county">What was the name of the
+                County or
                 City?
             </input-conviction-field>
 
@@ -54,7 +57,7 @@
         </div>
 
         <div class="col-md-7" style="padding-left: 2em; ">
-            <input-conviction-note-field v-bind:i="this.conviction_index" f="note">
+            <input-conviction-note-field v-bind:i="this.conviction_index" f="notes">
             </input-conviction-note-field>
         </div>
 
@@ -83,9 +86,11 @@
         <div class="col-md-12" style="padding-left: 5em;">
 
 
-            <input-charge-fields v-for="(charge, charge_index) in this.$store.getters.chargesForConviction(conviction_index)" :key="charge.id"
-                                 :charge_index="charge_index" :charge="charge"
-                                 :conviction_index="conviction_index"
+            <input-charge-fields
+                    v-for="(charge, charge_index) in this.$store.getters.chargesForConviction(conviction_index)"
+                    :key="charge.id"
+                    :charge_index="charge_index" :charge="charge"
+                    :conviction_index="conviction_index"
             >
             </input-charge-fields>
 
@@ -143,7 +148,7 @@
                 // data['client_id'] = this.$store.state.client.id;
                 // data['conviction_index'] = this.conviction_index;
 
-              //  let client = this.$store.state.client;          // TODO: we should get the client id from the parms
+                //  let client = this.$store.state.client;          // TODO: we should get the client id from the parms
                 let client_id = this.$store.state.client.id;
 
                 let data = this.$store.state.convictions[this.conviction_index];
@@ -166,7 +171,11 @@
                 }
 
 
-                this.$store.dispatch('saveConviction', {data: conviction_payload, conviction_index: this.conviction_index, client_id: client_id});
+                this.$store.dispatch('saveConviction', {
+                    data: conviction_payload,
+                    conviction_index: this.conviction_index,
+                    client_id: client_id
+                });
 
                 console.log('done saveing conviction');
 

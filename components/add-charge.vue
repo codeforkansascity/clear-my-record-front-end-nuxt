@@ -18,9 +18,9 @@
                     charge:
                         {
                             eligible: false,
-                            expunge: false,
-                            type: '',
-                            class: '',
+                            please_expunge: false,
+                            conviction_class_type: '',
+                            conviction_charge_type: '',
                             citation: '',
                             charge: '',
                             sentence: '',
