@@ -54,9 +54,11 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    <button v-on:click="update" type="submit" class="btn btn-primary btn-sm">
+                    <button v-on:click="update" :disabled="savingStatus === 1" type="submit"
+                            class="btn btn-primary btn-sm">
                         Save
                     </button>
+                    <span v-show="this.savingMessage">{{ this.savingMessage }}</span>
                 </div>
                 <div class="col-md-6 text-right">
                 </div>
@@ -132,11 +134,28 @@
                     }
                 ],
                 isShowing: true,
+                savingStatus: 0,
+                savingMessage: '',
             }
         },
         methods: {
-            update() {
-                this.$store.dispatch('updateClient', this.$store.state.client);  // Fix: need to pass the correct client_id
+            async update() {
+
+                this.savingStatus = 1;
+                this.savingMessage = "Saving";
+
+                let save_status = await this.$store.dispatch('updateClient', this.$store.state.client);  // Fix: need to pass the correct client_id
+                this.savingStatus = 0;
+                if (save_status) {
+                    this.savingMessage = "Saved";
+                    setTimeout(() => {
+                        this.savingMessage = "";
+                    }, 5000);
+
+                } else {
+                    this.savingMessage = "Error";
+                }
+
             },
         },
 

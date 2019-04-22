@@ -11,7 +11,7 @@
             <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
         </div>
         <!--<section-print></section-print>-->
-        <section-circuit-information></section-circuit-information>
+        <!--<section-circuit-information></section-circuit-information>-->
     </div>
 </template>
 
