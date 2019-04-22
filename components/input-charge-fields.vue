@@ -7,54 +7,42 @@
             </div>
             <div class="col-md-3">
 
-                <b-form-checkbox v-show="convicted" v-model="convicted" name="check-button" switch>
-                    Is Convicted
-                </b-form-checkbox>
+                <b-form-checkbox
 
-                <b-form-checkbox v-show="!convicted" v-model="convicted" name="check-button" switch>
-                    Was NOT Convicted
-                </b-form-checkbox>
+                        v-model="convicted"
 
-            </div>
-            <div class="col-md-3" v-show="convicted">
+                        value="1"
+                        unchecked-value="0"></b-form-checkbox> Convicted
 
-                <b-form-checkbox v-show="eligible" v-model="eligible" name="check-button" switch>
-                    Is Expungable
-                </b-form-checkbox>
-
-                <b-form-checkbox v-show="!eligible" v-model="eligible" name="check-button" switch>
-                    Is NOT Expungable
-                </b-form-checkbox>
 
             </div>
-            <div class="col-md-3" v-show="eligible">
+            <div class="col-md-3">
 
-                <b-form-checkbox v-show="!please_expunge" v-model="please_expunge" name="check-button" switch>
-                    Do NOT Expunge
-                </b-form-checkbox>
 
-                <b-form-checkbox v-show="please_expunge" v-model="please_expunge" name="check-button" switch>
-                    Expunge
-                </b-form-checkbox>
+
+                <b-form-checkbox
+
+                        v-model="eligible"
+
+                        value="1"
+                        unchecked-value="0"></b-form-checkbox> Eligible
+
 
             </div>
+            <div class="col-md-3">
 
-            <div class="col-md-3" v-show="please_expunge">
 
-                <b-form-checkbox v-show="!please_print" v-model="please_print" name="check-button" switch>
-                    Do NOT print
-                </b-form-checkbox>
 
-                <b-form-checkbox v-show="please_print" v-model="please_print" name="check-button" switch>
-                    Print
-                </b-form-checkbox>
+                <b-form-checkbox
+
+                        v-model="please_expunge"
+
+                        value="1"
+                        unchecked-value="0"></b-form-checkbox> Expunge
+
 
             </div>
 
-
-            <div class="col-md-3" v-show="!eligible">
-                &nbsp;
-            </div>
 
 
             <div class="col-md-1">
@@ -203,12 +191,15 @@
         computed: {
             convicted: {
                 get() {
-                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
-                    return q ? q['convicted'] : '';
+                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['convicted'];
+                    console.log('convicted=' +q);
+                    console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['convicted']);
+                    return q;
                 },
                 set(value) {
 
-                    let bvalue = value ? true : false;
+                    let bvalue = value ;
+                    console.log("set convicted to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
@@ -219,12 +210,17 @@
             },
             eligible: {
                 get() {
-                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
-                    return q ? q['eligible'] : '';
+
+
+                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['eligible'];
+                    console.log('eligible=' +q);
+                    console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['eligible']);
+                    return q;
                 },
                 set(value) {
 
-                    let bvalue = value ? true : false;
+                    let bvalue = value ;
+                    console.log("set eligible to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
@@ -235,30 +231,19 @@
             },
             please_expunge: {
                 get() {
-                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
-                    return q ? q['please_expunge'] : '';
+                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['please_expunge'];
+                    console.log('please_expunge=' +q);
+                    console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['please_expunge']);
+                    return q;
+
                 },
                 set(value) {
-                    let bvalue = value ? true : false;
+                    let bvalue = value ;
+                    console.log("set please_expunge to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
                         field: 'please_expunge',
-                        value: bvalue
-                    });
-                },
-            },
-            please_print: {
-                get() {
-                    const q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
-                    return q ? q['please_print'] : '';
-                },
-                set(value) {
-                    let bvalue = value ? true : false;
-                    this.$store.commit('storeChargeField', {
-                        conviction_index: this.conviction_index,
-                        charge_index: this.charge_index,
-                        field: 'please_print',
                         value: bvalue
                     });
                 },

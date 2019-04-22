@@ -23,7 +23,7 @@
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th colspan="2">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +51,7 @@
                     <td>{{ client.address_line_1}} {{ client.address_line_2 }} {{ client.city }} {{ client.state }}</td>
                     <td>{{ client.status }}</td>
                     <td><a @click="edit(client.id)">Edit</a></td>
+                    <td><a @click="print(client.id)">Print</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -110,6 +111,15 @@
                 this.$store.dispatch('getClientConvictions', client_id);
 
                 this.$router.push('/intake')
+            },
+            print(client_id) {
+                console.log(client_id);
+                // this.$store.dispatch('clearAll');
+                this.$store.dispatch('getClient', client_id);
+
+                this.$store.dispatch('getClientConvictions', client_id);
+
+                this.$router.push('/pro-se-form')
             }
         },
     }

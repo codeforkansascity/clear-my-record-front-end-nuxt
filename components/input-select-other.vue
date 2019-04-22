@@ -17,7 +17,7 @@
 
 <script>
     export default {
-        name: "input-charge-select-field",
+        name: "input-select-other",
         data() {
             return {
                 show_other_input: false,

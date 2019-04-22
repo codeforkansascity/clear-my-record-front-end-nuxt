@@ -54,7 +54,7 @@
         computed: {
             inp_value: {
                 get() {
-                    return this.$store.state.client[this.f];
+                    return this.$store.state.convictions[this.i].charges[this.j][this.f];
                 },
                 set(value) {
                     if (value.abbreviation === 'Other') {
