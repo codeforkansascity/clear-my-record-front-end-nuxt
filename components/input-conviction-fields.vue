@@ -14,17 +14,16 @@
 
         <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
 
-            <input-conviction-field v-bind:i="this.conviction_index" f="court_name">Court Name, used for printing
-            </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
+            <input-conviction-field v-bind:i="this.conviction_index" f="name">What Expungie calls this (or your abreviation)?
                 <template slot="help">
-                    When speaking with the expungie, how they refere to this. "Car 2005"
+                    When speaking with the expungie, how they refer to this. "Car 2005".
+                    Until someone meets with the expungie, a short but meaningful description.
                 </template>
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Approx. date
-                of arrest?
+                of arrest per Expungie?
                 <template slot="help">
-                    Any format is ok, even just year
+                    Any format is ok, even just a year.
                 </template>
             </input-conviction-field>
 

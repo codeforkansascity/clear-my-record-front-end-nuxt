@@ -11,6 +11,7 @@
             <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
         </div>
         <!--<section-print></section-print>-->
+        <section-circuit-information></section-circuit-information>
     </div>
 </template>
 
@@ -18,12 +19,14 @@
 
     import SectionPersonsInformation from "../components/section-persons-information";
     import SectionConvictionCharges from "../components/section-conviction-charges";
+    import SectionCircuitInformation from "../components/section-circuit-information";
 
     // import SectionPrint from "../components/section-print";
 
     export default {
         middleware: 'auth',
         components: {
+            SectionCircuitInformation,
             SectionPersonsInformation,
             SectionConvictionCharges,
             // SectionPrint,
