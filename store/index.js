@@ -125,11 +125,13 @@ const store = () => new Vuex.Store({
         },
 
         SAVE_CONVICTION_ID(state, data) {
+            console.log('SAVE_CONVICTION_ID');
             state.convictions[data.index].id = data.id;
+            console.log('SAVE_CONVICTION_ID exit');
         },
 
-        DELETE_CONVICTION(state,payload) {
-            state.convictions.splice([payload.conviction_index],1);
+        DELETE_CONVICTION(state, payload) {
+            state.convictions.splice([payload.conviction_index], 1);
         },
 
         // ---------------------------------------
@@ -167,8 +169,8 @@ const store = () => new Vuex.Store({
             state.convictions[data.index].charges[data.charge_index].id = data.id;
         },
 
-        DELETE_CHARGE(state,payload) {
-            state.convictions[payload.conviction_index].charges.splice(payload.charge_index,1);
+        DELETE_CHARGE(state, payload) {
+            state.convictions[payload.conviction_index].charges.splice(payload.charge_index, 1);
         },
 
         addBlankConviction(state) {
@@ -296,19 +298,23 @@ const store = () => new Vuex.Store({
         async updateClient({commit}, data) {
             console.log('updateClient -----');
 
-
-            await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
+            let ret = false;
+            ret = await this.$axios.put(this.state.apiUrlPrefix + '/clients/' + data.id, data)
                 .then((res) => {
                     if (res.status === 200) {
-
+                        return true;
                     } else {
-                        console.log('error');
+                        console.log('action   updateClient status =' + res.status);
+                        return false;
                     }
                 }).catch(error => {
                     if (error.response) {
-                        console.log(error.response);
+                        console.log('updateClient update error:' + error.response);
                     }
+                    return false;
                 });
+
+            return ret;
         },
 
         // ---------------------------------------------
@@ -330,23 +336,27 @@ const store = () => new Vuex.Store({
                 })
             console.log('getClientConvictions exit');
         },
+
+
         async saveConviction({commit}, payload) {
             console.log('action   saveConviction');
 
-            if (payload.id) {
-                await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + payload.data.id, payload.data)
+            let ret = false;
+            if (payload.data.id) {
+                ret = await this.$axios.put(this.state.apiUrlPrefix + '/convictions/' + payload.data.id, payload.data)
                     .then((res) => {
-                        if (res.status === 201) {
-                            console.log(res);
+                        if (res.status === 200 || res.status === 201) {
+                            return true;
                         } else {
-                            console.log('error with id');
+                            console.log('action   saveConviction status =' + res.status);
+                            return false;
                         }
                     }).catch(error => {
                         console.log('saveConviction update error:');
                         if (error.response) {
                             console.log('saveConviction update error:' + error.response);
                         }
-
+                        return false;
                     });
             } else {
                 let new_id = await this.$axios.post(this.state.apiUrlPrefix + '/clients/' + payload.client_id + '/convictions', payload.data)
@@ -354,31 +364,38 @@ const store = () => new Vuex.Store({
                         if (res.status === 200) {
                             return res.data;
                         } else {
-                            return null;
+                            console.log('action   saveConviction status:' + res.status);
+                            return false;
                         }
                     }).catch(error => {
-                        console.log('saveConviction add error 88:');
-
                         if (error.response) {
-                            console.log('saveConviction add error:' + error.response);
+                            console.log('action   saveConviction add error:');
+                            console.log(error.response);
                         }
-                        return null;
+                        return false;
                     });
 
                 if (new_id) {
-                    commit('SAVE_CONVICTION_ID', {id: new_id, index: payload.conviction_index});
+                    await commit('SAVE_CONVICTION_ID', {id: new_id, index: payload.conviction_index});
+                    ret = true;
+                } else {
+                    ret = false;
                 }
-
             }
+
+            console.log('action   saveConviction END ret=' + ret);
+
+            return ret;
+
 
         },
         async removeConviction({commit}, payload) {
             console.log('action   removeConviction');
 
-            if ( payload.conviction_id ) {
+            if (payload.conviction_id) {
                 await this.$axios.delete(this.state.apiUrlPrefix + '/convictions/' + payload.conviction_id)
                     .then((res) => {
-                        if (res.status === 201) {
+                        if (res.status === 200 || res.status === 201) {
                             console.log(res);
                         } else {
                             console.log('error with id');
@@ -402,7 +419,7 @@ const store = () => new Vuex.Store({
         // ---------------------------------------------
 
         async getClientConvictionCharges({commit}, payload) {
-            console.log('getClientConvictionCharges '+ payload.conviction_id);
+            console.log('getClientConvictionCharges ' + payload.conviction_id);
             console.log(payload);
 
 
@@ -418,7 +435,7 @@ const store = () => new Vuex.Store({
                     }
                 })
 
-            console.log('getClientConvictionCharges  end '+ payload.conviction_id);
+            console.log('getClientConvictionCharges  end ' + payload.conviction_id);
 
 
         },
@@ -427,20 +444,23 @@ const store = () => new Vuex.Store({
             console.log('action   saveCharge');
             console.log(payload);
 
+            let ret = false;
             if (payload.data.id) {
-                await this.$axios.put(this.state.apiUrlPrefix + '/charges/' + payload.data.id, payload.data)
+                ret = await this.$axios.put(this.state.apiUrlPrefix + '/charges/' + payload.data.id, payload.data)
                     .then((res) => {
-                        if (res.status === 201) {
-                            console.log(res);
+                        if (res.status === 200 || res.status === 201) {
+                            return true;
                         } else {
-                            console.log('error with id');
+                            console.log('action   saveCharge status =' + res.status);
+                            return false;
+                            ;
                         }
                     }).catch(error => {
-                        console.log('saveConviction update error:');
+                        console.log('saveCharge update error:');
                         if (error.response) {
-                            console.log('saveConviction update error:' + error.response);
+                            console.log('saveCharge update error:' + error.response);
                         }
-
+                        return false;
                     });
             } else {
                 let new_id = await this.$axios.post(this.state.apiUrlPrefix +
@@ -451,33 +471,37 @@ const store = () => new Vuex.Store({
                         if (res.status === 200) {
                             return res.data;
                         } else {
-                            return null;
+                            console.log('action   saveCharge status:' + res.status);
+                            return false;
                         }
                     }).catch(error => {
-                        console.log('saveCharge add error 88:');
-
                         if (error.response) {
-                            console.log('saveCharge add error:' + error.response);
+                            console.log('action   saveCharge add error:');
+                            console.log(error.response);
                         }
-                        return null;
+                        return false;
                     });
 
                 if (new_id) {
-                    commit('SAVE_CHARGE_ID', {
+                    await commit('SAVE_CHARGE_ID', {
                         id: new_id,
                         index: payload.conviction_index,
                         charge_index: payload.charge_index
                     });
+                    ret = true;
+                } else {
+                    ret = false;
                 }
-
             }
+            console.log('action   saveCharge END ret=' + ret);
 
+            return ret;
         },
 
         async removeCharge({commit}, payload) {
             console.log('action   removeCharge');
 
-            if ( payload.charge_id ) {
+            if (payload.charge_id) {
                 await this.$axios.delete(this.state.apiUrlPrefix + '/charges/' + payload.charge_id)
                     .then((res) => {
                         if (res.status === 201) {

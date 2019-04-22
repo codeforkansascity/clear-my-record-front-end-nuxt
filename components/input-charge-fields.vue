@@ -16,7 +16,7 @@
                 </b-form-checkbox>
 
             </div>
-            <div class="col-md-3" v-show="convicted" >
+            <div class="col-md-3" v-show="convicted">
 
                 <b-form-checkbox v-show="eligible" v-model="eligible" name="check-button" switch>
                     Is Expungable
@@ -79,8 +79,13 @@
             </div>
 
 
-            <input-charge-select-other class="mb-2" v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="conviction_charge_type" v-bind:options="conviction_charge_type_options">Charge type?</input-charge-select-other>
-            <input-charge-select-other class="mb-2" v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="conviction_class_type" v-bind:options="conviction_class_type_options">Class?</input-charge-select-other>
+            <input-charge-select-other class="mb-2" v-bind:i="this.conviction_index" v-bind:j="this.charge_index"
+                                       f="conviction_charge_type" v-bind:options="conviction_charge_type_options">Charge
+                type?
+            </input-charge-select-other>
+            <input-charge-select-other class="mb-2" v-bind:i="this.conviction_index" v-bind:j="this.charge_index"
+                                       f="conviction_class_type" v-bind:options="conviction_class_type_options">Class?
+            </input-charge-select-other>
 
             <div class="col-md-5" style="padding-left: 2em;">
                 <input-charge-field v-bind:i="this.conviction_index" v-bind:j="this.charge_index" f="sentence">Sentence
@@ -116,8 +121,9 @@
 
             </div>
 
-            <div class="col-md-2" style="padding-top: 1.25em; padding-bottom: 1em">
+            <div class="col-md-2" :disabled="savingStatus === 1" style="padding-top: 1.25em; padding-bottom: 1em">
                 <button class="float-right" @click="save_charge">Save</button>
+                <span v-show="this.savingMessage">{{ this.savingMessage }}</span>
             </div>
 
         </div>
@@ -153,6 +159,8 @@
         data() {
             return {
                 isShowing: true,
+                savingStatus: 0,
+                savingMessage: '',
                 checked: false,
                 conviction_charge_type_options: [
                     {
@@ -269,13 +277,17 @@
                 }
 
             },
-            save_charge() {
+            async save_charge() {
+
+                this.savingStatus = 1;
+                this.savingMessage = "Saving";
+
                 let client_id = this.$store.state.client.id;
                 let conviction_id = this.$store.state.convictions[this.conviction_index].id;
 
                 let data = this.$store.state.convictions[this.conviction_index].charges[this.charge_index];
 
-                this.$store.dispatch('saveCharge', {
+                let save_status = await this.$store.dispatch('saveCharge', {
                         data: data,
                         conviction_index: this.conviction_index,
                         charge_index: this.charge_index,
@@ -284,7 +296,20 @@
                     }
                 );
 
-                console.log('done saveing conviction');
+                this.savingStatus = 0;
+
+                if (save_status) {
+                    this.savingMessage = "Saved";
+                    setTimeout(() => {
+                        this.savingMessage = "";
+                    }, 5000);
+
+                } else {
+                    this.savingMessage = "Error";
+                }
+
+
+                console.log('done saveing charge');
             }
         },
     }

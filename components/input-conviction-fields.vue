@@ -1,30 +1,30 @@
 <template>
     <div class="row" style="padding-top: 3em">
 
-            <div class="col-md-11">
-                <h3>CONVICTION: {{ this.heading }}</h3>
-            </div>
-            <div class="col-md-1">
-                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
-                     src="/images/noun_collapse_2091048_000000.png" class="help-button">
-                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
-                     src="/images/noun_expand_1211939_000000.png" class="help-button">
-            </div>
+        <div class="col-md-11">
+            <h3>CONVICTION: {{ this.heading }}</h3>
+        </div>
+        <div class="col-md-1">
+            <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                 src="/images/noun_collapse_2091048_000000.png" class="help-button">
+            <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                 src="/images/noun_expand_1211939_000000.png" class="help-button">
+        </div>
 
 
         <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
 
-            <input-conviction-field v-bind:i="this.conviction_index" f="court_name">Court Name, used for printing
-            </input-conviction-field>
-            <input-conviction-field v-bind:i="this.conviction_index" f="name">Name that is is refered to as?
+            <input-conviction-field v-bind:i="this.conviction_index" f="name">What Expungie calls this (or your
+                abreviation)?
                 <template slot="help">
-                    When speaking with the expungie, how they refere to this. "Car 2005"
+                    When speaking with the expungie, how they refer to this. "Car 2005".
+                    Until someone meets with the expungie, a short but meaningful description.
                 </template>
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Approx. date
-                of arrest?
+                of arrest per Expungie?
                 <template slot="help">
-                    Any format is ok, even just year
+                    Any format is ok, even just a year.
                 </template>
             </input-conviction-field>
 
@@ -67,34 +67,37 @@
             Notes:
         </div>
 
-        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; ">
+        <div class="col-md-7" v-show="isShowing" style="padding-left: 2em; ">
             <input-conviction-note-field v-bind:i="this.conviction_index" f="notes">
             </input-conviction-note-field>
         </div>
 
-        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em;">
+        <div class="col-md-2" v-show="isShowing" style="padding-top: 1.25em;">
 
         </div>
 
-        <div class="col-md-2" v-show="isShowing" >
+        <div class="col-md-2" v-show="isShowing">
             &nbsp;
         </div>
 
-        <div class="col-md-1"  v-show="isShowing" style="padding-top: 1.25em;">
+        <div class="col-md-1" v-show="isShowing" style="padding-top: 1.25em;">
             <button class="float-left" @click="remove_conviction">Remove</button>
         </div>
 
-        <div class="col-md-7"  v-show="isShowing" style="padding-left: 2em; padding-bottom: 1em;">
+        <div class="col-md-7" v-show="isShowing" style="padding-left: 2em; padding-bottom: 1em;">
 
         </div>
 
-        <div class="col-md-2"  v-show="isShowing" style="padding-top: 1.25em; padding-bottom: 1em">
+        <div class="col-md-2" v-show="isShowing" :disabled="savingStatus === 1"
+             style="padding-top: 1.25em; padding-bottom: 1em">
             <button class="float-right" @click="save_conviction">Save</button>
+            <span v-show="this.savingMessage">{{ this.savingMessage }}</span>
         </div>
 
 
-        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;" v-show="isShowing" >CHARGE(S)</h4>
-        <div class="col-md-12"  style="padding-left: 5em;">
+        <h4 style="padding-left: 1.5em; padding-top:2em; padding-bottom: 0px; margin-bottom: 0px;" v-show="isShowing">
+            CHARGE(S)</h4>
+        <div class="col-md-12" style="padding-left: 5em;">
 
 
             <input-charge-fields
@@ -143,6 +146,8 @@
                 gridState: 'wait',
                 global_error_message: null,
                 isShowing: true,
+                savingStatus: 0,
+                savingMessage: '',
             }
         },
         methods: {
@@ -157,14 +162,10 @@
                 }
 
             },
-            save_conviction() {
+            async save_conviction() {
 
-                // let data = this.$store.state.convictions[this.conviction_index];
-                //
-                // data['client_id'] = this.$store.state.client.id;
-                // data['conviction_index'] = this.conviction_index;
-
-                //  let client = this.$store.state.client;          // TODO: we should get the client id from the parms
+                this.savingStatus = 1;
+                this.savingMessage = "Saving";
                 let client_id = this.$store.state.client.id;
 
                 let data = this.$store.state.convictions[this.conviction_index];
@@ -187,11 +188,24 @@
                 }
 
 
-                this.$store.dispatch('saveConviction', {
+                let save_status = await this.$store.dispatch('saveConviction', {
                     data: conviction_payload,
                     conviction_index: this.conviction_index,
                     client_id: client_id
                 });
+
+                this.savingStatus = 0;
+
+                if (save_status) {
+                    this.savingMessage = "Saved";
+                    setTimeout(() => {
+                        this.savingMessage = "";
+                    }, 5000);
+
+                } else {
+                    this.savingMessage = "Error";
+                }
+
 
                 console.log('done saveing conviction');
 
@@ -202,7 +216,7 @@
             heading() {
 
                 const d = this.$store.state.convictions[this.conviction_index];
-                return d.court_name + ', ' + d.name  + ', ' + d.arrest_date  + ', ' + d.release_date ;
+                return d.court_name + ', ' + d.name + ', ' + d.arrest_date + ', ' + d.release_date;
             }
         },
     }
