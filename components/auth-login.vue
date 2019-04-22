@@ -86,6 +86,7 @@
                     await this.$auth.loginWith('local', {  // NUXT AUTH
                         data: {
                             username: this.email,
+                            email: this.email,
                             password: this.password,
                             grant_type: 'password',
                             client_id: 2,
