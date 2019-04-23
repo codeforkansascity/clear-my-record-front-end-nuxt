@@ -6,9 +6,9 @@
             <p>The State of Missouri allows some criminal offenses to be expunged from your criminal record. This means
                 that the record is closed and you are able to honestly say “no” to whether you have the conviction
                 almost all the time. The state even provides a self-help form for you to fill out and file.</p>
-            <a class="btn btn-secondary btn-sm"
-               href="/do-you-qualify">Find out if you qualify
-            </a>
+            <!--<a class="btn btn-secondary btn-sm"-->
+               <!--href="/do-you-qualify">Find out if you qualify-->
+            <!--</a>-->
         </template>
         <template slot="right">
             <h5>THIS IS HOW IT WORKS.</h5>
