@@ -1,17 +1,11 @@
 <template>
     <div class="container">
         <div style="padding-top: 3em;">
-            <h2>Expungie Information</h2>
             <section-persons-information></section-persons-information>
-
-            <section-circuit-information></section-circuit-information>
         </div>
-        <div style="padding-top: 3em;">
-            <h2>What are your conviction and charge details?</h2>
 
-            <h3>CONVICTIONS</h3>
             <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
-        </div>
+
         <!--<section-print></section-print>-->
         <section-circuit-information></section-circuit-information>
     </div>

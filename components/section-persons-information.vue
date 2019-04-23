@@ -1,10 +1,10 @@
 <template>
+    <b-container>
 
-    <div style="border: #7f828b; margin-left: .1em; border-width: thin; border-style: solid;">
 
         <div class="row">
             <div class="col-md-11" style="padding-left: 1em; ">
-                <h2>{{ this.$store.state.client.filing_court }} </h2>
+                <h2>{{ this.$store.state.client.full_name }} {{ this.$store.state.client.filing_court }} </h2>
             </div>
             <div>
                 <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
@@ -47,11 +47,13 @@
                 <pii-input field="judicial_circuit_number">Judicial Circuit Number</pii-input>
                 <pii-input field="county_name">County Name</pii-input>
 
+                <pii-note-field field="previous_expungements">Previous Expungements</pii-note-field>
+
             </div>
 
 
         </div>
-        <div class="form-group">
+        <div class="form-group"  v-show="isShowing">
             <div class="row">
                 <div class="col-md-6">
                     <button v-on:click="update" :disabled="savingStatus === 1" type="submit"
@@ -64,7 +66,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    </b-container>
 
 </template>
 

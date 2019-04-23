@@ -1,11 +1,11 @@
 <template>
     <b-container style="background-color: lightgoldenrodyellow;">
-        <div class="row" style="background-color: lightgoldenrodyellow; margin-top: 2em; padding-top: 1em;">
+        <div class="row" style="background-color: lightgoldenrodyellow; margin-top: 1em; ">
 
-            <div class="col-md-5">
+            <div class="col-md-8">
                 <h5>{{ this.charge.citation }} {{ this.charge.charge }}</h5>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
 
                 <b-form-checkbox
 
@@ -16,7 +16,7 @@
 
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
 
 
 
@@ -29,7 +29,7 @@
 
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
 
 
 
@@ -46,9 +46,9 @@
 
 
             <div class="col-md-1">
-                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                <img v-show="isShowing" style="width: 1.8em; margin-left: .55em" v-on:click="isShowing ^= true"
                      src="/images/noun_collapse_2091048_000000.png" class="help-button">
-                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                <img v-show="!isShowing" style="width: 1.5em; margin-left: .55em; margin-bottom: 1em" v-on:click="isShowing ^= true"
                      src="/images/noun_expand_1211939_000000.png" class="help-button">
             </div>
 
@@ -102,7 +102,7 @@
             </div>
 
             <div class="col-md-1" style="padding-top: 1.25em;">
-                <button class="float-left" @click="remove_charge">Remove</button>
+                <a href="#" tabIndex="-1" class="float-left btn btn-outline-secondary btn-sm"  @click="remove_charge">Remove</a>
             </div>
 
             <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
@@ -110,7 +110,7 @@
             </div>
 
             <div class="col-md-2" :disabled="savingStatus === 1" style="padding-top: 1.25em; padding-bottom: 1em">
-                <button class="float-right" @click="save_charge">Save</button>
+                <button class="float-right btn-success" @click="save_charge">Save</button>
                 <span v-show="this.savingMessage">{{ this.savingMessage }}</span>
             </div>
 
