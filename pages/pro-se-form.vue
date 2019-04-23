@@ -16,7 +16,7 @@
 
             <tr>
                 <td>Judicial Circuit Number:</td>
-                <td> <get_pii_value field="judicial_ciruit_number" missing_prompt="Judicial Circuit Number"></get_pii_value></td>
+                <td> <get_pii_value field="judicial_circuit_number" missing_prompt="Judicial Circuit Number"></get_pii_value></td>
 
             </tr>
             <tr>
@@ -102,7 +102,7 @@
             and please leave your initials so we know who is saying what. scs ]</P>
 
 
-        <h1>IN THE <get_pii_value field="judicial_ciruit_number"></get_pii_value> JUDICIAL CIRCUIT, <get_pii_value field="county_name"></get_pii_value> COUNTY, MISSOURI</h1>
+        <h1>IN THE <get_pii_value field="judicial_circuit_number"></get_pii_value> JUDICIAL CIRCUIT, <get_pii_value field="county_name"></get_pii_value> COUNTY, MISSOURI</h1>
 
 
         <p><get_pii_value field="full_name" missing_prompt="What is your full name?"></get_pii_value>,<br>

@@ -20,7 +20,7 @@
                     <pii-note-field field="petitioner_name">Petitioner Name/Address</pii-note-field>
                     <pii-note-field field="division_number">Division Number/Address</pii-note-field>
                     <pii-note-field field="city_name_here">Municipal Court Name/Address</pii-note-field>
-                    <pii-note-field field="county_name">County of Prosecutor(s)/Address</pii-note-field>
+                    <!--<pii-note-field field="county_name">County of Prosecutor(s)/Address</pii-note-field>-->
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
 

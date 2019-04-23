@@ -25,7 +25,7 @@
                  v +=  this.$store.state.client['address_line_2'] ? ', ' + this.$store.state.client['address_line_2'] : '';
                  v +=  this.$store.state.client['city'] ? ', ' + this.$store.state.client['city'] : '';
                  v +=  this.$store.state.client['state'] ? ', ' + this.$store.state.client['state'] : '';
-                 v +=  this.$store.state.client['zip'] ? ', ' + this.$store.state.client['zip'] : '';
+                 v +=  this.$store.state.client['zip_code'] ? ', ' + this.$store.state.client['zip_code'] : '';
 
                 if ( v ) {
                     return v;
