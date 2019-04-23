@@ -45,7 +45,7 @@
                 <input-date field="dob">What is your date of birth?</input-date>
 
                 <pii-input field="judicial_ciruit_number">Judicial Circuit Number</pii-input>
-                <pii-input field="count_name">County Name</pii-input>
+                <pii-input field="county_name">County Name</pii-input>
 
             </div>
 
