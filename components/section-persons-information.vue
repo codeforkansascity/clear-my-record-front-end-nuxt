@@ -44,7 +44,7 @@
                 <input-date field="license_expiration_date">Expiration date</input-date>
                 <input-date field="dob">What is your date of birth?</input-date>
 
-                <pii-input field="judicial_ciruit_number">Judicial Circuit Number</pii-input>
+                <pii-input field="judicial_circuit_number">Judicial Circuit Number</pii-input>
                 <pii-input field="county_name">County Name</pii-input>
 
             </div>
