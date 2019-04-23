@@ -113,3 +113,9 @@
 .help-button:hover {
     color: lightgray;
 }
+
+.pro-se {
+    font-family: Arial;
+    font-size: 12pt;
+    line-height: 2;
+}
