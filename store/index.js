@@ -304,12 +304,15 @@ const store = () => new Vuex.Store({
                     if (res.status === 200) {
                         return true;
                     } else {
-                        console.log('action   updateClient status =' + res.status);
+                        alert(res.status);
                         return false;
                     }
                 }).catch(error => {
+
                     if (error.response) {
-                        console.log('updateClient update error:' + error.response);
+                        alert(error.response.data.message);
+                    } else {
+                        alert(error);
                     }
                     return false;
                 });
