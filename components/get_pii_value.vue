@@ -1,7 +1,5 @@
 <template>
-<span>
-    {{ this.val }}
-</span>
+<span>{{ this.val }}</span>
 
 </template>
 
@@ -23,6 +21,8 @@
 
                 let v = this.$store.state.client[this.field];
                 if ( v ) {
+
+                    console.log('|' + v + '|');
                     return v;
                 } else {
                     return "MISSING Client: " + this.missing_prompt;

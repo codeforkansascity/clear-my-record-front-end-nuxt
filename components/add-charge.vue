@@ -1,5 +1,5 @@
 <template>
-    <button @click="add_case">Add Charge</button>
+    <button class="btn-success"@click="add_case">Add Charge</button>
 </template>
 
 <script>

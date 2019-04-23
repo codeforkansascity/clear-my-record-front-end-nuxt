@@ -241,7 +241,15 @@ const store = () => new Vuex.Store({
                     } else {
                         console.log('error');
                     }
-                })
+                }).catch(error => {
+
+                    if (error.response) {
+                        alert('aaaaa ' + error.response.data.message);
+                    } else {
+                        alert('aaaaa ' + error);
+                    }
+                    return false;
+                });
 
             console.log('getClient  exit');
         },
@@ -292,7 +300,15 @@ const store = () => new Vuex.Store({
                     } else {
                         console.log('error');
                     }
-                })
+                }).catch(error => {
+
+                    if (error.response) {
+                        alert('aaaaa ' + error.response.data.message);
+                    } else {
+                        alert('aaaaa ' + error);
+                    }
+                    return false;
+                });
         },
 
         async updateClient({commit}, data) {
@@ -304,12 +320,15 @@ const store = () => new Vuex.Store({
                     if (res.status === 200) {
                         return true;
                     } else {
-                        console.log('action   updateClient status =' + res.status);
+                        alert(res.status);
                         return false;
                     }
                 }).catch(error => {
+
                     if (error.response) {
-                        console.log('updateClient update error:' + error.response);
+                        alert('aaaaa ' + error.response.data.message);
+                    } else {
+                        alert('aaaaa ' + error);
                     }
                     return false;
                 });
@@ -333,7 +352,16 @@ const store = () => new Vuex.Store({
                     } else {
                         console.log('error');
                     }
-                })
+                }).catch(error => {
+
+                    if (error.response) {
+                        alert('aaaaa ' + error.response.data.message);
+                    } else {
+                        alert('aaaaa ' + error);
+                    }
+                    return false;
+                });
+
             console.log('getClientConvictions exit');
         },
 
@@ -352,9 +380,11 @@ const store = () => new Vuex.Store({
                             return false;
                         }
                     }).catch(error => {
-                        console.log('saveConviction update error:');
+
                         if (error.response) {
-                            console.log('saveConviction update error:' + error.response);
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
                         }
                         return false;
                     });
@@ -368,9 +398,11 @@ const store = () => new Vuex.Store({
                             return false;
                         }
                     }).catch(error => {
+
                         if (error.response) {
-                            console.log('action   saveConviction add error:');
-                            console.log(error.response);
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
                         }
                         return false;
                     });
@@ -401,11 +433,13 @@ const store = () => new Vuex.Store({
                             console.log('error with id');
                         }
                     }).catch(error => {
-                        console.log('removeConviction update error:');
-                        if (error.response) {
-                            console.log('removeConviction update error:' + error.response);
-                        }
 
+                        if (error.response) {
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
+                        }
+                        return false;
                     });
             }
 
@@ -433,7 +467,15 @@ const store = () => new Vuex.Store({
                     } else {
                         console.log('error');
                     }
-                })
+                }).catch(error => {
+
+                    if (error.response) {
+                        alert('aaaaa ' + error.response.data.message);
+                    } else {
+                        alert('aaaaa ' + error);
+                    }
+                    return false;
+                });
 
             console.log('getClientConvictionCharges  end ' + payload.conviction_id);
 
@@ -456,9 +498,11 @@ const store = () => new Vuex.Store({
                             ;
                         }
                     }).catch(error => {
-                        console.log('saveCharge update error:');
+
                         if (error.response) {
-                            console.log('saveCharge update error:' + error.response);
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
                         }
                         return false;
                     });
@@ -475,9 +519,11 @@ const store = () => new Vuex.Store({
                             return false;
                         }
                     }).catch(error => {
+
                         if (error.response) {
-                            console.log('action   saveCharge add error:');
-                            console.log(error.response);
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
                         }
                         return false;
                     });
@@ -510,11 +556,13 @@ const store = () => new Vuex.Store({
                             console.log('error with id');
                         }
                     }).catch(error => {
-                        console.log('removeCharge update error:');
-                        if (error.response) {
-                            console.log('removeCharge update error:' + error.response);
-                        }
 
+                        if (error.response) {
+                            alert('aaaaa ' + error.response.data.message);
+                        } else {
+                            alert('aaaaa ' + error);
+                        }
+                        return false;
                     });
             }
 

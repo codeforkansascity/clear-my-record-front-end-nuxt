@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container pro-se">
 
 
         <h1>Missouri Pro Se Expungement Application Form</h1>
@@ -142,29 +142,31 @@
 
         <p>I hereby swear:</p>
 
-        <p>That the appropriate amount of time has elapsed since the arrest and/or completion of the authorized
-            disposition imposed for each offense that I am asking to have expunged; it has been at least seven years for
-            any felony offense or at least three years for any misdemeanor, infraction, or ordinance violation;</p>
-        <p>I have not been found guilty of any other misdemeanor or felony, not including violations of the traffic
-            regulations provided under chapters 304 and 307, RSMo., during the time period specified for the underlying
-            offense, violation, or infraction in section 610.140.5.1, RSMo.;</p>
-        <p>I have satisfied all obligations relating to such disposition, including the payment of any fines or
-            restitution;</p>
-        <p>I do not have any charges pending;</p>
-        <p>My habits and conduct demonstrate that I am not a threat to the public safety of the state;</p>
-        <p>I have not been previously granted an expungement in the state of Missouri except as follows: [NOTE: Answer
-            “None.” or state court and case number]; and</p>
-        <p>The expungement is consistent with the public welfare and the interests of justice warrant the
-            expungement.</p>
-        <p>My full name is FirstName MiddleName LastName NameSuffix.</p>
-        <p>My gender is <get_pii_value field="sex" missing_prompt="sss"></get_pii_value>.</p>
-        <p>My race is <get_pii_value field="race" missing_prompt="sss"></get_pii_value>.</p>
-        <p>My date of birth is <get_pii_value field="dob" missing_prompt="sss"></get_pii_value>.</p>
-        <p>My current address is  <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value>.</p>
-        <p>My driver’s license is issued by the state of <get_pii_value field="license_issuing_state" missing_prompt="Issuing state"></get_pii_value>, license number  <get_pii_value field="license_number" missing_prompt="License number"></get_pii_value>,
-            expiration date  <get_pii_value field="license_expiration_date" missing_prompt="Expiration date"></get_pii_value> .</p>
-        <p>The case(s) for which I am seeking expungement include the following:</p>
+        <ol>
 
+        <li>That the appropriate amount of time has elapsed since the arrest and/or completion of the authorized
+            disposition imposed for each offense that I am asking to have expunged; it has been at least seven years for
+            any felony offense or at least three years for any misdemeanor, infraction, or ordinance violation;</li>
+        <li>I have not been found guilty of any other misdemeanor or felony, not including violations of the traffic
+            regulations provided under chapters 304 and 307, RSMo., during the time period specified for the underlying
+            offense, violation, or infraction in section 610.140.5.1, RSMo.;</li>
+        <li>I have satisfied all obligations relating to such disposition, including the payment of any fines or
+            restitution;</li>
+        <li>I do not have any charges pending;</li>
+        <li>My habits and conduct demonstrate that I am not a threat to the public safety of the state;</li>
+        <li>I have not been previously granted an expungement in the state of Missouri except as follows: [NOTE: Answer
+            “None.” or state court and case number]; and</li>
+        <li>The expungement is consistent with the public welfare and the interests of justice warrant the
+            expungement.</li>
+        <li>My full name is FirstName MiddleName LastName NameSuffix.</li>
+        <li>My gender is <get_pii_value field="sex" missing_prompt="sss"></get_pii_value>.</li>
+        <li>My race is <get_pii_value field="race" missing_prompt="sss"></get_pii_value>.</li>
+        <li>My date of birth is <get_pii_value field="dob" missing_prompt="sss"></get_pii_value>.</li>
+        <li>My current address is  <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value>.</li>
+        <li>My driver’s license is issued by the state of <get_pii_value field="license_issuing_state" missing_prompt="Issuing state"></get_pii_value>, license number  <get_pii_value field="license_number" missing_prompt="License number"></get_pii_value>,
+            expiration date  <get_pii_value field="license_expiration_date" missing_prompt="Expiration date"></get_pii_value> .</li>
+        <li>The case(s) for which I am seeking expungement include the following:</li>
+        </ol>
         <table>
             <tr>
                 <th>Case Number</th>
@@ -205,8 +207,8 @@
             _____________________________<br>
             <get_pii_value field="full_name" missing_prompt="What is your full name?"></get_pii_value><br>
             <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value><br>
-            Phone number: PhoneNumber<br>
-            Email Address: EmailAddress<br>
+            Phone number: <get_pii_value field="phone" missing_prompt="Phone"></get_pii_value><br>
+            Email Address: <get_pii_value field="email" missing_prompt="Email"></get_pii_value><br>
             Pro Se Applicant<br>
         </p>
 

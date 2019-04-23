@@ -1,5 +1,5 @@
 <template>
-    <button @click="add_conviction">Add Conviction</button>
+    <button class="btn-success" style="margin-top: 1em" @click="add_conviction">Add Conviction</button>
 </template>
 
 <script>
