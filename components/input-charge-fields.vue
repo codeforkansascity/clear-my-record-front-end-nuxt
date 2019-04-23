@@ -2,8 +2,14 @@
     <b-container style="background-color: lightgoldenrodyellow;">
         <div class="row" style="background-color: lightgoldenrodyellow; margin-top: 1em; ">
 
-            <div class="col-md-8">
-                <h5>{{ this.charge.citation }} {{ this.charge.charge }}</h5>
+            <div class="col-md-6">
+                <h5>{{ this.charge.citation }} {{ this.charge.charge }} </h5>
+            </div>
+            <div class="col-md-2">
+                <h5>
+                    {{ this.charge.conviction_charge_type }} {{ this.charge.conviction_class_type }}
+                    <span v-if="this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['notes']"> [Note]</span>
+                </h5>
             </div>
             <div class="col-md-1">
 
@@ -12,12 +18,12 @@
                         v-model="convicted"
 
                         value="1"
-                        unchecked-value="0"></b-form-checkbox> Convicted
+                        unchecked-value="0"></b-form-checkbox>
+                Convicted
 
 
             </div>
             <div class="col-md-1">
-
 
 
                 <b-form-checkbox
@@ -25,12 +31,12 @@
                         v-model="eligible"
 
                         value="1"
-                        unchecked-value="0"></b-form-checkbox> Eligible
+                        unchecked-value="0"></b-form-checkbox>
+                Eligible
 
 
             </div>
             <div class="col-md-1">
-
 
 
                 <b-form-checkbox
@@ -38,17 +44,18 @@
                         v-model="please_expunge"
 
                         value="1"
-                        unchecked-value="0"></b-form-checkbox> Expunge
+                        unchecked-value="0"></b-form-checkbox>
+                Expunge
 
 
             </div>
 
 
-
             <div class="col-md-1">
                 <img v-show="isShowing" style="width: 1.8em; margin-left: .55em" v-on:click="isShowing ^= true"
                      src="/images/noun_collapse_2091048_000000.png" class="help-button">
-                <img v-show="!isShowing" style="width: 1.5em; margin-left: .55em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                <img v-show="!isShowing" style="width: 1.5em; margin-left: .55em; margin-bottom: 1em"
+                     v-on:click="isShowing ^= true"
                      src="/images/noun_expand_1211939_000000.png" class="help-button">
             </div>
 
@@ -102,7 +109,7 @@
             </div>
 
             <div class="col-md-1" style="padding-top: 1.25em;">
-                <a href="#" tabIndex="-1" class="float-left btn btn-outline-secondary btn-sm"  @click="remove_charge">Remove</a>
+                <a href="#" tabIndex="-1" class="float-left btn btn-outline-secondary btn-sm" @click="remove_charge">Remove</a>
             </div>
 
             <div class="col-md-7" style="padding-left: 2em; padding-bottom: 1em;">
@@ -146,24 +153,24 @@
         },
         data() {
             return {
-                isShowing: true,
+                isShowing: false,
                 savingStatus: 0,
                 savingMessage: '',
                 checked: false,
                 conviction_charge_type_options: [
                     {
-                        "name": "felony",
-                        "abbreviation": "felony"
+                        "name": "Felony",
+                        "abbreviation": "Felony"
                     },
                     {
-                        "name": "misdemeanor",
-                        "abbreviation": "misdemeanor"
+                        "name": "Misdemeanor",
+                        "abbreviation": "Misdemeanor"
                     }
                 ],
                 conviction_class_type_options: [
                     {
                         "name": "No Class",
-                        "abbreviation": "UNDEFINED"
+                        "abbreviation": ""
                     },
                     {
                         "name": "A",
@@ -191,14 +198,14 @@
         computed: {
             convicted: {
                 get() {
-                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['convicted'];
-                    console.log('convicted=' +q);
+                    let q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['convicted'];
+                    console.log('convicted=' + q);
                     console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['convicted']);
                     return q;
                 },
                 set(value) {
 
-                    let bvalue = value ;
+                    let bvalue = value;
                     console.log("set convicted to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,
@@ -212,14 +219,14 @@
                 get() {
 
 
-                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['eligible'];
-                    console.log('eligible=' +q);
+                    let q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['eligible'];
+                    console.log('eligible=' + q);
                     console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['eligible']);
                     return q;
                 },
                 set(value) {
 
-                    let bvalue = value ;
+                    let bvalue = value;
                     console.log("set eligible to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,
@@ -231,14 +238,14 @@
             },
             please_expunge: {
                 get() {
-                    let q =  this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['please_expunge'];
-                    console.log('please_expunge=' +q);
+                    let q = this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['please_expunge'];
+                    console.log('please_expunge=' + q);
                     console.log(this.$store.state.convictions[this.conviction_index].charges[this.charge_index]['please_expunge']);
                     return q;
 
                 },
                 set(value) {
-                    let bvalue = value ;
+                    let bvalue = value;
                     console.log("set please_expunge to " + bvalue);
                     this.$store.commit('storeChargeField', {
                         conviction_index: this.conviction_index,

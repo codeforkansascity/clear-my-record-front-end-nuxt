@@ -4,7 +4,7 @@
             <section-persons-information></section-persons-information>
         </div>
 
-            <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
+        <section-conviction-charges v-bind:client_id="client_id"></section-conviction-charges>
 
         <!--<section-print></section-print>-->
         <section-circuit-information></section-circuit-information>

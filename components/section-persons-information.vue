@@ -53,7 +53,7 @@
 
 
         </div>
-        <div class="form-group"  v-show="isShowing">
+        <div class="form-group" v-show="isShowing">
             <div class="row">
                 <div class="col-md-6">
                     <button v-on:click="update" :disabled="savingStatus === 1" type="submit"
@@ -136,7 +136,7 @@
                         "abbreviation": "Other"
                     }
                 ],
-                isShowing: true,
+                isShowing: false,
                 savingStatus: 0,
                 savingMessage: '',
             }

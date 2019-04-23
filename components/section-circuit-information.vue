@@ -1,15 +1,16 @@
 <template>
 
-    <div style="border: #7f828b; margin-left: .1em; border-width: thin; border-style: solid;">
+    <div style="margin-left: .1em; margin-top: 1.5em">
 
         <div class="row">
             <div class="col-md-11" style="padding-left: 1em; ">
                 <h2>Circuit: {{ this.$store.state.client.filing_court }}</h2>
             </div>
             <div>
-                <img v-show="isShowing" style="width: 1.8em" v-on:click="isShowing ^= true"
+                <img v-show="isShowing" style="width: 1.8em; margin-left: .55em" v-on:click="isShowing ^= true"
                      src="/images/noun_collapse_2091048_000000.png" class="help-button">
-                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em" v-on:click="isShowing ^= true"
+                <img v-show="!isShowing" style="width: 1.5em; margin-bottom: 1em; margin-left: .55em"
+                     v-on:click="isShowing ^= true"
                      src="/images/noun_expand_1211939_000000.png" class="help-button">
 
 
@@ -17,10 +18,10 @@
         </div>
         <div class="row" v-show="isShowing">
             <div class="col-md-6" style="padding-left: 1em;">
-                    <pii-note-field field="petitioner_name">Petitioner Name/Address</pii-note-field>
-                    <pii-note-field field="division_number">Division Number/Address</pii-note-field>
-                    <pii-note-field field="city_name_here">Municipal Court Name/Address</pii-note-field>
-                    <!--<pii-note-field field="county_name">County of Prosecutor(s)/Address</pii-note-field>-->
+                <pii-note-field field="petitioner_name">Petitioner Name/Address</pii-note-field>
+                <pii-note-field field="division_number">Division Number/Address</pii-note-field>
+                <pii-note-field field="city_name_here">Municipal Court Name/Address</pii-note-field>
+                <!--<pii-note-field field="county_name">County of Prosecutor(s)/Address</pii-note-field>-->
             </div>
             <div class="col-md-6" style="padding-left: 1em;">
 
@@ -35,7 +36,7 @@
                 </pii-note-field>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" v-show="isShowing">
             <div class="row">
                 <div class="col-md-6">
                     <button v-on:click="update" type="submit" class="btn btn-primary btn-sm">
@@ -54,17 +55,18 @@
 
 
     import PiiNoteField from "./pii-note-field";
+
     export default {
         name: "section-circuit-information",
         components: {PiiNoteField},
         data() {
             return {
-                isShowing: true,
+                isShowing: false,
             }
         },
         methods: {
             update() {
-                this.$store.dispatch('updateClient',this.$store.state.client);  // Fix: need to pass the correct client_id
+                this.$store.dispatch('updateClient', this.$store.state.client);  // Fix: need to pass the correct client_id
             },
         },
 

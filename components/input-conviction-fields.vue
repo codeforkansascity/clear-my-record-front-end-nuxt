@@ -2,8 +2,17 @@
     <b-container>
     <div class="row" style="padding-top: 2em">
 
-        <div class="col-md-11">
-            <h3>CONVICTION: {{ this.heading }}</h3>
+        <div class="col-md-4">
+            <h3><span style="color: lightgray;">CONVICTION:</span> {{ this.expungee_alias }}</h3>
+        </div>
+        <div class="col-md-5">
+            <h3> {{ this.case_alias }}</h3>
+        </div>
+        <div class="col-md-2">
+            <h3>
+                {{ this.$store.state.convictions[this.conviction_index]['release_date'] }}
+                <span v-if="this.$store.state.convictions[this.conviction_index]['notes']"> [Note]</span>
+            </h3>
         </div>
         <div class="col-md-1">
             <img v-show="isShowing" style="width: 1.8em; margin-left: .1em" v-on:click="isShowing ^= true"
@@ -148,7 +157,7 @@
             return {
                 gridState: 'wait',
                 global_error_message: null,
-                isShowing: true,
+                isShowing: false,
                 savingStatus: 0,
                 savingMessage: '',
             }
@@ -216,10 +225,13 @@
             }
         },
         computed: {
-            heading() {
-
+            expungee_alias() {
                 const d = this.$store.state.convictions[this.conviction_index];
-                return d.court_name + ', ' + d.name + ', ' + d.arrest_date + ', ' + d.release_date;
+                return d.name + ', ' + d.arrest_date;
+            },
+            case_alias() {
+                const d = this.$store.state.convictions[this.conviction_index];
+                return d.case_number + ', ' + d.agency;
             }
         },
     }
