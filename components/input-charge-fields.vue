@@ -174,6 +174,10 @@
                     {
                         "name": "Misdemeanor",
                         "abbreviation": "Misdemeanor"
+                    },
+                    {
+                        "name": "Infraction",
+                        "abbreviation": "Infraction"
                     }
                 ],
                 conviction_class_type_options: [
