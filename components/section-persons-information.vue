@@ -47,7 +47,7 @@
                 <pii-input field="judicial_circuit_number">Judicial Circuit Number</pii-input>
                 <pii-input field="county_name">County Name</pii-input>
 
-                <pii-note-field field="previous_expungements">Previous Expungements</pii-note-field>
+                <pii-note-field field="previous_expungements">Previous Expungements (Leave blank or enter state court and case number of previous expungements)</pii-note-field>
 
             </div>
 

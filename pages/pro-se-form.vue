@@ -102,15 +102,31 @@
             and please leave your initials so we know who is saying what. scs ]</P>
 
 
-        <h1>IN THE <get_pii_value field="judicial_circuit_number"></get_pii_value> JUDICIAL CIRCUIT, <get_pii_value field="county_name"></get_pii_value> COUNTY, MISSOURI</h1>
+        <!--  ------------------ -->
+        <!--  T H E    T H I N G -->
+        <!--  ------------------ -->
+
+
+        <h1>IN THE <get_pii_value field="judicial_circuit_number" capitalize="true"></get_pii_value>
+            JUDICIAL CIRCUIT,
+            <get_pii_value field="county_name" capitalize="true"></get_pii_value> COUNTY, MISSOURI</h1>
 
 
         <p><get_pii_value field="full_name" missing_prompt="What is your full name?"></get_pii_value>,<br>
             Petitioner</p>
 
-        vs.
+            <div class="row" style="margin-bottom: 2em;">
+                <div class="col-sm">
+                    vs.
+                </div>
 
-        <p>Case No. __________________</p>
+                <div class="col-sm float-right">
+                    <span class="float-right">Case No. __________________</span>
+                </div>
+            </div>
+
+
+
 
 
         <p>Circuit Court Division <get_pii_value field="division_number" missing_prompt="Division Number/Address"></get_pii_value></p>
@@ -124,9 +140,10 @@
         <p> <get_pii_value field="other_agencies_name" missing_prompt="Other Agencies Names and Addreses"></get_pii_value>,</p>
         <p>Respondents.</p>
 
-
-        <p><b>Petition for Expungement</b></p>
-        <p>Section 610.140, RSMo.</p>
+        <span style="line-height: 1.5">
+        <p class="text-center"><b>Petition for Expungement</b><br>
+        Section 610.140, RSMo.</p>
+            </span>
 
         <p>Pursuant to section 610.140, RSMo., I request that the court issue an order to expunge my record of arrest,
             plea, trial, or conviction(s), for the criminal case(s) below.</p>
@@ -154,8 +171,7 @@
             restitution;</li>
         <li>I do not have any charges pending;</li>
         <li>My habits and conduct demonstrate that I am not a threat to the public safety of the state;</li>
-        <li>I have not been previously granted an expungement in the state of Missouri except as follows: [NOTE: Answer
-            “None.” or state court and case number]; and</li>
+        <li>I have not been previously granted an expungement in the state of Missouri except as follows: {{ other_expungement }}</li>
         <li>The expungement is consistent with the public welfare and the interests of justice warrant the
             expungement.</li>
         <li>My full name is FirstName MiddleName LastName NameSuffix.</li>
@@ -189,8 +205,9 @@
             knowledge, information, and belief.</p>
 
 
-        <p>
+        <p style="line-height: 1.25">
             _____________________________<br>
+
             <get_pii_value field="full_name" missing_prompt="What is your full name?"></get_pii_value><br>
             <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value><br>
             Phone number: <get_pii_value field="phone" missing_prompt="Phone"></get_pii_value><br>
@@ -236,6 +253,14 @@ console.log('charges_to_expunge');
 
                 }
                 return data;
+            },
+            other_expungement() {
+                var v = this.$store.state.client['previous_expungements'];
+                if ( v ) {
+                    return v;
+                } else {
+                    return 'None.';
+                }
             }
         },
     }

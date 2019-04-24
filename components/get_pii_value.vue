@@ -11,6 +11,10 @@
                 type: String,
                 default: 'q1',
             },
+            capitalize: {
+                type: [String, Boolean],
+                default: false,
+            },
             missing_prompt: {
                 type: String,
                 default: 'MISSING',
@@ -21,7 +25,11 @@
 
                 let v = this.$store.state.client[this.field];
                 if ( v ) {
-                    return v;
+                    if (this.capitalize) {
+                        return v.toString().toUpperCase();
+                    } else {
+                        return v;
+                    }
                 } else {
                     return "MISSING Client: " + this.missing_prompt;
                 }
