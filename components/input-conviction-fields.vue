@@ -24,7 +24,7 @@
 
         <div class="col-md-6" v-show="isShowing" style="padding-left: 2em;">
 
-            <input-conviction-field v-bind:i="this.conviction_index" f="name">What Expungie calls this (or your
+            <input-conviction-field v-bind:i="this.conviction_index" f="name">What Applicant calls this (or your
                 abreviation)?
                 <template slot="help">
                     When speaking with the expungie, how they refer to this. "Car 2005".
@@ -32,7 +32,7 @@
                 </template>
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="arrest_date" style="width: 20em;">Approx. date
-                of arrest per Expungie?
+                of arrest per Applicant?
                 <template slot="help">
                     Any format is ok, even just a year.
                 </template>
