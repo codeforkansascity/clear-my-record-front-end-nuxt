@@ -247,22 +247,18 @@
             <li>The expungement is consistent with the public welfare and the interests of justice warrant the
                 expungement.
             </li>
-            <li>My full name is FirstName MiddleName LastName NameSuffix.</li>
+            <li>My full name is <get_pii_value field="full_name" missing_prompt="sss"></get_pii_value>.</li>
             <li>My gender is
-                <get_pii_value field="sex" missing_prompt="sss"></get_pii_value>
-                .
+                <get_pii_value field="sex" missing_prompt="sss"></get_pii_value>.
             </li>
             <li>My race is
-                <get_pii_value field="race" missing_prompt="sss"></get_pii_value>
-                .
+                <get_pii_value field="race" missing_prompt="sss"></get_pii_value>.
             </li>
             <li>My date of birth is
-                <get_pii_value field="dob" missing_prompt="sss"></get_pii_value>
-                .
+                {{ this.dob }}.
             </li>
             <li>My current address is
-                <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value>
-                .
+                <get_pii_address_value field="address_line_1" missing_prompt="Address Line 1"></get_pii_address_value>.
             </li>
             <li>My driver’s license is issued by the state of
                 <get_pii_value field="license_issuing_state" missing_prompt="Issuing state"></get_pii_value>
@@ -270,8 +266,7 @@
                 <get_pii_value field="license_number" missing_prompt="License number"></get_pii_value>
                 ,
                 expiration date
-                <get_pii_value field="license_expiration_date" missing_prompt="Expiration date"></get_pii_value>
-                .
+                <get_pii_value field="license_expiration_date" missing_prompt="Expiration date"></get_pii_value>.
             </li>
             <li>The case(s) for which I am seeking expungement include the following:</li>
         </ol>
@@ -361,6 +356,16 @@
                     return v;
                 } else {
                     return 'None.';
+                }
+            },
+            dob() {
+
+                var date = new Date(this.$store.state.client['dob']);
+                if (!isNaN(date.getTime())) {
+                    // Months use 0 index.
+                    return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                } else {
+                    return '';
                 }
             }
         },
