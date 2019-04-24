@@ -153,19 +153,15 @@ const store = () => new Vuex.Store({
 
         addCharge(state, data) {
             console.log('addCharge');
-            console.log(data);
 
-            if ((typeof state.convictions.charges === "undefined")) {
-                console.log('adding');
-                Vue.set(state.convictions, 'charges', []);
+            if ((typeof state.convictions[data.conviction_index].charges === "undefined")) {
+                Vue.set(state.convictions[data.conviction_index], 'charges', []);
             }
             state.convictions[data.conviction_index].charges.push(data.charge);
         },
 
         SAVE_CHARGE_ID(state, data) {
             console.log('SAVE_CHARGE_ID');
-            console.log(data);
-
             state.convictions[data.index].charges[data.charge_index].id = data.id;
         },
 

@@ -62,6 +62,8 @@
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="release_status">Release Status
             </input-conviction-field>
+            <input-conviction-field v-bind:i="this.conviction_index" f="approximate_date_of_charge" style="width: 20em;">Approximate Date of Charge - any format
+            </input-conviction-field>
             <input-conviction-date-field v-bind:i="this.conviction_index" f="release_date" style="width: 10em;">Release
                 Date
             </input-conviction-date-field>
@@ -151,6 +153,18 @@
                 type: [Number, String],
                 default: 0
             }
+
+        },
+        mounted() {
+
+            let v = this.$store.state.convictions[this.conviction_index].id;
+            if ( v === undefined ) {
+                console.log( 'set is showing to true');
+                this.isShowing = true;
+            } else {
+                console.log('not|' + v + '|');
+            }
+
 
         },
         data() {

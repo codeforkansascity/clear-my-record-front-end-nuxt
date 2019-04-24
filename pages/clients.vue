@@ -85,21 +85,18 @@
                         this.gridState = 'error';
                     }
                 }).catch(error => {
-                    if (error.response) {
-                        this.gridState = 'error';
-                        console.log(error.response);
-                        this.global_error_message = error.response.data.errors;
-                    }
 
-                }).then(() => {
+                    if (error.response) {
+                        alert('beforeCreate ' + error.response.data.message);
+                    } else {
+                        alert('beforeCreate ' + error);
                     }
-                );
+                    this.gridState = 'error';
+                    return false;
+                });
         },
         methods: {
 
-            async getClientList() {
-
-            },
             goToNew() {
                 this.$router.push('/add-client')
             },
