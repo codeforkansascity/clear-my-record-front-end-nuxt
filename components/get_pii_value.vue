@@ -21,8 +21,6 @@
 
                 let v = this.$store.state.client[this.field];
                 if ( v ) {
-
-                    console.log('|' + v + '|');
                     return v;
                 } else {
                     return "MISSING Client: " + this.missing_prompt;

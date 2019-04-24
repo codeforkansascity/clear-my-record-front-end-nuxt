@@ -167,7 +167,7 @@
             expiration date  <get_pii_value field="license_expiration_date" missing_prompt="Expiration date"></get_pii_value> .</li>
         <li>The case(s) for which I am seeking expungement include the following:</li>
         </ol>
-        <table>
+        <table class="table-bordered">
             <tr>
                 <th>Case Number</th>
                 <th>Court Name</th>
@@ -175,26 +175,12 @@
                 <th>County/Municipality of Charge</th>
                 <th>Description of Charge</th>
             </tr>
-            <tr>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-            </tr>
-            <tr>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-            </tr>
-            <tr>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
-                <td>xxxx</td>
+            <tr v-for="row in this.charges_to_expunge">
+                <td>{{ row.case_number }}</td>
+                <td>{{ row.court_name }}</td>
+                <td>{{ row.approximate_date_of_charge }}</td>
+                <td>{{ row.charge_location}}</td>
+                <td>{{ row.description_of_charge}}</td>
             </tr>
         </table>
 
@@ -223,7 +209,35 @@
     import Get_pii_address_value from "../components/get_pii_address_value";
     export default {
         name: "pro-se-form",
-        components: {Get_pii_address_value, Get_pii_value}
+        components: {Get_pii_address_value, Get_pii_value},
+        computed: {
+            charges_to_expunge() {
+console.log('charges_to_expunge');
+                var data = [];
+
+                console.log(this.$store.state.convictions);
+                for (var c in this.$store.state.convictions) {
+                    console.log('---');
+                    var conviction = this.$store.state.convictions[c];
+                    console.log(conviction);
+                    for (var k in this.$store.state.convictions[c].charges) {
+                        var charge = this.$store.state.convictions[c].charges[k];
+                        console.log(charge);
+                        data.push(
+                            {
+                                case_number: conviction.case_number,
+                                court_name: conviction.court_name,
+                                approximate_date_of_charge: 'fix me',
+                                charge_location: conviction.agency,
+                                description_of_charge: charge.citation + ' ' + charge.charge
+                            }
+                        );
+                    }
+
+                }
+                return data;
+            }
+        },
     }
 </script>
 
