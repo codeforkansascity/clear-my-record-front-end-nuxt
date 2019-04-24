@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div style="padding-top: 3em;">
-            <h2>Add Expungie</h2>
+            <h2>Add Applicant</h2>
             <div class="row">
                 <div class="col-md-6" style="padding-left: 1em;">
                     <pii-input field="full_name">Full name?</pii-input>

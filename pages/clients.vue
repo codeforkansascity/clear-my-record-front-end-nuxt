@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Expungies</h2>
+        <h2>Applicants</h2>
 
         <hr/>
         <!-- Grid Actions Top -->
