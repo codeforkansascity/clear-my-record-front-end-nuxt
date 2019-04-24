@@ -62,6 +62,8 @@
             </input-conviction-field>
             <input-conviction-field v-bind:i="this.conviction_index" f="release_status">Release Status
             </input-conviction-field>
+            <input-conviction-field v-bind:i="this.conviction_index" f="approximate_date_of_charge" style="width: 20em;">Approximate Date of Charge - any format
+            </input-conviction-field>
             <input-conviction-date-field v-bind:i="this.conviction_index" f="release_date" style="width: 10em;">Release
                 Date
             </input-conviction-date-field>
