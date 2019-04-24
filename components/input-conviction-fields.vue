@@ -155,6 +155,18 @@
             }
 
         },
+        mounted() {
+
+            let v = this.$store.state.convictions[this.conviction_index].id;
+            if ( v === undefined ) {
+                console.log( 'set is showing to true');
+                this.isShowing = true;
+            } else {
+                console.log('not|' + v + '|');
+            }
+
+
+        },
         data() {
             return {
                 gridState: 'wait',
